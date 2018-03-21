@@ -29,7 +29,7 @@ public class FragmentDate extends Fragment {
     private FragmentActivity mContext;
     private Button button_continue;
     private TextView textview_q_title;
-    private EditText editText_answer;
+    private TextView editText_answer;
     private String questionId;
 
     @Override
@@ -40,7 +40,7 @@ public class FragmentDate extends Fragment {
 
         button_continue = (Button) rootView.findViewById(R.id.button_continue);
         textview_q_title = (TextView) rootView.findViewById(R.id.textview_q_title);
-        editText_answer = (EditText) rootView.findViewById(R.id.editText_answer);
+        editText_answer = (TextView) rootView.findViewById(R.id.editText_answer);
         button_continue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -118,7 +118,7 @@ public class FragmentDate extends Fragment {
 
     }
 
-    private void updateLabel(EditText edittext, Calendar myCalendar) {
+    private void updateLabel(TextView edittext, Calendar myCalendar) {
         String myFormat = "yyyy-MM-dd"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 

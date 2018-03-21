@@ -20,11 +20,10 @@
                 style="?android:textAppearanceMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
                 android:lineSpacingMultiplier="1.2"
                 android:padding="16dp"
                 android:text="Title"
-                android:textColor="#333"
+                android:textColor="@color/survey_text"
                 android:textSize="16sp" />
 
             <RadioGroup
@@ -40,11 +39,9 @@
 
     </ScrollView>
 
-
     <include
         layout="@layout/footer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></include>
-
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

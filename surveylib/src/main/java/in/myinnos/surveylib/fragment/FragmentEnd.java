@@ -1,5 +1,7 @@
 package in.myinnos.surveylib.fragment;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -7,6 +9,7 @@ import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -14,6 +17,7 @@ import in.myinnos.surveylib.Answers;
 import in.myinnos.surveylib.R;
 import in.myinnos.surveylib.SurveyActivity;
 import in.myinnos.surveylib.models.SurveyProperties;
+import in.myinnos.surveylib.widgets.bottomview.BottomDialog;
 
 
 public class FragmentEnd extends Fragment {
@@ -36,7 +40,22 @@ public class FragmentEnd extends Fragment {
             @Override
             public void onClick(View v) {
 
-                ((SurveyActivity) mContext).event_survey_completed(Answers.getInstance());
+                new BottomDialog.Builder(getActivity())
+                        .setTitle(R.string.finish_popup_title)
+                        .setContent(R.string.finish_popup_message)
+                        .setPositiveText(R.string.finish_popup_ok)
+                        .setNegativeText(R.string.finish_popup_no)
+                        .setPositiveBackgroundColorResource(R.color.colorPrimary)
+                        //.setPositiveBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary)
+                        .setPositiveTextColorResource(android.R.color.white)
+                        .setNegativeTextColorResource(R.color.colorAccent)
+                        //.setPositiveTextColor(ContextCompat.getColor(this, android.R.color.colorPrimary)
+                        .onPositive(new BottomDialog.ButtonCallback() {
+                            @Override
+                            public void onClick(BottomDialog dialog) {
+                                ((SurveyActivity) mContext).event_survey_completed(Answers.getInstance());
+                            }
+                        }).show();
 
             }
         });

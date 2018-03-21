@@ -89,7 +89,7 @@ public class FragmentCheckboxes extends Fragment {
         q_data = (Question) getArguments().getSerializable("data");
 
         questionId = q_data.getQuestionId();
-        textview_q_title.setText(q_data != null ? q_data.getQuestionTitle() : "");
+        textview_q_title.setText(Html.fromHtml(q_data != null ? q_data.getQuestionTitle() : ""));
 
         if (q_data.getRequired()) {
             button_continue.setVisibility(View.GONE);

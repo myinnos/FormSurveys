@@ -1,13 +1,18 @@
 <resources>
     <string name="app_name">SurveyLib</string>
 
-    <string name="xcontinue">Continue</string>
-    <string name="start">Start</string>
-    <string name="finish">Finish</string>
+    <string name="x_continue">Continue</string>
+    <string name="x_start">Start</string>
+    <string name="x_finish">Finish</string>
 
     <string name="close_popup_title">Alert!</string>
     <string name="close_popup_message">Are sure want to cancel?</string>
     <string name="close_popup_ok">Cancel</string>
     <string name="close_popup_no">No</string>
+
+    <string name="finish_popup_title">Alert!</string>
+    <string name="finish_popup_message">Are sure want to finish?</string>
+    <string name="finish_popup_ok">YES</string>
+    <string name="finish_popup_no">No</string>
 
 </resources>

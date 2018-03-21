@@ -45,7 +45,6 @@ public class FragmentTextSimple extends Fragment {
             }
         });
 
-
         return rootView;
     }
 

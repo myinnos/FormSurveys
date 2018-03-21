@@ -5,4 +5,7 @@
     <color name="colorAccent">#FF4081</color>
 
     <color name="flat_pressed">#66999999</color>
+    <color name="survey_button_bg">#303F9F</color>
+    <color name="survey_button_text">#FFFFFF</color>
+    <color name="survey_text">#000000</color>
 </resources>

@@ -7,14 +7,15 @@
     <Button
         android:id="@+id/button_continue"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_gravity="center_horizontal"
-        android:background="@android:color/holo_green_dark"
-        android:text="@string/start"
-        android:textColor="#FFF"
+        android:background="@color/survey_button_bg"
+        android:padding="16dp"
+        android:text="@string/x_start"
+        android:textColor="@color/survey_button_text"
         android:textSize="16sp" />
 
     <ScrollView
@@ -32,7 +33,7 @@
             android:gravity="center"
             android:padding="16dp"
             android:text="New Text"
-            android:textColor="#333"
+            android:textColor="@color/survey_text"
             android:textSize="16sp" />
     </ScrollView>
 

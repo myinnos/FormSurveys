@@ -92,7 +92,7 @@ public class FragmentRadioboxes extends Fragment {
         q_data = (Question) getArguments().getSerializable("data");
 
         questionId = q_data.getQuestionId();
-        textview_q_title.setText(q_data.getQuestionTitle());
+        textview_q_title.setText(Html.fromHtml(q_data.getQuestionTitle()));
 
 
         List<String> qq_data = q_data.getChoices();

@@ -20,31 +20,42 @@
                 style="?android:textAppearanceMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
                 android:lineSpacingMultiplier="1.2"
                 android:padding="16dp"
                 android:text="Title"
-                android:textColor="#333"
+                android:textColor="@color/survey_text"
                 android:textSize="16sp" />
 
-            <EditText
-                android:id="@+id/editText_answer"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:clickable="true"
-                android:editable="false" />
+                android:gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:padding="16dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="28dp"
+                    android:src="@drawable/calendar" />
+
+                <TextView
+                    android:id="@+id/editText_answer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:text="Choose Date"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
         </LinearLayout>
 
-
     </ScrollView>
-
 
     <include
         layout="@layout/footer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></include>
-
+        android:layout_height="wrap_content" />
 
 </LinearLayout>
