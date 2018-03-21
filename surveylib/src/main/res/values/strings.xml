@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">SurveyLib</string>
+
+    <string name="xcontinue">Continue</string>
+    <string name="start">Start</string>
+    <string name="finish">Finish</string>
+
+    <string name="close_popup_title">Alert!</string>
+    <string name="close_popup_message">Are sure want to cancel?</string>
+    <string name="close_popup_ok">Cancel</string>
+    <string name="close_popup_no">No</string>
+
+</resources>
