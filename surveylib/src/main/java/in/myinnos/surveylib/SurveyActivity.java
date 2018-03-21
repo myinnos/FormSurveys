@@ -1,12 +1,10 @@
 package in.myinnos.surveylib;
 
 import android.app.Activity;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
@@ -26,6 +24,7 @@ import in.myinnos.surveylib.fragment.FragmentTextSimple;
 import in.myinnos.surveylib.models.Question;
 import in.myinnos.surveylib.models.SurveyPojo;
 import in.myinnos.surveylib.widgets.AppSurveyConstants;
+import in.myinnos.surveylib.widgets.bottomview.BottomDialog;
 
 public class SurveyActivity extends AppCompatActivity {
 
@@ -159,31 +158,22 @@ public class SurveyActivity extends AppCompatActivity {
         if (mPager.getCurrentItem() == 0) {
             //super.onBackPressed();
 
-            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-                    SurveyActivity.this);
-            // set title
-            alertDialogBuilder.setTitle(getString(R.string.close_popup_title));
-
-            // set dialog message
-            alertDialogBuilder
-                    .setMessage(getString(R.string.close_popup_message))
-                    .setCancelable(false)
-                    .setPositiveButton((getString(R.string.close_popup_ok)), new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
+            new BottomDialog.Builder(this)
+                    .setTitle(R.string.close_popup_title)
+                    .setContent(R.string.close_popup_message)
+                    .setPositiveText(R.string.close_popup_ok)
+                    .setNegativeText(R.string.close_popup_no)
+                    .setPositiveBackgroundColorResource(R.color.colorPrimary)
+                    //.setPositiveBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary)
+                    .setPositiveTextColorResource(android.R.color.white)
+                    .setNegativeTextColorResource(R.color.colorAccent)
+                    //.setPositiveTextColor(ContextCompat.getColor(this, android.R.color.colorPrimary)
+                    .onPositive(new BottomDialog.ButtonCallback() {
+                        @Override
+                        public void onClick(BottomDialog dialog) {
                             SurveyActivity.this.finish();
                         }
-                    })
-                    .setNegativeButton((getString(R.string.close_popup_no)), new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            dialog.cancel();
-                        }
-                    });
-
-            // create alert dialog
-            AlertDialog alertDialog = alertDialogBuilder.create();
-
-            // show it
-            alertDialog.show();
+                    }).show();
 
         } else {
             mPager.setCurrentItem(mPager.getCurrentItem() - 1);
