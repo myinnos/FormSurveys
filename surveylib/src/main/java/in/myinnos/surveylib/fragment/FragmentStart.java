@@ -22,6 +22,7 @@ public class FragmentStart extends Fragment {
     private FragmentActivity mContext;
     private TextView textView_start;
     private String registeredBy;
+    private String customerId;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -35,6 +36,7 @@ public class FragmentStart extends Fragment {
             @Override
             public void onClick(View v) {
                 Answers.getInstance().put_answer(AppSurveyConstants.SUR_REGISTERED_BY, registeredBy);
+                Answers.getInstance().put_answer(AppSurveyConstants.SUR_CUSTOMER_ID, customerId);
                 ((SurveyActivity) mContext).go_to_next();
             }
         });
@@ -49,6 +51,7 @@ public class FragmentStart extends Fragment {
         mContext = getActivity();
         SurveyProperties survery_properties = (SurveyProperties) getArguments().getSerializable("survery_properties");
         registeredBy = getArguments().getString(AppSurveyConstants.SUR_REGISTERED_BY);
+        customerId = getArguments().getString(AppSurveyConstants.SUR_CUSTOMER_ID);
 
         assert survery_properties != null;
         textView_start.setText(Html.fromHtml(survery_properties.getIntroMessage()));

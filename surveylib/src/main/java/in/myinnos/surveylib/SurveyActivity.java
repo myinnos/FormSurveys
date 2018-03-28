@@ -32,6 +32,7 @@ public class SurveyActivity extends AppCompatActivity {
     private ViewPager mPager;
     private String style_string = null;
     private String registered_by;
+    private String customer_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +45,7 @@ public class SurveyActivity extends AppCompatActivity {
             mSurveyPojo = new Gson().fromJson(bundle.getString("json_survey"), SurveyPojo.class);
             /// registered_by user
             registered_by = bundle.getString(AppSurveyConstants.SUR_REGISTERED_BY);
+            customer_id = bundle.getString(AppSurveyConstants.SUR_CUSTOMER_ID);
             //
             if (bundle.containsKey("style")) {
                 style_string = bundle.getString("style");
@@ -62,6 +64,7 @@ public class SurveyActivity extends AppCompatActivity {
             sBundle.putSerializable("survery_properties", mSurveyPojo.getSurveyProperties());
             sBundle.putString("style", style_string);
             sBundle.putString(AppSurveyConstants.SUR_REGISTERED_BY, registered_by);
+            sBundle.putString(AppSurveyConstants.SUR_CUSTOMER_ID, customer_id);
             frag_start.setArguments(sBundle);
             arraylist_fragments.add(frag_start);
         }
@@ -75,6 +78,7 @@ public class SurveyActivity extends AppCompatActivity {
                 xBundle.putSerializable("data", mQuestion);
                 xBundle.putString("style", style_string);
                 xBundle.putString(AppSurveyConstants.SUR_REGISTERED_BY, registered_by);
+                xBundle.putString(AppSurveyConstants.SUR_CUSTOMER_ID, customer_id);
                 frag.setArguments(xBundle);
                 arraylist_fragments.add(frag);
             }
@@ -85,6 +89,7 @@ public class SurveyActivity extends AppCompatActivity {
                 xBundle.putSerializable("data", mQuestion);
                 xBundle.putString("style", style_string);
                 xBundle.putString(AppSurveyConstants.SUR_REGISTERED_BY, registered_by);
+                xBundle.putString(AppSurveyConstants.SUR_CUSTOMER_ID, customer_id);
                 frag.setArguments(xBundle);
                 arraylist_fragments.add(frag);
             }
@@ -95,6 +100,7 @@ public class SurveyActivity extends AppCompatActivity {
                 xBundle.putSerializable("data", mQuestion);
                 xBundle.putString("style", style_string);
                 xBundle.putString(AppSurveyConstants.SUR_REGISTERED_BY, registered_by);
+                xBundle.putString(AppSurveyConstants.SUR_CUSTOMER_ID, customer_id);
                 frag.setArguments(xBundle);
                 arraylist_fragments.add(frag);
             }
@@ -115,6 +121,7 @@ public class SurveyActivity extends AppCompatActivity {
                 xBundle.putSerializable("data", mQuestion);
                 xBundle.putString("style", style_string);
                 xBundle.putString(AppSurveyConstants.SUR_REGISTERED_BY, registered_by);
+                xBundle.putString(AppSurveyConstants.SUR_CUSTOMER_ID, customer_id);
                 frag.setArguments(xBundle);
                 arraylist_fragments.add(frag);
             }
@@ -125,6 +132,7 @@ public class SurveyActivity extends AppCompatActivity {
                 xBundle.putSerializable("data", mQuestion);
                 xBundle.putString("style", style_string);
                 xBundle.putString(AppSurveyConstants.SUR_REGISTERED_BY, registered_by);
+                xBundle.putString(AppSurveyConstants.SUR_CUSTOMER_ID, customer_id);
                 frag.setArguments(xBundle);
                 arraylist_fragments.add(frag);
             }
@@ -137,6 +145,7 @@ public class SurveyActivity extends AppCompatActivity {
         eBundle.putSerializable("survery_properties", mSurveyPojo.getSurveyProperties());
         eBundle.putString("style", style_string);
         eBundle.putString(AppSurveyConstants.SUR_REGISTERED_BY, registered_by);
+        eBundle.putString(AppSurveyConstants.SUR_CUSTOMER_ID, customer_id);
         frag_end.setArguments(eBundle);
         arraylist_fragments.add(frag_end);
 
