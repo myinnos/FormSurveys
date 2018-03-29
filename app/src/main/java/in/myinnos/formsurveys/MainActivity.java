@@ -14,6 +14,7 @@ import java.io.InputStream;
 
 import in.myinnos.formsurveys.ApiInterface.ApiInterfaceSurveys;
 import in.myinnos.surveylib.SurveyActivity;
+import in.myinnos.surveylib.widgets.AppSurveyConstants;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -97,7 +98,8 @@ public class MainActivity extends AppCompatActivity {
         Intent i_survey = new Intent(MainActivity.this, SurveyActivity.class);
         //i_survey.putExtra("json_survey", loadSurveyJson("customer_survey.json"));
         i_survey.putExtra("json_survey", json);
-        i_survey.putExtra("registered_by", registered_by);
+        i_survey.putExtra(AppSurveyConstants.SUR_REGISTERED_BY, registered_by);
+        i_survey.putExtra(AppSurveyConstants.SUR_CUSTOMER_ID, "1");
         startActivityForResult(i_survey, SURVEY_REQUEST);
     }
 }
