@@ -15,6 +15,10 @@ public class SurveyHelper {
 
             Answers.getInstance().put_answer(questionId, Integer.parseInt(value));
 
+        } else if (type.equals("long")) {
+
+            Answers.getInstance().put_answer(questionId, Long.parseLong(value));
+
         } else if (type.equals("string")) {
 
             Answers.getInstance().put_answer(questionId, String.valueOf(value));
