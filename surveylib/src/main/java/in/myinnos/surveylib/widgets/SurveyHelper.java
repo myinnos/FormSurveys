@@ -9,7 +9,12 @@ public class SurveyHelper {
 
         if (type.equals("boolean")) {
 
-            Answers.getInstance().put_answer(questionId, Boolean.parseBoolean(value));
+            if (value.equals("Yes")) {
+                Answers.getInstance().put_answer(questionId, true);
+            } else if (value.equals("No")) {
+                Answers.getInstance().put_answer(questionId, false);
+            }
+            //Answers.getInstance().put_answer(questionId, Boolean.parseBoolean(value));
 
         } else if (type.equals("int")) {
 
