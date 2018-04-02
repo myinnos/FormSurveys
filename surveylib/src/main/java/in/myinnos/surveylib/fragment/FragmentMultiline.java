@@ -17,6 +17,7 @@ import in.myinnos.surveylib.Answers;
 import in.myinnos.surveylib.R;
 import in.myinnos.surveylib.SurveyActivity;
 import in.myinnos.surveylib.models.Question;
+import in.myinnos.surveylib.widgets.SurveyHelper;
 
 public class FragmentMultiline extends Fragment {
 
@@ -24,7 +25,7 @@ public class FragmentMultiline extends Fragment {
     private Button button_continue;
     private TextView textview_q_title;
     private EditText editText_answer;
-    private String questionId;
+    private String questionId, questionVariableType;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -38,7 +39,10 @@ public class FragmentMultiline extends Fragment {
         button_continue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                 Answers.getInstance().put_answer(questionId, editText_answer.getText().toString().trim());
+                 //Answers.getInstance().put_answer(questionId, editText_answer.getText().toString().trim());
+
+                SurveyHelper.putAnswer(questionVariableType, questionId, editText_answer.getText().toString().trim());
+
                 ((SurveyActivity) mContext).go_to_next();
             }
         });
@@ -76,6 +80,7 @@ public class FragmentMultiline extends Fragment {
         }
 
         questionId = q_data.getQuestionId();
+        questionVariableType = q_data.getQuestion_v_type();
         textview_q_title.setText(Html.fromHtml(q_data.getQuestionTitle()));
         editText_answer.requestFocus();
         /*InputMethodManager imm = (InputMethodManager) mContext.getSystemService(Service.INPUT_METHOD_SERVICE);

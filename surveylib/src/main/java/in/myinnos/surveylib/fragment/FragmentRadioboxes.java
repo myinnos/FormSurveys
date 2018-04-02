@@ -19,6 +19,7 @@ import in.myinnos.surveylib.Answers;
 import in.myinnos.surveylib.R;
 import in.myinnos.surveylib.SurveyActivity;
 import in.myinnos.surveylib.models.Question;
+import in.myinnos.surveylib.widgets.SurveyHelper;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -33,7 +34,7 @@ public class FragmentRadioboxes extends Fragment {
     private RadioGroup radioGroup;
     private final ArrayList<RadioButton> allRb = new ArrayList<>();
     private boolean at_leaset_one_checked = false;
-    private String questionId;
+    private String questionId, questionVariableType;
 
 
     @Override
@@ -68,7 +69,8 @@ public class FragmentRadioboxes extends Fragment {
         }
 
         if (the_choice.length() > 0) {
-            Answers.getInstance().put_answer(questionId, the_choice);
+            //Answers.getInstance().put_answer(questionId, the_choice);
+            SurveyHelper.putAnswer(questionVariableType, questionId, the_choice);
         }
 
 
@@ -92,6 +94,7 @@ public class FragmentRadioboxes extends Fragment {
         q_data = (Question) getArguments().getSerializable("data");
 
         questionId = q_data.getQuestionId();
+        questionVariableType = q_data.getQuestion_v_type();
         textview_q_title.setText(Html.fromHtml(q_data.getQuestionTitle()));
 
 

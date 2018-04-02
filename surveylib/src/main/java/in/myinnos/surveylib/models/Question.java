@@ -41,6 +41,15 @@ public class Question implements Serializable {
     @SerializedName("question_id")
     @Expose
     private String questionId;
+    @SerializedName("question_v_type")
+    @Expose
+    private String question_v_type;
+    @SerializedName("min_char_length")
+    @Expose
+    private String min_char_length;
+    @SerializedName("max_char_length")
+    @Expose
+    private String max_char_length;
 
     public String getQuestionId() {
         return questionId;
@@ -48,6 +57,30 @@ public class Question implements Serializable {
 
     public void setQuestionId(String questionId) {
         this.questionId = questionId;
+    }
+
+    public String getQuestion_v_type() {
+        return question_v_type;
+    }
+
+    public void setQuestion_v_type(String question_v_type) {
+        this.question_v_type = question_v_type;
+    }
+
+    public String getMin_char_length() {
+        return min_char_length;
+    }
+
+    public void setMin_char_length(String min_char_length) {
+        this.min_char_length = min_char_length;
+    }
+
+    public String getMax_char_length() {
+        return max_char_length;
+    }
+
+    public void setMax_char_length(String max_char_length) {
+        this.max_char_length = max_char_length;
     }
 
     /**

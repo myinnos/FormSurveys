@@ -22,6 +22,7 @@ import in.myinnos.surveylib.Answers;
 import in.myinnos.surveylib.R;
 import in.myinnos.surveylib.SurveyActivity;
 import in.myinnos.surveylib.models.Question;
+import in.myinnos.surveylib.widgets.SurveyHelper;
 
 public class FragmentCheckboxes extends Fragment {
 
@@ -31,7 +32,7 @@ public class FragmentCheckboxes extends Fragment {
     private TextView textview_q_title;
     private LinearLayout linearLayout_checkboxes;
     private final ArrayList<CheckBox> allCb = new ArrayList<>();
-    private String questionId;
+    private String questionId, questionVariableType;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -66,7 +67,9 @@ public class FragmentCheckboxes extends Fragment {
 
         if (the_choices.length() > 2) {
             the_choices = the_choices.substring(0, the_choices.length() - 2);
-            Answers.getInstance().put_answer(questionId, the_choices);
+            //Answers.getInstance().put_answer(questionId, the_choices);
+
+            SurveyHelper.putAnswer(questionVariableType, questionId, the_choices);
         }
 
 
@@ -89,6 +92,7 @@ public class FragmentCheckboxes extends Fragment {
         q_data = (Question) getArguments().getSerializable("data");
 
         questionId = q_data.getQuestionId();
+        questionVariableType = q_data.getQuestion_v_type();
         textview_q_title.setText(Html.fromHtml(q_data != null ? q_data.getQuestionTitle() : ""));
 
         if (q_data.getRequired()) {

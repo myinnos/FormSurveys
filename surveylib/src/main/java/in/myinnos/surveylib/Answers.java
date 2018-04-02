@@ -8,13 +8,13 @@ import java.util.LinkedHashMap;
 
 public class Answers {
     private volatile static Answers uniqueInstance;
-    private final LinkedHashMap<String, String> answered_hashmap = new LinkedHashMap<>();
+    private final LinkedHashMap<String, Object> answered_hashmap = new LinkedHashMap<>();
 
 
     private Answers() {
     }
 
-    public void put_answer(String key, String value) {
+    public void put_answer(String key, Object value) {
         answered_hashmap.put(key, value);
     }
 

@@ -15,6 +15,7 @@ import in.myinnos.surveylib.R;
 import in.myinnos.surveylib.SurveyActivity;
 import in.myinnos.surveylib.models.SurveyProperties;
 import in.myinnos.surveylib.widgets.AppSurveyConstants;
+import in.myinnos.surveylib.widgets.SurveyHelper;
 
 
 public class FragmentStart extends Fragment {
@@ -35,8 +36,13 @@ public class FragmentStart extends Fragment {
         button_continue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Answers.getInstance().put_answer(AppSurveyConstants.SUR_REGISTERED_BY, registeredBy);
-                Answers.getInstance().put_answer(AppSurveyConstants.SUR_CUSTOMER_ID, customerId);
+
+                //Answers.getInstance().put_answer(AppSurveyConstants.SUR_REGISTERED_BY, registeredBy);
+                //Answers.getInstance().put_answer(AppSurveyConstants.SUR_CUSTOMER_ID, customerId);
+
+                SurveyHelper.putAnswer("int", AppSurveyConstants.SUR_REGISTERED_BY, registeredBy);
+                SurveyHelper.putAnswer("int", AppSurveyConstants.SUR_CUSTOMER_ID, customerId);
+
                 ((SurveyActivity) mContext).go_to_next();
             }
         });
