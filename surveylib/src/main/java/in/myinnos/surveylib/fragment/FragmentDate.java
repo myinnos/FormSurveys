@@ -19,6 +19,7 @@ import android.widget.TextView;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
+import java.util.TimeZone;
 
 import in.myinnos.surveylib.Answers;
 import in.myinnos.surveylib.R;
@@ -133,20 +134,21 @@ public class FragmentDate extends Fragment {
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                         myCalendar.get(Calendar.DAY_OF_MONTH));
 
-                int currentYear = myCalendar.get(Calendar.YEAR);
-                int currentMonth = myCalendar.get(Calendar.MONTH);
-                int currentDay = myCalendar.get(Calendar.DAY_OF_MONTH);
+                Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
+                int year = calendar.get(Calendar.YEAR);
+                int month = calendar.get(Calendar.MONTH);
+                int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-                int minYear = currentYear - date_max;
-                int minMonth = currentMonth;
-                int minDay = currentDay;
+                int minYear = year - date_max;
+                int minMonth = month;
+                int minDay = day;
 
                 myCalendar.set(minYear, minMonth, minDay);
                 long minDateInMilliSeconds = myCalendar.getTimeInMillis();
 
                 datePickerDialog.getDatePicker().setMaxDate(minDateInMilliSeconds);
                 datePickerDialog.show();
-            }
+                }
         });
 
     }
