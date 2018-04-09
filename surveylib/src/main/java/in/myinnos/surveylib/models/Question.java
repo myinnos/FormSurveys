@@ -51,6 +51,10 @@ public class Question implements Serializable {
     @Expose
     private String max_char_length;
 
+    @SerializedName("date_condition")
+    @Expose
+    private int date_condition;
+
     public String getQuestionId() {
         return questionId;
     }
@@ -81,6 +85,14 @@ public class Question implements Serializable {
 
     public void setMax_char_length(String max_char_length) {
         this.max_char_length = max_char_length;
+    }
+
+    public int getDate_condition() {
+        return date_condition;
+    }
+
+    public void setDate_condition(int date_condition) {
+        this.date_condition = date_condition;
     }
 
     /**

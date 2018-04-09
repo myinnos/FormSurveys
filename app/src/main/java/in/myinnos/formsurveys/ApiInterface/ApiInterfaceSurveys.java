@@ -12,7 +12,7 @@ import retrofit2.http.GET;
 public interface ApiInterfaceSurveys {
 
     // get list
-    @GET("/bins/btmzj.json")
+    @GET("/bins/18veur.json")
     Call<JsonObject> cusRegForm();
 
 }

@@ -34,6 +34,7 @@ public class FragmentDate extends Fragment {
     private TextView editText_answer;
     private String questionId, questionVariableType;
     private int max_length = 1000, min_length = 3;
+    private int date_max = 18;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -65,7 +66,7 @@ public class FragmentDate extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         mContext = getActivity();
-        Question q_data = (Question) getArguments().getSerializable("data");
+        final Question q_data = (Question) getArguments().getSerializable("data");
 
         if (q_data.getRequired()) {
             button_continue.setVisibility(View.GONE);
@@ -91,6 +92,7 @@ public class FragmentDate extends Fragment {
 
         questionId = q_data.getQuestionId();
         questionVariableType = q_data.getQuestion_v_type();
+        date_max = q_data.getDate_condition();
 
         if (q_data.getMax_char_length() != null) {
             max_length = Integer.parseInt(q_data.getMax_char_length());
@@ -116,6 +118,7 @@ public class FragmentDate extends Fragment {
                 myCalendar.set(Calendar.YEAR, year);
                 myCalendar.set(Calendar.MONTH, monthOfYear);
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
                 updateLabel(editText_answer, myCalendar);
             }
 
@@ -125,10 +128,24 @@ public class FragmentDate extends Fragment {
 
             @Override
             public void onClick(View v) {
-                // TODO Auto-generated method stub
-                new DatePickerDialog(getActivity(), date, myCalendar
+
+                DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), date, myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+                        myCalendar.get(Calendar.DAY_OF_MONTH));
+
+                int currentYear = myCalendar.get(Calendar.YEAR);
+                int currentMonth = myCalendar.get(Calendar.MONTH);
+                int currentDay = myCalendar.get(Calendar.DAY_OF_MONTH);
+
+                int minYear = currentYear - date_max;
+                int minMonth = currentMonth;
+                int minDay = currentDay;
+
+                myCalendar.set(minYear, minMonth, minDay);
+                long minDateInMilliSeconds = myCalendar.getTimeInMillis();
+
+                datePickerDialog.getDatePicker().setMaxDate(minDateInMilliSeconds);
+                datePickerDialog.show();
             }
         });
 
