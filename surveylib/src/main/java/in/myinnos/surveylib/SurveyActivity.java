@@ -234,7 +234,8 @@ public class SurveyActivity extends AppCompatActivity {
             FragmentImage frag = new FragmentImage();
             frag.moveNext(String.valueOf(imageUri),
                     SurveySharedFlows.getQuestionID(SurveyActivity.this),
-                    SurveySharedFlows.getQuestionType(SurveyActivity.this));
+                    SurveySharedFlows.getQuestionType(SurveyActivity.this),
+                    SurveyActivity.this);
         }
     }
 }

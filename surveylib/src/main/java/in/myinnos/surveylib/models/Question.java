@@ -59,6 +59,10 @@ public class Question implements Serializable {
     @Expose
     private Boolean is_phone_number;
 
+    @SerializedName("is_photo_required")
+    @Expose
+    private Boolean is_photo_required;
+
     public String getQuestionId() {
         return questionId;
     }
@@ -105,6 +109,14 @@ public class Question implements Serializable {
 
     public void setIs_phone_number(Boolean is_phone_number) {
         this.is_phone_number = is_phone_number;
+    }
+
+    public Boolean getIs_photo_required() {
+        return is_photo_required;
+    }
+
+    public void setIs_photo_required(Boolean is_photo_required) {
+        this.is_photo_required = is_photo_required;
     }
 
     /**

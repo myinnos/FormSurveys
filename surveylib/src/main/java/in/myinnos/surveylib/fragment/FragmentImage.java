@@ -1,5 +1,6 @@
 package in.myinnos.surveylib.fragment;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -16,14 +17,16 @@ import android.widget.TextView;
 import java.io.File;
 
 import in.myinnos.surveylib.R;
+import in.myinnos.surveylib.SurveyActivity;
 import in.myinnos.surveylib.activity.CropActivity;
 import in.myinnos.surveylib.models.Question;
+import in.myinnos.surveylib.widgets.SurveyHelper;
 import in.myinnos.surveylib.widgets.SurveySharedFlows;
 
 public class FragmentImage extends Fragment {
 
     private FragmentActivity mContext;
-    //private Button button_continue;
+    private Button button_continue;
     private TextView textview_q_title;
     private TextView editText_answer;
     //private String questionId, questionVariableType = "string";
@@ -38,32 +41,33 @@ public class FragmentImage extends Fragment {
 
         photoFile = new File(getActivity().getExternalFilesDir("img"), "survey_scan.jpg");
 
-        //button_continue = (Button) rootView.findViewById(R.id.button_continue);
+        button_continue = (Button) rootView.findViewById(R.id.button_continue);
         textview_q_title = (TextView) rootView.findViewById(R.id.textview_q_title);
         editText_answer = (TextView) rootView.findViewById(R.id.editText_answer);
-        /*button_continue.setOnClickListener(new View.OnClickListener() {
+        button_continue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Answers.getInstance().put_answer(questionId, editText_answer.getText().toString().trim());
 
-                SurveyHelper.putAnswer(questionVariableType, questionId, editText_answer.getText().toString().trim());
+                //SurveyHelper.putAnswer(questionVariableType, questionId, editText_answer.getText().toString().trim());
 
                 ((SurveyActivity) mContext).go_to_next();
             }
-        });*/
+        });
 
 
         return rootView;
     }
 
-    public void moveNext(String imageId, String questionId, String questionType) {
+    public void moveNext(String imageId, String questionId,
+                         String questionType, Activity activity) {
 
         Log.d("in_fragment_done", imageId);
         Log.d("in_fragment_done", questionId);
         Log.d("in_fragment_done", questionType);
 
-        //SurveyHelper.putAnswer(questionVariableType, questionId, imageId);
-        //((SurveyActivity) mContext).go_to_next();
+        SurveyHelper.putAnswer(questionType, questionId, imageId);
+        ((SurveyActivity) activity).go_to_next();
     }
 
 
@@ -98,6 +102,12 @@ public class FragmentImage extends Fragment {
 
         //questionId = q_data.getQuestionId();
         //questionVariableType = q_data.getQuestion_v_type();
+
+        if (q_data.getIs_photo_required()) {
+            button_continue.setVisibility(View.GONE);
+        } else {
+            button_continue.setVisibility(View.VISIBLE);
+        }
 
         textview_q_title.setText(Html.fromHtml(q_data.getQuestionTitle()));
 
