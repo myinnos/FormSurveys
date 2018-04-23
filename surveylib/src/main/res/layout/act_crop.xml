@@ -11,9 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:padding="20dp"
-        app:civLineColor="@color/colorPrimary"
-        app:civMagnifierCrossColor="@color/colorPrimaryDark" />
+        android:padding="20dp" />
 
     <LinearLayout
         android:id="@+id/ll_btn"
