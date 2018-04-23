@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import in.myinnos.surveylib.Answers;
 import in.myinnos.surveylib.R;
@@ -29,6 +30,7 @@ public class FragmentNumber extends Fragment {
     private EditText editText_answer;
     private String questionId, questionVariableType;
     private int max_length = 1000, min_length = 0;
+    private Boolean is_phone_number = false;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -46,9 +48,20 @@ public class FragmentNumber extends Fragment {
             public void onClick(View v) {
                 //Answers.getInstance().put_answer(questionId, editText_answer.getText().toString().trim());
 
-                SurveyHelper.putAnswer(questionVariableType, questionId, editText_answer.getText().toString().trim());
+                if (!is_phone_number) {
 
-                ((SurveyActivity) mContext).go_to_next();
+                    SurveyHelper.putAnswer(questionVariableType, questionId, editText_answer.getText().toString().trim());
+                    ((SurveyActivity) mContext).go_to_next();
+                } else {
+
+                    String first = String.valueOf(editText_answer.getText().toString().charAt(0));
+                    if (first.equals("6") || first.equals("7") || first.equals("8") || first.equals("9")) {
+                        SurveyHelper.putAnswer(questionVariableType, questionId, editText_answer.getText().toString().trim());
+                        ((SurveyActivity) mContext).go_to_next();
+                    } else {
+                        Toast.makeText(getActivity().getApplicationContext(), "Invalid Phone Number!", Toast.LENGTH_LONG).show();
+                    }
+                }
             }
         });
 
@@ -88,6 +101,7 @@ public class FragmentNumber extends Fragment {
 
         questionId = q_data.getQuestionId();
         questionVariableType = q_data.getQuestion_v_type();
+        is_phone_number = q_data.getIs_phone_number();
 
         if (q_data.getMax_char_length() != null) {
             max_length = Integer.parseInt(q_data.getMax_char_length());

@@ -55,6 +55,10 @@ public class Question implements Serializable {
     @Expose
     private int date_condition;
 
+    @SerializedName("is_phone_number")
+    @Expose
+    private Boolean is_phone_number;
+
     public String getQuestionId() {
         return questionId;
     }
@@ -95,163 +99,135 @@ public class Question implements Serializable {
         this.date_condition = date_condition;
     }
 
+    public Boolean getIs_phone_number() {
+        return is_phone_number;
+    }
+
+    public void setIs_phone_number(Boolean is_phone_number) {
+        this.is_phone_number = is_phone_number;
+    }
+
     /**
-     *
-     * @return
-     * The questionType
+     * @return The questionType
      */
     public String getQuestionType() {
         return questionType;
     }
 
     /**
-     *
-     * @param questionType
-     * The question_type
+     * @param questionType The question_type
      */
     public void setQuestionType(String questionType) {
         this.questionType = questionType;
     }
 
     /**
-     *
-     * @return
-     * The questionTitle
+     * @return The questionTitle
      */
     public String getQuestionTitle() {
         return questionTitle;
     }
 
     /**
-     *
-     * @param questionTitle
-     * The question_title
+     * @param questionTitle The question_title
      */
     public void setQuestionTitle(String questionTitle) {
         this.questionTitle = questionTitle;
     }
 
     /**
-     *
-     * @return
-     * The description
+     * @return The description
      */
     public String getDescription() {
         return description;
     }
 
     /**
-     *
-     * @param description
-     * The description
+     * @param description The description
      */
     public void setDescription(String description) {
         this.description = description;
     }
 
     /**
-     *
-     * @return
-     * The required
+     * @return The required
      */
     public Boolean getRequired() {
         return required;
     }
 
     /**
-     *
-     * @param required
-     * The required
+     * @param required The required
      */
     public void setRequired(Boolean required) {
         this.required = required;
     }
 
     /**
-     *
-     * @return
-     * The randomChoices
+     * @return The randomChoices
      */
     public Boolean getRandomChoices() {
         return randomChoices;
     }
 
     /**
-     *
-     * @param randomChoices
-     * The random_choices
+     * @param randomChoices The random_choices
      */
     public void setRandomChoices(Boolean randomChoices) {
         this.randomChoices = randomChoices;
     }
 
     /**
-     *
-     * @return
-     * The choices
+     * @return The choices
      */
     public List<String> getChoices() {
         return choices;
     }
 
     /**
-     *
-     * @param choices
-     * The choices
+     * @param choices The choices
      */
     public void setChoices(List<String> choices) {
         this.choices = choices;
     }
 
     /**
-     *
-     * @return
-     * The min
+     * @return The min
      */
     public Integer getMin() {
         return min;
     }
 
     /**
-     *
-     * @param min
-     * The min
+     * @param min The min
      */
     public void setMin(Integer min) {
         this.min = min;
     }
 
     /**
-     *
-     * @return
-     * The max
+     * @return The max
      */
     public Integer getMax() {
         return max;
     }
 
     /**
-     *
-     * @param max
-     * The max
+     * @param max The max
      */
     public void setMax(Integer max) {
         this.max = max;
     }
 
     /**
-     *
-     * @return
-     * The numberOfLines
+     * @return The numberOfLines
      */
     public Integer getNumberOfLines() {
         return numberOfLines;
     }
 
     /**
-     *
-     * @param numberOfLines
-     * The number_of_lines
+     * @param numberOfLines The number_of_lines
      */
     public void setNumberOfLines(Integer numberOfLines) {
         this.numberOfLines = numberOfLines;
