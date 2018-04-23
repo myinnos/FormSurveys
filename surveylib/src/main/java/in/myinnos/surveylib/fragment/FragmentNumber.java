@@ -17,10 +17,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import in.myinnos.surveylib.Answers;
+import in.myinnos.surveylib.ApiInterface.SurveysApiClient;
+import in.myinnos.surveylib.ApiInterface.SurveysApiInterface;
 import in.myinnos.surveylib.R;
 import in.myinnos.surveylib.SurveyActivity;
+import in.myinnos.surveylib.models.PhoneNumberModel;
 import in.myinnos.surveylib.models.Question;
+import in.myinnos.surveylib.widgets.AppSurveyConstants;
 import in.myinnos.surveylib.widgets.SurveyHelper;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class FragmentNumber extends Fragment {
 
@@ -31,6 +38,7 @@ public class FragmentNumber extends Fragment {
     private String questionId, questionVariableType;
     private int max_length = 1000, min_length = 0;
     private Boolean is_phone_number = false;
+    private String base_url = "URL";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -54,13 +62,38 @@ public class FragmentNumber extends Fragment {
                     ((SurveyActivity) mContext).go_to_next();
                 } else {
 
-                    String first = String.valueOf(editText_answer.getText().toString().charAt(0));
-                    if (first.equals("6") || first.equals("7") || first.equals("8") || first.equals("9")) {
-                        SurveyHelper.putAnswer(questionVariableType, questionId, editText_answer.getText().toString().trim());
-                        ((SurveyActivity) mContext).go_to_next();
-                    } else {
-                        Toast.makeText(getActivity().getApplicationContext(), "Invalid Phone Number!", Toast.LENGTH_LONG).show();
-                    }
+                    SurveysApiInterface apiService =
+                            SurveysApiClient.getClient(base_url).create(SurveysApiInterface.class);
+
+                    Call<PhoneNumberModel> call =
+                            apiService.phoneNumberVerification(editText_answer.getText().toString().trim());
+
+                    call.enqueue(new Callback<PhoneNumberModel>() {
+                        @Override
+                        public void onResponse(Call<PhoneNumberModel> call, Response<PhoneNumberModel> response) {
+
+                            if (response.body().getPhoneNumberDataModel().getIs_registered()) {
+                                Toast.makeText(getActivity().getApplicationContext(),
+                                        response.body().getPhoneNumberDataModel().getMsg(), Toast.LENGTH_LONG).show();
+                            } else {
+
+                                String first = String.valueOf(editText_answer.getText().toString().charAt(0));
+                                if (first.equals("6") || first.equals("7") || first.equals("8") || first.equals("9")) {
+                                    SurveyHelper.putAnswer(questionVariableType, questionId, editText_answer.getText().toString().trim());
+                                    ((SurveyActivity) mContext).go_to_next();
+                                } else {
+                                    Toast.makeText(getActivity().getApplicationContext(), "Invalid Phone Number!", Toast.LENGTH_LONG).show();
+                                }
+                            }
+
+                        }
+
+                        @Override
+                        public void onFailure(Call<PhoneNumberModel> call, Throwable t) {
+
+                        }
+                    });
+
                 }
             }
         });
@@ -74,6 +107,7 @@ public class FragmentNumber extends Fragment {
 
         mContext = getActivity();
         Question q_data = (Question) getArguments().getSerializable("data");
+        base_url = getArguments().getString(AppSurveyConstants.BASE_URL);
 
 
         if (q_data.getRequired()) {

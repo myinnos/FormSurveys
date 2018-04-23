@@ -20,6 +20,7 @@ import in.myinnos.surveylib.R;
 import in.myinnos.surveylib.SurveyActivity;
 import in.myinnos.surveylib.activity.CropActivity;
 import in.myinnos.surveylib.models.Question;
+import in.myinnos.surveylib.widgets.AppSurveyConstants;
 import in.myinnos.surveylib.widgets.SurveyHelper;
 import in.myinnos.surveylib.widgets.SurveySharedFlows;
 
@@ -32,6 +33,7 @@ public class FragmentImage extends Fragment {
     //private String questionId, questionVariableType = "string";
     //private int max_length = 1000, min_length = 3;
     private File photoFile;
+    private String base_url = "URL";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -77,6 +79,7 @@ public class FragmentImage extends Fragment {
 
         mContext = getActivity();
         Question q_data = (Question) getArguments().getSerializable("data");
+        base_url = getArguments().getString(AppSurveyConstants.BASE_URL);
 
        /* if (q_data.getRequired()) {
             button_continue.setVisibility(View.GONE);

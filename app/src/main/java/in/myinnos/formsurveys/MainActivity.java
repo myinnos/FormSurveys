@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
 
-                        openSurvey(response.body().toString(), "1");
+                        openSurvey(response.body().toString(), "1", "URL");
 
                     }
 
@@ -94,11 +94,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void openSurvey(String json, String registered_by) {
+    private void openSurvey(String json, String registered_by, String base_url) {
         Intent i_survey = new Intent(MainActivity.this, SurveyActivity.class);
         //i_survey.putExtra("json_survey", loadSurveyJson("customer_survey.json"));
         i_survey.putExtra("json_survey", json);
         i_survey.putExtra(AppSurveyConstants.SUR_REGISTERED_BY, registered_by);
+        i_survey.putExtra(AppSurveyConstants.BASE_URL, base_url);
         i_survey.putExtra(AppSurveyConstants.SUR_CUSTOMER_ID, "1");
         startActivityForResult(i_survey, SURVEY_REQUEST);
     }
