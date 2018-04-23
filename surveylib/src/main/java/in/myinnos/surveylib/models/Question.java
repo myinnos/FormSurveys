@@ -63,6 +63,11 @@ public class Question implements Serializable {
     @Expose
     private Boolean is_photo_required;
 
+    @SerializedName("pdf_file_link")
+    @Expose
+    private String pdf_file_link;
+
+
     public String getQuestionId() {
         return questionId;
     }
@@ -117,6 +122,14 @@ public class Question implements Serializable {
 
     public void setIs_photo_required(Boolean is_photo_required) {
         this.is_photo_required = is_photo_required;
+    }
+
+    public String getPdf_file_link() {
+        return pdf_file_link;
+    }
+
+    public void setPdf_file_link(String pdf_file_link) {
+        this.pdf_file_link = pdf_file_link;
     }
 
     /**

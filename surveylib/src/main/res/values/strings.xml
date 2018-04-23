@@ -4,6 +4,7 @@
     <string name="x_continue">Continue</string>
     <string name="x_start">Start</string>
     <string name="x_finish">Finish</string>
+    <string name="x_view_pdf">View PDF File</string>
 
     <string name="close_popup_title">Alert!</string>
     <string name="close_popup_message">Are sure want to cancel?</string>

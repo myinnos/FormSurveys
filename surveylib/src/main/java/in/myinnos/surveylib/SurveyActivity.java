@@ -23,6 +23,7 @@ import in.myinnos.surveylib.fragment.FragmentEnd;
 import in.myinnos.surveylib.fragment.FragmentImage;
 import in.myinnos.surveylib.fragment.FragmentMultiline;
 import in.myinnos.surveylib.fragment.FragmentNumber;
+import in.myinnos.surveylib.fragment.FragmentPDF;
 import in.myinnos.surveylib.fragment.FragmentRadioboxes;
 import in.myinnos.surveylib.fragment.FragmentStart;
 import in.myinnos.surveylib.fragment.FragmentTextSimple;
@@ -148,6 +149,17 @@ public class SurveyActivity extends AppCompatActivity {
 
             if (mQuestion.getQuestionType().equals("Image")) {
                 FragmentImage frag = new FragmentImage();
+                Bundle xBundle = new Bundle();
+                xBundle.putSerializable("data", mQuestion);
+                xBundle.putString("style", style_string);
+                xBundle.putString(AppSurveyConstants.SUR_REGISTERED_BY, registered_by);
+                xBundle.putString(AppSurveyConstants.SUR_CUSTOMER_ID, customer_id);
+                frag.setArguments(xBundle);
+                arraylist_fragments.add(frag);
+            }
+
+            if (mQuestion.getQuestionType().equals("PDF")) {
+                FragmentPDF frag = new FragmentPDF();
                 Bundle xBundle = new Bundle();
                 xBundle.putSerializable("data", mQuestion);
                 xBundle.putString("style", style_string);
