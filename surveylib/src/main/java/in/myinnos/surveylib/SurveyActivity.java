@@ -2,6 +2,9 @@ package in.myinnos.surveylib;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -10,12 +13,14 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import in.myinnos.surveylib.adapters.AdapterFragmentQ;
 import in.myinnos.surveylib.fragment.FragmentCheckboxes;
 import in.myinnos.surveylib.fragment.FragmentDate;
 import in.myinnos.surveylib.fragment.FragmentEnd;
+import in.myinnos.surveylib.fragment.FragmentImage;
 import in.myinnos.surveylib.fragment.FragmentMultiline;
 import in.myinnos.surveylib.fragment.FragmentNumber;
 import in.myinnos.surveylib.fragment.FragmentRadioboxes;
@@ -24,6 +29,7 @@ import in.myinnos.surveylib.fragment.FragmentTextSimple;
 import in.myinnos.surveylib.models.Question;
 import in.myinnos.surveylib.models.SurveyPojo;
 import in.myinnos.surveylib.widgets.AppSurveyConstants;
+import in.myinnos.surveylib.widgets.SurveySharedFlows;
 import in.myinnos.surveylib.widgets.bottomview.BottomDialog;
 
 public class SurveyActivity extends AppCompatActivity {
@@ -33,11 +39,14 @@ public class SurveyActivity extends AppCompatActivity {
     private String style_string = null;
     private String registered_by;
     private String customer_id;
+    File photoFile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_survey);
+
+        photoFile = new File(getExternalFilesDir("img"), "survey_scan.jpg");
 
 
         if (getIntent().getExtras() != null) {
@@ -137,6 +146,17 @@ public class SurveyActivity extends AppCompatActivity {
                 arraylist_fragments.add(frag);
             }
 
+            if (mQuestion.getQuestionType().equals("Image")) {
+                FragmentImage frag = new FragmentImage();
+                Bundle xBundle = new Bundle();
+                xBundle.putSerializable("data", mQuestion);
+                xBundle.putString("style", style_string);
+                xBundle.putString(AppSurveyConstants.SUR_REGISTERED_BY, registered_by);
+                xBundle.putString(AppSurveyConstants.SUR_CUSTOMER_ID, customer_id);
+                frag.setArguments(xBundle);
+                arraylist_fragments.add(frag);
+            }
+
         }
 
         //- END -
@@ -194,5 +214,27 @@ public class SurveyActivity extends AppCompatActivity {
         returnIntent.putExtra("answers", instance.get_json_object());
         setResult(Activity.RESULT_OK, returnIntent);
         finish();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode != Activity.RESULT_OK) {
+            return;
+        }
+        if (requestCode == 100 && photoFile.exists()) {
+            Bitmap bitmap = BitmapFactory.decodeFile(photoFile.getPath());
+            //ivShow.setImageBitmap(bitmap);
+            Log.d("photoFile_Path", photoFile.getPath());
+
+            Uri imageUri = Uri.fromFile(new File(String.valueOf(photoFile.getPath())));
+            Log.d("asda", String.valueOf(imageUri));
+            //sendImageToServer(imageUri);
+
+            FragmentImage frag = new FragmentImage();
+            frag.moveNext(String.valueOf(imageUri),
+                    SurveySharedFlows.getQuestionID(SurveyActivity.this),
+                    SurveySharedFlows.getQuestionType(SurveyActivity.this));
+        }
     }
 }
