@@ -281,16 +281,12 @@ public class SurveyActivity extends AppCompatActivity {
             String mimeType = "multipart/form-data";
             //URLConnection.guessContentTypeFromName(file.getName());
 
-            Log.d("asda", String.valueOf(MediaType.parse("multipart/form-data")));
+            //Log.d("asda", String.valueOf(MediaType.parse("multipart/form-data")));
             RequestBody requestFile =
                     RequestBody.create(
                             MediaType.parse(mimeType),
                             file
                     );
-
-            // MultipartBody.Part is used to send also the actual file name
-            MultipartBody.Part body =
-                    MultipartBody.Part.createFormData("picture", file.getName(), requestFile);
 
             Call<ImageUploadModel> call = apiService.uploadImage(requestFile);
             call.enqueue(new Callback<ImageUploadModel>() {

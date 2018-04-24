@@ -9,39 +9,17 @@ import com.google.gson.annotations.SerializedName;
 public class ImageUploadModel {
 
     @SerializedName("id")
-    private String id;
-    @SerializedName("file")
-    private String file;
-    @SerializedName("file_type")
-    private String file_type;
+    private int id;
 
-    public ImageUploadModel(String id, String file, String file_type) {
+    public ImageUploadModel(int id) {
         this.id = id;
-        this.file = file;
-        this.file_type = file_type;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
-    }
-
-    public String getFile() {
-        return file;
-    }
-
-    public void setFile(String file) {
-        this.file = file;
-    }
-
-    public String getFile_type() {
-        return file_type;
-    }
-
-    public void setFile_type(String file_type) {
-        this.file_type = file_type;
     }
 }
