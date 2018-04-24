@@ -10,12 +10,16 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.LinearLayout;
 
 import com.google.gson.Gson;
 
 import java.io.File;
 import java.util.ArrayList;
 
+import in.myinnos.surveylib.ApiInterface.SurveysApiClient;
+import in.myinnos.surveylib.ApiInterface.SurveysApiInterface;
 import in.myinnos.surveylib.adapters.AdapterFragmentQ;
 import in.myinnos.surveylib.fragment.FragmentCheckboxes;
 import in.myinnos.surveylib.fragment.FragmentDate;
@@ -27,11 +31,18 @@ import in.myinnos.surveylib.fragment.FragmentPDF;
 import in.myinnos.surveylib.fragment.FragmentRadioboxes;
 import in.myinnos.surveylib.fragment.FragmentStart;
 import in.myinnos.surveylib.fragment.FragmentTextSimple;
+import in.myinnos.surveylib.models.ImageUploadModel;
 import in.myinnos.surveylib.models.Question;
 import in.myinnos.surveylib.models.SurveyPojo;
 import in.myinnos.surveylib.widgets.AppSurveyConstants;
 import in.myinnos.surveylib.widgets.SurveySharedFlows;
 import in.myinnos.surveylib.widgets.bottomview.BottomDialog;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SurveyActivity extends AppCompatActivity {
 
@@ -42,6 +53,7 @@ public class SurveyActivity extends AppCompatActivity {
     private String customer_id;
     private String base_url;
     File photoFile;
+    private LinearLayout liProgress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +61,8 @@ public class SurveyActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_survey);
 
         photoFile = new File(getExternalFilesDir("img"), "survey_scan.jpg");
+        liProgress = (LinearLayout) findViewById(R.id.liProgress);
+        liProgress.setVisibility(View.GONE);
 
 
         if (getIntent().getExtras() != null) {
@@ -255,11 +269,55 @@ public class SurveyActivity extends AppCompatActivity {
             Log.d("asda", String.valueOf(imageUri));
             //sendImageToServer(imageUri);
 
-            FragmentImage frag = new FragmentImage();
-            frag.moveNext(String.valueOf(imageUri),
-                    SurveySharedFlows.getQuestionID(SurveyActivity.this),
-                    SurveySharedFlows.getQuestionType(SurveyActivity.this),
-                    SurveyActivity.this);
+            liProgress.setVisibility(View.VISIBLE);
+
+            SurveysApiInterface apiService =
+                    SurveysApiClient.getClient(base_url).create(SurveysApiInterface.class);
+
+            File file = new File(photoFile.getPath());
+            Log.d("asda", String.valueOf(file));
+            // create RequestBody instance from file
+
+            String mimeType = "multipart/form-data";
+            //URLConnection.guessContentTypeFromName(file.getName());
+
+            Log.d("asda", String.valueOf(MediaType.parse("multipart/form-data")));
+            RequestBody requestFile =
+                    RequestBody.create(
+                            MediaType.parse(mimeType),
+                            file
+                    );
+
+            // MultipartBody.Part is used to send also the actual file name
+            MultipartBody.Part body =
+                    MultipartBody.Part.createFormData("picture", file.getName(), requestFile);
+
+            Call<ImageUploadModel> call = apiService.uploadImage(requestFile);
+            call.enqueue(new Callback<ImageUploadModel>() {
+                @Override
+                public void onResponse(Call<ImageUploadModel> call, Response<ImageUploadModel> response) {
+                    liProgress.setVisibility(View.GONE);
+                    //CustomToast.ToastCenter(PickUpActivity.this, "Successfully Updated!");
+                    //Helper.restartApp(DeliveryActivity.this);
+
+                    //Log.d("sdcsc", response.body().getFile());
+                    //Log.d("sdcsc", response.body().getId());
+
+                    FragmentImage frag = new FragmentImage();
+                    frag.moveNext(String.valueOf(response.body().getId()),
+                            SurveySharedFlows.getQuestionID(SurveyActivity.this),
+                            SurveySharedFlows.getQuestionType(SurveyActivity.this),
+                            SurveyActivity.this);
+                }
+
+                @Override
+                public void onFailure(Call<ImageUploadModel> call, Throwable t) {
+                    liProgress.setVisibility(View.GONE);
+                    //CustomToast.ToastCenter(PickUpActivity.this, "Successfully Updated!");
+                    //Helper.restartApp(DeliveryActivity.this);
+                }
+            });
+
         }
     }
 }
