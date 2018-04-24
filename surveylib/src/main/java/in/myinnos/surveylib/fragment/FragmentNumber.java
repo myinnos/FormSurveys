@@ -46,7 +46,7 @@ public class FragmentNumber extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup) inflater.inflate(
-                R.layout.fragment_text_simple, container, false);
+                R.layout.fragment_number, container, false);
 
         liProgress = (LinearLayout) rootView.findViewById(R.id.liProgress);
         liProgress.setVisibility(View.GONE);
