@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,6 +40,7 @@ public class FragmentNumber extends Fragment {
     private int max_length = 1000, min_length = 0;
     private Boolean is_phone_number = false;
     private String base_url = "URL";
+    private LinearLayout liProgress;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -46,6 +48,8 @@ public class FragmentNumber extends Fragment {
         ViewGroup rootView = (ViewGroup) inflater.inflate(
                 R.layout.fragment_text_simple, container, false);
 
+        liProgress = (LinearLayout) rootView.findViewById(R.id.liProgress);
+        liProgress.setVisibility(View.GONE);
         button_continue = (Button) rootView.findViewById(R.id.button_continue);
         textview_q_title = (TextView) rootView.findViewById(R.id.textview_q_title);
         editText_answer = (EditText) rootView.findViewById(R.id.editText_answer);
@@ -62,38 +66,43 @@ public class FragmentNumber extends Fragment {
                     ((SurveyActivity) mContext).go_to_next();
                 } else {
 
-                    SurveysApiInterface apiService =
-                            SurveysApiClient.getClient(base_url).create(SurveysApiInterface.class);
+                    String first = String.valueOf(editText_answer.getText().toString().charAt(0));
+                    if (first.equals("6") || first.equals("7") || first.equals("8") || first.equals("9")) {
 
-                    Call<PhoneNumberModel> call =
-                            apiService.phoneNumberVerification(editText_answer.getText().toString().trim());
+                        liProgress.setVisibility(View.VISIBLE);
 
-                    call.enqueue(new Callback<PhoneNumberModel>() {
-                        @Override
-                        public void onResponse(Call<PhoneNumberModel> call, Response<PhoneNumberModel> response) {
+                        SurveysApiInterface apiService =
+                                SurveysApiClient.getClient(base_url).create(SurveysApiInterface.class);
 
-                            if (response.body().getPhoneNumberDataModel().getIs_registered()) {
-                                Toast.makeText(getActivity().getApplicationContext(),
-                                        response.body().getPhoneNumberDataModel().getMsg(), Toast.LENGTH_LONG).show();
-                            } else {
+                        Call<PhoneNumberModel> call =
+                                apiService.phoneNumberVerification(editText_answer.getText().toString().trim());
 
-                                String first = String.valueOf(editText_answer.getText().toString().charAt(0));
-                                if (first.equals("6") || first.equals("7") || first.equals("8") || first.equals("9")) {
+                        call.enqueue(new Callback<PhoneNumberModel>() {
+                            @Override
+                            public void onResponse(Call<PhoneNumberModel> call, Response<PhoneNumberModel> response) {
+                                liProgress.setVisibility(View.GONE);
+
+                                if (response.body().getPhoneNumberDataModel().getIs_registered()) {
+                                    Toast.makeText(getActivity().getApplicationContext(),
+                                            response.body().getPhoneNumberDataModel().getMsg(), Toast.LENGTH_LONG).show();
+                                } else {
+
+
                                     SurveyHelper.putAnswer(questionVariableType, questionId, editText_answer.getText().toString().trim());
                                     ((SurveyActivity) mContext).go_to_next();
-                                } else {
-                                    Toast.makeText(getActivity().getApplicationContext(), "Invalid Phone Number!", Toast.LENGTH_LONG).show();
+
                                 }
                             }
 
-                        }
+                            @Override
+                            public void onFailure(Call<PhoneNumberModel> call, Throwable t) {
+                                liProgress.setVisibility(View.GONE);
+                            }
+                        });
 
-                        @Override
-                        public void onFailure(Call<PhoneNumberModel> call, Throwable t) {
-
-                        }
-                    });
-
+                    } else {
+                        Toast.makeText(getActivity().getApplicationContext(), "Invalid Phone Number!", Toast.LENGTH_LONG).show();
+                    }
                 }
             }
         });
