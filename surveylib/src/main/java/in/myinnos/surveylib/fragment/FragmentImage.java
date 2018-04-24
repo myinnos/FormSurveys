@@ -106,7 +106,7 @@ public class FragmentImage extends Fragment {
         //questionId = q_data.getQuestionId();
         //questionVariableType = q_data.getQuestion_v_type();
 
-        if (q_data.getIs_photo_required()) {
+        if (q_data.getRequired()) {
             button_continue.setVisibility(View.GONE);
         } else {
             button_continue.setVisibility(View.VISIBLE);
