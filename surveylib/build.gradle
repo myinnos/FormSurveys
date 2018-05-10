@@ -39,6 +39,8 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.0.2'
     implementation 'com.google.code.gson:gson:2.8.0'
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    // toast
+    implementation 'com.tapadoo.android:alerter:2.0.5'
 }
 
 

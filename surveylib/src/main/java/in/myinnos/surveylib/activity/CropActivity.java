@@ -20,6 +20,8 @@ import android.widget.Button;
 import android.widget.Toast;
 
 
+import com.tapadoo.alerter.Alerter;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -78,7 +80,25 @@ public class CropActivity extends AppCompatActivity {
                     }
                     finish();
                 } else {
-                    Toast.makeText(CropActivity.this, "cannot crop correctly", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(CropActivity.this, "cannot crop correctly", Toast.LENGTH_SHORT).show();
+
+                    Alerter.create(CropActivity.this)
+                            .setTitle("cannot crop correctly")
+                            //.setText("Message Cannot be empty!")
+                            .setDuration(4000)
+                            .setIcon(R.drawable.alerter_ic_face)
+                            .setIconColorFilter(getResources().getColor(R.color.white))
+                            .enableProgress(true)
+                            .enableSwipeToDismiss()
+                            .setProgressColorRes(R.color.colorPrimaryDark)
+                            .setBackgroundColorRes(R.color.red)
+                            .setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    Alerter.hide();
+                                }
+                            })
+                            .show();
                 }
             }
         });

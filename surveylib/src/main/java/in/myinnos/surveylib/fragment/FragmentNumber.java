@@ -17,11 +17,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.tapadoo.alerter.Alerter;
+
 import in.myinnos.surveylib.Answers;
 import in.myinnos.surveylib.ApiInterface.SurveysApiClient;
 import in.myinnos.surveylib.ApiInterface.SurveysApiInterface;
 import in.myinnos.surveylib.R;
 import in.myinnos.surveylib.SurveyActivity;
+import in.myinnos.surveylib.activity.CropActivity;
 import in.myinnos.surveylib.models.PhoneNumberModel;
 import in.myinnos.surveylib.models.Question;
 import in.myinnos.surveylib.widgets.AppSurveyConstants;
@@ -66,6 +69,11 @@ public class FragmentNumber extends Fragment {
                     ((SurveyActivity) mContext).go_to_next();
                 } else {
 
+                    if(editText_answer.getText().toString().trim().contains(".")){
+                        invalidNumber();
+                        return;
+                    }
+
                     String first = String.valueOf(editText_answer.getText().toString().charAt(0));
                     if (first.equals("6") || first.equals("7") || first.equals("8") || first.equals("9")) {
 
@@ -83,10 +91,28 @@ public class FragmentNumber extends Fragment {
                                 liProgress.setVisibility(View.GONE);
 
                                 if (response.body().getPhoneNumberDataModel().getIs_registered()) {
-                                    Toast.makeText(getActivity().getApplicationContext(),
-                                            response.body().getPhoneNumberDataModel().getMsg(), Toast.LENGTH_LONG).show();
-                                } else {
+                                    /*Toast.makeText(getActivity().getApplicationContext(),
+                                            response.body().getPhoneNumberDataModel().getMsg(), Toast.LENGTH_LONG).show();*/
 
+                                    Alerter.create(getActivity())
+                                            .setTitle(response.body().getPhoneNumberDataModel().getMsg())
+                                            //.setText("Message Cannot be empty!")
+                                            .setDuration(4000)
+                                            .setIcon(R.drawable.alerter_ic_face)
+                                            .setIconColorFilter(getResources().getColor(R.color.white))
+                                            .enableProgress(true)
+                                            .enableSwipeToDismiss()
+                                            .setProgressColorRes(R.color.colorPrimaryDark)
+                                            .setBackgroundColorRes(R.color.red)
+                                            .setOnClickListener(new View.OnClickListener() {
+                                                @Override
+                                                public void onClick(View view) {
+                                                    Alerter.hide();
+                                                }
+                                            })
+                                            .show();
+
+                                } else {
 
                                     SurveyHelper.putAnswer(questionVariableType, questionId, editText_answer.getText().toString().trim());
                                     ((SurveyActivity) mContext).go_to_next();
@@ -101,13 +127,36 @@ public class FragmentNumber extends Fragment {
                         });
 
                     } else {
-                        Toast.makeText(getActivity().getApplicationContext(), "Invalid Phone Number!", Toast.LENGTH_LONG).show();
+                        //Toast.makeText(getActivity().getApplicationContext(), "Invalid Phone Number!", Toast.LENGTH_LONG).show();
+
+                        invalidNumber();
                     }
                 }
             }
         });
 
         return rootView;
+    }
+
+    private void invalidNumber(){
+
+        Alerter.create(getActivity())
+                .setTitle("Invalid Phone Number!")
+                //.setText("Message Cannot be empty!")
+                .setDuration(4000)
+                .setIcon(R.drawable.alerter_ic_face)
+                .setIconColorFilter(getResources().getColor(R.color.white))
+                .enableProgress(true)
+                .enableSwipeToDismiss()
+                .setProgressColorRes(R.color.colorPrimaryDark)
+                .setBackgroundColorRes(R.color.red)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Alerter.hide();
+                    }
+                })
+                .show();
     }
 
     @Override
