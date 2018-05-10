@@ -6,11 +6,12 @@
     android:layout_height="match_parent"
     tools:context="in.myinnos.formsurveys.MainActivity">
 
-    <Button
+    <android.support.v7.widget.AppCompatButton
         android:id="@+id/btSurveyForm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Survey Form"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

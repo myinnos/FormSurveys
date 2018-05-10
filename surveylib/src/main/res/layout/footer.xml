@@ -4,13 +4,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <Button
+    <android.support.v7.widget.AppCompatButton
         android:id="@+id/button_continue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:background="@color/survey_button_bg"
-        android:padding="16dp"
+        android:gravity="center"
+        android:padding="18dp"
         android:text="@string/x_continue"
         android:textColor="@color/survey_button_text"
         android:textSize="16sp" />
