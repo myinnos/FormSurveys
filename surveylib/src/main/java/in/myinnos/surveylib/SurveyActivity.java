@@ -51,6 +51,7 @@ public class SurveyActivity extends AppCompatActivity {
     private String style_string = null;
     private String registered_by;
     private String customer_id;
+    private String latitude, longitude;
     private String base_url;
     File photoFile;
     private LinearLayout liProgress;
@@ -72,6 +73,9 @@ public class SurveyActivity extends AppCompatActivity {
             registered_by = bundle.getString(AppSurveyConstants.SUR_REGISTERED_BY);
             customer_id = bundle.getString(AppSurveyConstants.SUR_CUSTOMER_ID);
             base_url = bundle.getString(AppSurveyConstants.BASE_URL);
+
+            latitude = bundle.getString(AppSurveyConstants.SUR_LATITUDE);
+            longitude = bundle.getString(AppSurveyConstants.SUR_LONGITUDE);
             //
             if (bundle.containsKey("style")) {
                 style_string = bundle.getString("style");
@@ -91,6 +95,8 @@ public class SurveyActivity extends AppCompatActivity {
             sBundle.putString("style", style_string);
             sBundle.putString(AppSurveyConstants.SUR_REGISTERED_BY, registered_by);
             sBundle.putString(AppSurveyConstants.SUR_CUSTOMER_ID, customer_id);
+            sBundle.putString(AppSurveyConstants.SUR_LATITUDE, latitude);
+            sBundle.putString(AppSurveyConstants.SUR_LONGITUDE, longitude);
             frag_start.setArguments(sBundle);
             arraylist_fragments.add(frag_start);
         }

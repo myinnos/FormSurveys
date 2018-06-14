@@ -22,7 +22,7 @@ public class FragmentStart extends Fragment {
 
     private FragmentActivity mContext;
     private TextView textView_start;
-    private String registeredBy;
+    private String registeredBy, latitude, longitude;
     private String customerId;
 
     @Override
@@ -39,6 +39,9 @@ public class FragmentStart extends Fragment {
 
                 //Answers.getInstance().put_answer(AppSurveyConstants.SUR_REGISTERED_BY, registeredBy);
                 //Answers.getInstance().put_answer(AppSurveyConstants.SUR_CUSTOMER_ID, customerId);
+
+                SurveyHelper.putAnswer("string", AppSurveyConstants.SUR_LATITUDE, latitude);
+                SurveyHelper.putAnswer("string", AppSurveyConstants.SUR_LONGITUDE, longitude);
 
                 SurveyHelper.putAnswer("string", AppSurveyConstants.SUR_REGISTERED_BY, registeredBy);
                 SurveyHelper.putAnswer("int", AppSurveyConstants.SUR_CUSTOMER_ID, customerId);
@@ -58,6 +61,9 @@ public class FragmentStart extends Fragment {
         SurveyProperties survery_properties = (SurveyProperties) getArguments().getSerializable("survery_properties");
         registeredBy = getArguments().getString(AppSurveyConstants.SUR_REGISTERED_BY);
         customerId = getArguments().getString(AppSurveyConstants.SUR_CUSTOMER_ID);
+
+        latitude = getArguments().getString(AppSurveyConstants.SUR_LATITUDE);
+        longitude = getArguments().getString(AppSurveyConstants.SUR_LONGITUDE);
 
         assert survery_properties != null;
         textView_start.setText(Html.fromHtml(survery_properties.getIntroMessage()));
