@@ -6,7 +6,7 @@ package in.myinnos.surveylib.widgets;
 
 public class AppSurveyConstants {
 
-    public static String SUR_REGISTERED_BY = "registered_by";
+    public static String SUR_REGISTERED_BY = "advisor_id";
     public static String SUR_CUSTOMER_ID = "customer";
     public static String BASE_URL = "BASE_URL";
 }

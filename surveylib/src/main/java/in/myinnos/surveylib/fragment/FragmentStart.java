@@ -40,7 +40,7 @@ public class FragmentStart extends Fragment {
                 //Answers.getInstance().put_answer(AppSurveyConstants.SUR_REGISTERED_BY, registeredBy);
                 //Answers.getInstance().put_answer(AppSurveyConstants.SUR_CUSTOMER_ID, customerId);
 
-                SurveyHelper.putAnswer("int", AppSurveyConstants.SUR_REGISTERED_BY, registeredBy);
+                SurveyHelper.putAnswer("string", AppSurveyConstants.SUR_REGISTERED_BY, registeredBy);
                 SurveyHelper.putAnswer("int", AppSurveyConstants.SUR_CUSTOMER_ID, customerId);
 
                 ((SurveyActivity) mContext).go_to_next();
