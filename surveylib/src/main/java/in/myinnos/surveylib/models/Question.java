@@ -27,7 +27,7 @@ public class Question implements Serializable {
     private Boolean randomChoices;
     @SerializedName("choices")
     @Expose
-    private List<String> choices = new ArrayList<String>();
+    private List<ChoicesListModel> choicesListModelList;
     @SerializedName("min")
     @Expose
     private Integer min;
@@ -202,18 +202,13 @@ public class Question implements Serializable {
         this.randomChoices = randomChoices;
     }
 
-    /**
-     * @return The choices
-     */
-    public List<String> getChoices() {
-        return choices;
+
+    public List<ChoicesListModel> getChoicesListModelList() {
+        return choicesListModelList;
     }
 
-    /**
-     * @param choices The choices
-     */
-    public void setChoices(List<String> choices) {
-        this.choices = choices;
+    public void setChoicesListModelList(List<ChoicesListModel> choicesListModelList) {
+        this.choicesListModelList = choicesListModelList;
     }
 
     /**

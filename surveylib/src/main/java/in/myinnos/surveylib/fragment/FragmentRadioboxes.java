@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.text.Html;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 import in.myinnos.surveylib.Answers;
 import in.myinnos.surveylib.R;
 import in.myinnos.surveylib.SurveyActivity;
+import in.myinnos.surveylib.models.ChoicesListModel;
 import in.myinnos.surveylib.models.Question;
 import in.myinnos.surveylib.widgets.SurveyHelper;
 
@@ -35,7 +37,6 @@ public class FragmentRadioboxes extends Fragment {
     private final ArrayList<RadioButton> allRb = new ArrayList<>();
     private boolean at_leaset_one_checked = false;
     private String questionId, questionVariableType;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -64,7 +65,7 @@ public class FragmentRadioboxes extends Fragment {
         for (RadioButton rb : allRb) {
             if (rb.isChecked()) {
                 at_leaset_one_checked = true;
-                the_choice = rb.getText().toString();
+                the_choice = rb.getTag().toString();
             }
         }
 
@@ -97,15 +98,21 @@ public class FragmentRadioboxes extends Fragment {
         questionVariableType = q_data.getQuestion_v_type();
         textview_q_title.setText(Html.fromHtml(q_data.getQuestionTitle()));
 
-
-        List<String> qq_data = q_data.getChoices();
-        if (q_data.getRandomChoices()) {
-            Collections.shuffle(qq_data);
+        List<String> qq_data = new ArrayList<String>();
+        List<String> qq_data_tag = new ArrayList<String>();
+        for (int i = 0; i < q_data.getChoicesListModelList().size(); i++) {
+            qq_data.add(q_data.getChoicesListModelList().get(i).getName());
+            qq_data_tag.add(q_data.getChoicesListModelList().get(i).getValue());
         }
 
-        for (String choice : qq_data) {
+        /*if (q_data.getRandomChoices()) {
+            Collections.shuffle(qq_data);
+        }*/
+
+        for (int i = 0; i < qq_data.size(); i++) {
             RadioButton rb = new RadioButton(mContext);
-            rb.setText(Html.fromHtml(choice));
+            rb.setText(Html.fromHtml(qq_data.get(i)));
+            rb.setTag(qq_data_tag.get(i));
             rb.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
             rb.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
             radioGroup.addView(rb);

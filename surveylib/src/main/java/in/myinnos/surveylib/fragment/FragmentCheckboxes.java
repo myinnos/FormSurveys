@@ -61,7 +61,7 @@ public class FragmentCheckboxes extends Fragment {
         for (CheckBox cb : allCb) {
             if (cb.isChecked()) {
                 at_leaset_one_checked = true;
-                the_choices = the_choices + cb.getText().toString() + ", ";
+                the_choices = the_choices + cb.getTag().toString() + ", ";
             }
         }
 
@@ -99,14 +99,21 @@ public class FragmentCheckboxes extends Fragment {
             button_continue.setVisibility(View.GONE);
         }
 
-        List<String> qq_data = q_data.getChoices();
-        if (q_data.getRandomChoices()) {
-            Collections.shuffle(qq_data);
+        List<String> qq_data = new ArrayList<String>();
+        List<String> qq_data_tag = new ArrayList<String>();
+        for (int i = 0; i < q_data.getChoicesListModelList().size(); i++) {
+            qq_data.add(q_data.getChoicesListModelList().get(i).getName());
+            qq_data_tag.add(q_data.getChoicesListModelList().get(i).getValue());
         }
 
-        for (String choice : qq_data) {
+        /*if (q_data.getRandomChoices()) {
+            Collections.shuffle(qq_data);
+        }*/
+
+        for (int i = 0; i < qq_data.size(); i++) {
             CheckBox cb = new CheckBox(mContext);
-            cb.setText(Html.fromHtml(choice));
+            cb.setText(Html.fromHtml(qq_data.get(i)));
+            cb.setTag(qq_data_tag.get(i));
             cb.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
             cb.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
             linearLayout_checkboxes.addView(cb);

@@ -9,9 +9,24 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c94c8851-0399-4351-b44f-f8d941d4d554" name="Default" comment="">
+    <list default="true" id="c94c8851-0399-4351-b44f-f8d941d4d554" name="Default" comment="fixed phone number empty bugs">
+      <change beforePath="" afterPath="$PROJECT_DIR$/surveylib/src/main/java/in/myinnos/surveylib/models/ChoicesListModel.java" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.bin" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.lock" afterPath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.lock" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.4/fileHashes/resourceHashesCache.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/fileHashes/resourceHashesCache.bin" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.4/javaCompile/classAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/javaCompile/classAnalysis.bin" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.4/javaCompile/jarAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/javaCompile/jarAnalysis.bin" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.4/javaCompile/javaCompile.lock" afterPath="$PROJECT_DIR$/.gradle/4.4/javaCompile/javaCompile.lock" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.4/javaCompile/taskHistory.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/javaCompile/taskHistory.bin" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.4/javaCompile/taskJars.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/javaCompile/taskJars.bin" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.bin" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.lock" afterPath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.lock" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/surveylib/src/main/java/in/myinnos/surveylib/fragment/FragmentNumber.java" afterPath="$PROJECT_DIR$/surveylib/src/main/java/in/myinnos/surveylib/fragment/FragmentNumber.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/in/myinnos/formsurveys/ApiInterface/ApiInterfaceSurveys.java" afterPath="$PROJECT_DIR$/app/src/main/java/in/myinnos/formsurveys/ApiInterface/ApiInterfaceSurveys.java" />
+      <change beforePath="$PROJECT_DIR$/surveylib/src/main/java/in/myinnos/surveylib/fragment/FragmentCheckboxes.java" afterPath="$PROJECT_DIR$/surveylib/src/main/java/in/myinnos/surveylib/fragment/FragmentCheckboxes.java" />
+      <change beforePath="$PROJECT_DIR$/surveylib/src/main/java/in/myinnos/surveylib/fragment/FragmentRadioboxes.java" afterPath="$PROJECT_DIR$/surveylib/src/main/java/in/myinnos/surveylib/fragment/FragmentRadioboxes.java" />
+      <change beforePath="$PROJECT_DIR$/surveylib/src/main/java/in/myinnos/surveylib/models/Question.java" afterPath="$PROJECT_DIR$/surveylib/src/main/java/in/myinnos/surveylib/models/Question.java" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -34,39 +49,56 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="FragmentNumber.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/surveylib/src/main/java/in/myinnos/surveylib/fragment/FragmentNumber.java">
+      <file leaf-file-name="FragmentCheckboxes.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/surveylib/src/main/java/in/myinnos/surveylib/fragment/FragmentCheckboxes.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="217">
-              <caret line="71" column="55" lean-forward="false" selection-start-line="71" selection-start-column="55" selection-end-line="71" selection-end-column="55" />
+            <state relative-caret-position="0">
+              <caret line="0" column="38" lean-forward="true" selection-start-line="0" selection-start-column="38" selection-end-line="0" selection-end-column="38" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#2370#7098#0" expanded="true" />
-                <element signature="e#5575#5926#0" expanded="true" />
-                <element signature="e#5925#5926#0" expanded="true" />
-                <element signature="e#7097#7098#0" expanded="true" />
-                <element signature="e#7707#7898#0" expanded="true" />
-                <element signature="e#7897#7898#0" expanded="true" />
+                <element signature="e#3426#3434#0" expanded="true" />
+                <element signature="e#3486#3494#0" expanded="true" />
+                <element signature="e#4359#4592#0" expanded="true" />
+                <element signature="e#4591#4592#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ApiInterfaceSurveys.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/in/myinnos/formsurveys/ApiInterface/ApiInterfaceSurveys.java">
+      <file leaf-file-name="FragmentRadioboxes.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/surveylib/src/main/java/in/myinnos/surveylib/fragment/FragmentRadioboxes.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="11" column="38" lean-forward="false" selection-start-line="11" selection-start-column="38" selection-end-line="11" selection-end-column="38" />
-              <folding />
+            <state relative-caret-position="419">
+              <caret line="114" column="42" lean-forward="false" selection-start-line="114" selection-start-column="22" selection-end-line="114" selection-end-column="42" />
+              <folding>
+                <element signature="e#1835#2009#0" expanded="true" />
+                <element signature="e#2008#2009#0" expanded="true" />
+                <element signature="e#3320#3328#0" expanded="true" />
+                <element signature="e#3380#3388#0" expanded="true" />
+                <element signature="e#4245#4478#0" expanded="true" />
+                <element signature="e#4477#4478#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SurveyHelper.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/surveylib/src/main/java/in/myinnos/surveylib/widgets/SurveyHelper.java">
+      <file leaf-file-name="Question.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/surveylib/src/main/java/in/myinnos/surveylib/models/Question.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="568">
-              <caret line="38" column="1" lean-forward="false" selection-start-line="38" selection-start-column="1" selection-end-line="38" selection-end-column="1" />
+            <state relative-caret-position="141">
+              <caret line="27" column="28" lean-forward="false" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="28" />
+              <folding>
+                <element signature="e#4674#4675#0" expanded="true" />
+                <element signature="e#4717#4718#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FragmentEnd.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/surveylib/src/main/java/in/myinnos/surveylib/fragment/FragmentEnd.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="54">
+              <caret line="58" column="0" lean-forward="false" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -94,6 +126,9 @@
       <find>toast</find>
       <find>registered_by</find>
       <find>registeredBy</find>
+      <find>choices</find>
+      <find>base_url</find>
+      <find>ssacsd</find>
     </findStrings>
     <replaceStrings>
       <replace>finish</replace>
@@ -3126,21 +3161,17 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/surveylib/src/main/res/layout/fragment_radioboxes.xml" />
         <option value="$PROJECT_DIR$/surveylib/src/main/res/layout/fragment_text_multiline.xml" />
         <option value="$PROJECT_DIR$/surveylib/src/main/res/layout/fragment_date.xml" />
         <option value="$PROJECT_DIR$/surveylib/src/main/java/in/myinnos/surveylib/Answers.java" />
-        <option value="$PROJECT_DIR$/surveylib/src/main/java/in/myinnos/surveylib/fragment/FragmentCheckboxes.java" />
         <option value="$PROJECT_DIR$/surveylib/src/main/res/layout/fragment_text_number.xml" />
         <option value="$PROJECT_DIR$/surveylib/src/main/java/in/myinnos/surveylib/fragment/FragmentTextSimple.java" />
-        <option value="$PROJECT_DIR$/surveylib/src/main/java/in/myinnos/surveylib/fragment/FragmentRadioboxes.java" />
         <option value="$PROJECT_DIR$/surveylib/src/main/java/in/myinnos/surveylib/fragment/FragmentMultiline.java" />
         <option value="$PROJECT_DIR$/surveylib/src/main/java/in/myinnos/surveylib/fragment/FragmentDate.java" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/xml/provider_paths.xml" />
         <option value="$PROJECT_DIR$/surveylib/src/main/java/in/myinnos/surveylib/widgets/SurveySharedFlows.java" />
         <option value="$PROJECT_DIR$/surveylib/src/main/res/values/strings.xml" />
-        <option value="$PROJECT_DIR$/surveylib/src/main/java/in/myinnos/surveylib/models/Question.java" />
         <option value="$PROJECT_DIR$/surveylib/src/main/java/in/myinnos/surveylib/fragment/FragmentPDF.java" />
         <option value="$PROJECT_DIR$/surveylib/src/main/res/layout/fragment_pdf.xml" />
         <option value="$PROJECT_DIR$/surveylib/src/main/java/in/myinnos/surveylib/ApiInterface/ApiClient.java" />
@@ -3174,13 +3205,17 @@
         <option value="$PROJECT_DIR$/surveylib/src/main/java/in/myinnos/surveylib/widgets/AppSurveyConstants.java" />
         <option value="$PROJECT_DIR$/surveylib/src/main/java/in/myinnos/surveylib/fragment/FragmentStart.java" />
         <option value="$PROJECT_DIR$/surveylib/src/main/java/in/myinnos/surveylib/SurveyActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/in/myinnos/formsurveys/ApiInterface/ApiInterfaceSurveys.java" />
         <option value="$PROJECT_DIR$/surveylib/src/main/java/in/myinnos/surveylib/widgets/SurveyHelper.java" />
         <option value="$PROJECT_DIR$/surveylib/src/main/java/in/myinnos/surveylib/fragment/FragmentNumber.java" />
+        <option value="$PROJECT_DIR$/surveylib/src/main/java/in/myinnos/surveylib/models/ChoicesListModel.java" />
+        <option value="$PROJECT_DIR$/surveylib/src/main/java/in/myinnos/surveylib/models/Question.java" />
+        <option value="$PROJECT_DIR$/surveylib/src/main/java/in/myinnos/surveylib/fragment/FragmentRadioboxes.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/in/myinnos/formsurveys/ApiInterface/ApiInterfaceSurveys.java" />
+        <option value="$PROJECT_DIR$/surveylib/src/main/java/in/myinnos/surveylib/fragment/FragmentCheckboxes.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="1595" />
     <option name="y" value="161" />
     <option name="width" value="1440" />
@@ -3205,8 +3240,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="ProjectPane" />
-      <pane id="Scratches" />
       <pane id="PackagesPane" />
       <pane id="AndroidView">
         <subPane>
@@ -3263,12 +3296,14 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="device.picker.selection" value="ZY223XMP65" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1529304513324" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1529309835771" />
     <property name="android.project.structure.last.selected" value="SDK Location" />
     <property name="android.project.structure.proportion" value="0.15" />
     <property name="SearchEverywhereHistoryKey" value="image&#9;FILE&#9;file:///Users/myinnos/AndroidStudioProjects/FormSurveys/surveylib/src/main/java/in/myinnos/surveylib/fragment/FragmentImage.java&#10;ima&#9;FILE&#9;file:///Users/myinnos/AndroidStudioProjects/FormSurveys/surveylib/src/main/java/in/myinnos/surveylib/fragment/FragmentImage.java&#10;Sur&#9;FILE&#9;file:///Users/myinnos/AndroidStudioProjects/FormSurveys/surveylib/src/main/java/in/myinnos/surveylib/SurveyActivity.java&#10;dat&#9;FILE&#9;file:///Users/myinnos/AndroidStudioProjects/FormSurveys/surveylib/src/main/java/in/myinnos/surveylib/fragment/FragmentDate.java&#10;num&#9;FILE&#9;file:///Users/myinnos/AndroidStudioProjects/FormSurveys/surveylib/src/main/java/in/myinnos/surveylib/fragment/FragmentNumber.java&#10;date&#9;FILE&#9;file:///Users/myinnos/AndroidStudioProjects/FormSurveys/surveylib/src/main/java/in/myinnos/surveylib/fragment/FragmentDate.java&#10;hel&#9;PSI&#9;JAVA://in.myinnos.surveylib.widgets.SurveyHelper&#10;radio&#9;FILE&#9;file:///Users/myinnos/AndroidStudioProjects/FormSurveys/surveylib/src/main/java/in/myinnos/surveylib/fragment/FragmentRadioboxes.java" />
@@ -3823,11 +3858,18 @@
       <option name="project" value="LOCAL" />
       <updated>1529303158777</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="fixed phone number empty bugs">
+      <created>1529304567471</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1529304567471</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1595" y="161" width="1440" height="810" extended-state="0" />
+    <frame x="1440" y="23" width="1920" height="1057" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -3840,19 +3882,19 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329927" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Logcat" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34971097" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Logcat" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1544196" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22317597" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23289666" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16613418" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23216188" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Android WiFi ADB" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Fabric" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.399361" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Device File Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -3895,48 +3937,19 @@
     <option name="LAST_COMMIT_MESSAGE" value="fixed phone number empty bugs" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/surveylib/src/main/java/in/myinnos/surveylib/fragment/FragmentRadioboxes.java</url>
+          <line>103</line>
+          <properties />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/surveylib/src/main/java/in/myinnos/surveylib/fragment/FragmentRadioboxes.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="35" column="34" lean-forward="false" selection-start-line="35" selection-start-column="34" selection-end-line="35" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/surveylib/src/main/res/layout/fragment_radioboxes.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="42" lean-forward="false" selection-start-line="26" selection-start-column="42" selection-end-line="26" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/surveylib/src/main/java/in/myinnos/surveylib/adapters/CropActivity.java" />
-    <entry file="file://$PROJECT_DIR$/surveylib/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-manifest">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/xml/provider_paths.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="19" lean-forward="true" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Library/Android/sdk/platforms/android-26/data/res/values/public.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="167">
@@ -3948,13 +3961,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="570">
           <caret line="147" column="0" lean-forward="false" selection-start-line="147" selection-start-column="0" selection-end-line="147" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/surveylib/src/main/java/in/myinnos/surveylib/fragment/FragmentEnd.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="55" column="106" lean-forward="false" selection-start-line="55" selection-start-column="32" selection-end-line="55" selection-end-column="106" />
         </state>
       </provider>
     </entry>
@@ -3986,13 +3992,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="35" column="32" lean-forward="false" selection-start-line="35" selection-start-column="32" selection-end-line="35" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/surveylib/src/main/java/in/myinnos/surveylib/models/PhoneNumberModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="27" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -4223,7 +4222,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -4251,14 +4249,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/surveylib/src/main/java/in/myinnos/surveylib/models/Question.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="20" column="31" lean-forward="false" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/surveylib/src/main/java/in/myinnos/surveylib/widgets/AppSurveyConstants.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -4275,27 +4265,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/surveylib/src/main/java/in/myinnos/surveylib/SurveyActivity.java">
+    <entry file="file://$PROJECT_DIR$/surveylib/src/main/java/in/myinnos/surveylib/models/SurveyPojo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="73" column="24" lean-forward="true" selection-start-line="73" selection-start-column="24" selection-end-line="73" selection-end-column="24" />
+        <state relative-caret-position="150">
+          <caret line="15" column="32" lean-forward="true" selection-start-line="15" selection-start-column="32" selection-end-line="15" selection-end-column="32" />
+          <folding>
+            <element signature="e#463#473#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.8.0/baf95d8519fc1a11d388f8543cb40cd2bb9d66dc/gson-2.8.0-sources.jar!/com/google/gson/internal/bind/ReflectiveTypeAdapterFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="226" column="7" lean-forward="true" selection-start-line="226" selection-start-column="7" selection-end-line="226" selection-end-column="7" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/in/myinnos/formsurveys/MainActivity.java">
+    <entry file="file://$PROJECT_DIR$/surveylib/src/main/java/in/myinnos/surveylib/fragment/FragmentNumber.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="417">
-          <caret line="97" column="61" lean-forward="false" selection-start-line="97" selection-start-column="61" selection-end-line="97" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/in/myinnos/formsurveys/ApiInterface/ApiInterfaceSurveys.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="11" column="38" lean-forward="false" selection-start-line="11" selection-start-column="38" selection-end-line="11" selection-end-column="38" />
-          <folding />
+        <state relative-caret-position="97">
+          <caret line="63" column="46" lean-forward="false" selection-start-line="63" selection-start-column="46" selection-end-line="63" selection-end-column="46" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -4307,18 +4301,99 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/surveylib/src/main/java/in/myinnos/surveylib/fragment/FragmentNumber.java">
+    <entry file="file://$PROJECT_DIR$/surveylib/src/main/java/in/myinnos/surveylib/models/PhoneNumberModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="71" column="55" lean-forward="false" selection-start-line="71" selection-start-column="55" selection-end-line="71" selection-end-column="55" />
+        <state relative-caret-position="180">
+          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/surveylib/src/main/java/in/myinnos/surveylib/models/ChoicesListModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2370#7098#0" expanded="true" />
-            <element signature="e#5575#5926#0" expanded="true" />
-            <element signature="e#5925#5926#0" expanded="true" />
-            <element signature="e#7097#7098#0" expanded="true" />
-            <element signature="e#7707#7898#0" expanded="true" />
-            <element signature="e#7897#7898#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#500#501#0" expanded="false" />
+            <element signature="e#527#528#0" expanded="false" />
+            <element signature="e#567#568#0" expanded="false" />
+            <element signature="e#599#600#0" expanded="false" />
+            <element signature="e#631#632#0" expanded="false" />
+            <element signature="e#659#660#0" expanded="false" />
+            <element signature="e#701#702#0" expanded="false" />
+            <element signature="e#735#736#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/in/myinnos/formsurveys/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="97" column="64" lean-forward="false" selection-start-line="97" selection-start-column="64" selection-end-line="97" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/surveylib/src/main/java/in/myinnos/surveylib/SurveyActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="65" column="42" lean-forward="false" selection-start-line="65" selection-start-column="42" selection-end-line="65" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/surveylib/src/main/java/in/myinnos/surveylib/models/Question.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="27" column="28" lean-forward="false" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="28" />
+          <folding>
+            <element signature="e#4674#4675#0" expanded="true" />
+            <element signature="e#4717#4718#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/surveylib/src/main/java/in/myinnos/surveylib/fragment/FragmentEnd.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="58" column="0" lean-forward="false" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/in/myinnos/formsurveys/ApiInterface/ApiInterfaceSurveys.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="14" column="21" lean-forward="false" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/surveylib/src/main/java/in/myinnos/surveylib/fragment/FragmentRadioboxes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="419">
+          <caret line="114" column="42" lean-forward="false" selection-start-line="114" selection-start-column="22" selection-end-line="114" selection-end-column="42" />
+          <folding>
+            <element signature="e#1835#2009#0" expanded="true" />
+            <element signature="e#2008#2009#0" expanded="true" />
+            <element signature="e#3320#3328#0" expanded="true" />
+            <element signature="e#3380#3388#0" expanded="true" />
+            <element signature="e#4245#4478#0" expanded="true" />
+            <element signature="e#4477#4478#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/surveylib/src/main/java/in/myinnos/surveylib/fragment/FragmentCheckboxes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="38" lean-forward="true" selection-start-line="0" selection-start-column="38" selection-end-line="0" selection-end-column="38" />
+          <folding>
+            <element signature="e#3426#3434#0" expanded="true" />
+            <element signature="e#3486#3494#0" expanded="true" />
+            <element signature="e#4359#4592#0" expanded="true" />
+            <element signature="e#4591#4592#0" expanded="true" />
           </folding>
         </state>
       </provider>
