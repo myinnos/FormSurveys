@@ -22,7 +22,11 @@ public class SurveyHelper {
 
         } else if (type.equals("long")) {
 
-            Answers.getInstance().put_answer(questionId, Long.parseLong(value));
+            if (value != null) {
+                Answers.getInstance().put_answer(questionId, Long.parseLong(value));
+            } else {
+                Answers.getInstance().put_answer(questionId, null);
+            }
 
         } else if (type.equals("string")) {
 
