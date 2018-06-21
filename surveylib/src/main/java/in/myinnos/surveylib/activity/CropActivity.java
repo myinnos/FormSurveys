@@ -127,7 +127,7 @@ public class CropActivity extends AppCompatActivity {
             startCameraIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             startCameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(tempFile));
             startCameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(getApplicationContext(),
-                    "com.rubanbridge.delivery.provider", tempFile));
+                    "com.rubanbridge.associate.provider", tempFile));
 
             if (startCameraIntent.resolveActivity(getPackageManager()) != null) {
                 startActivityForResult(startCameraIntent, REQUEST_CODE_TAKE_PHOTO);
