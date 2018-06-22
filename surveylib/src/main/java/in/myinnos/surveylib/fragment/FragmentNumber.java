@@ -65,6 +65,11 @@ public class FragmentNumber extends Fragment {
 
                 if (!is_phone_number) {
 
+                    if (editText_answer.getText().toString().trim().contains(".")) {
+                        invalidNumber();
+                        return;
+                    }
+
                     if (editText_answer.getText().toString().trim().length() != 0) {
                         SurveyHelper.putAnswer(questionVariableType, questionId, editText_answer.getText().toString().trim());
                         ((SurveyActivity) mContext).go_to_next();
