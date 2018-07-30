@@ -42,6 +42,7 @@ public class FragmentNumber extends Fragment {
     private String questionId, questionVariableType;
     private int max_length = 1000, min_length = 0;
     private Boolean is_phone_number = false;
+    private Boolean is_phone_number_check = true;
     private String base_url = "URL";
     private LinearLayout liProgress;
 
@@ -90,54 +91,59 @@ public class FragmentNumber extends Fragment {
                         String first = String.valueOf(editText_answer.getText().toString().charAt(0));
                         if (first.equals("6") || first.equals("7") || first.equals("8") || first.equals("9")) {
 
-                            liProgress.setVisibility(View.VISIBLE);
+                            if (is_phone_number_check) {
+                                liProgress.setVisibility(View.VISIBLE);
 
-                            SurveysApiInterface apiService =
-                                    SurveysApiClient.getClient(base_url).create(SurveysApiInterface.class);
+                                SurveysApiInterface apiService =
+                                        SurveysApiClient.getClient(base_url).create(SurveysApiInterface.class);
 
-                            Call<PhoneNumberModel> call =
-                                    apiService.phoneNumberVerification(editText_answer.getText().toString().trim());
+                                Call<PhoneNumberModel> call =
+                                        apiService.phoneNumberVerification(editText_answer.getText().toString().trim());
 
-                            call.enqueue(new Callback<PhoneNumberModel>() {
-                                @Override
-                                public void onResponse(Call<PhoneNumberModel> call, Response<PhoneNumberModel> response) {
-                                    liProgress.setVisibility(View.GONE);
+                                call.enqueue(new Callback<PhoneNumberModel>() {
+                                    @Override
+                                    public void onResponse(Call<PhoneNumberModel> call, Response<PhoneNumberModel> response) {
+                                        liProgress.setVisibility(View.GONE);
 
-                                    if (response.body().getPhoneNumberDataModel().getIs_registered()) {
+                                        if (response.body().getPhoneNumberDataModel().getIs_registered()) {
                                     /*Toast.makeText(getActivity().getApplicationContext(),
                                             response.body().getPhoneNumberDataModel().getMsg(), Toast.LENGTH_LONG).show();*/
 
-                                        Alerter.create(getActivity())
-                                                .setTitle(response.body().getPhoneNumberDataModel().getMsg())
-                                                //.setText("Message Cannot be empty!")
-                                                .setDuration(4000)
-                                                .setIcon(R.drawable.alerter_ic_face)
-                                                .setIconColorFilter(getResources().getColor(R.color.white))
-                                                .enableProgress(true)
-                                                .enableSwipeToDismiss()
-                                                .setProgressColorRes(R.color.colorPrimaryDark)
-                                                .setBackgroundColorRes(R.color.red)
-                                                .setOnClickListener(new View.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(View view) {
-                                                        Alerter.hide();
-                                                    }
-                                                })
-                                                .show();
+                                            Alerter.create(getActivity())
+                                                    .setTitle(response.body().getPhoneNumberDataModel().getMsg())
+                                                    //.setText("Message Cannot be empty!")
+                                                    .setDuration(4000)
+                                                    .setIcon(R.drawable.alerter_ic_face)
+                                                    .setIconColorFilter(getResources().getColor(R.color.white))
+                                                    .enableProgress(true)
+                                                    .enableSwipeToDismiss()
+                                                    .setProgressColorRes(R.color.colorPrimaryDark)
+                                                    .setBackgroundColorRes(R.color.red)
+                                                    .setOnClickListener(new View.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(View view) {
+                                                            Alerter.hide();
+                                                        }
+                                                    })
+                                                    .show();
 
-                                    } else {
+                                        } else {
 
-                                        SurveyHelper.putAnswer(questionVariableType, questionId, editText_answer.getText().toString().trim());
-                                        ((SurveyActivity) mContext).go_to_next();
+                                            SurveyHelper.putAnswer(questionVariableType, questionId, editText_answer.getText().toString().trim());
+                                            ((SurveyActivity) mContext).go_to_next();
 
+                                        }
                                     }
-                                }
 
-                                @Override
-                                public void onFailure(Call<PhoneNumberModel> call, Throwable t) {
-                                    liProgress.setVisibility(View.GONE);
-                                }
-                            });
+                                    @Override
+                                    public void onFailure(Call<PhoneNumberModel> call, Throwable t) {
+                                        liProgress.setVisibility(View.GONE);
+                                    }
+                                });
+                            } else {
+                                SurveyHelper.putAnswer(questionVariableType, questionId, editText_answer.getText().toString().trim());
+                                ((SurveyActivity) mContext).go_to_next();
+                            }
 
                         } else {
                             //Toast.makeText(getActivity().getApplicationContext(), "Invalid Phone Number!", Toast.LENGTH_LONG).show();
@@ -211,6 +217,7 @@ public class FragmentNumber extends Fragment {
         questionId = q_data.getQuestionId();
         questionVariableType = q_data.getQuestion_v_type();
         is_phone_number = q_data.getIs_phone_number();
+        is_phone_number_check = q_data.getIs_phone_number_check();
 
         if (q_data.getMax_char_length() != null) {
             max_length = Integer.parseInt(q_data.getMax_char_length());

@@ -59,6 +59,10 @@ public class Question implements Serializable {
     @Expose
     private Boolean is_phone_number;
 
+    @SerializedName("is_phone_number_check")
+    @Expose
+    private Boolean is_phone_number_check;
+
     @SerializedName("is_photo_required")
     @Expose
     private Boolean is_photo_required;
@@ -106,6 +110,14 @@ public class Question implements Serializable {
 
     public void setDate_condition(int date_condition) {
         this.date_condition = date_condition;
+    }
+
+    public Boolean getIs_phone_number_check() {
+        return is_phone_number_check;
+    }
+
+    public void setIs_phone_number_check(Boolean is_phone_number_check) {
+        this.is_phone_number_check = is_phone_number_check;
     }
 
     public Boolean getIs_phone_number() {
