@@ -1,5 +1,6 @@
 package in.myinnos.surveylib.fragment;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -15,13 +16,21 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import in.myinnos.surveylib.Answers;
+import in.myinnos.surveylib.ApiInterface.SurveysApiClient;
+import in.myinnos.surveylib.ApiInterface.SurveysApiInterface;
 import in.myinnos.surveylib.R;
 import in.myinnos.surveylib.SurveyActivity;
 import in.myinnos.surveylib.models.ChoicesListModel;
 import in.myinnos.surveylib.models.Question;
+import in.myinnos.surveylib.models.village.VillageListModel;
+import in.myinnos.surveylib.widgets.AppSurveyConstants;
 import in.myinnos.surveylib.widgets.SurveyHelper;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -36,7 +45,11 @@ public class FragmentRadioboxes extends Fragment {
     private RadioGroup radioGroup;
     private final ArrayList<RadioButton> allRb = new ArrayList<>();
     private boolean at_leaset_one_checked = false;
+    private boolean is_village_check = false;
     private String questionId, questionVariableType;
+    private LinearLayout liProgress;
+    private String base_url = "URL";
+    private String registeredBy, designation;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -44,6 +57,8 @@ public class FragmentRadioboxes extends Fragment {
         ViewGroup rootView = (ViewGroup) inflater.inflate(
                 R.layout.fragment_radioboxes, container, false);
 
+        liProgress = (LinearLayout) rootView.findViewById(R.id.liProgress);
+        liProgress.setVisibility(View.GONE);
         button_continue = (Button) rootView.findViewById(R.id.button_continue);
         textview_q_title = (TextView) rootView.findViewById(R.id.textview_q_title);
         radioGroup = (RadioGroup) rootView.findViewById(R.id.radioGroup);
@@ -90,21 +105,63 @@ public class FragmentRadioboxes extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-
         mContext = getActivity();
         q_data = (Question) getArguments().getSerializable("data");
+        base_url = getArguments().getString(AppSurveyConstants.BASE_URL);
+        registeredBy = getArguments().getString(AppSurveyConstants.SUR_REGISTERED_BY);
+        designation = getArguments().getString(AppSurveyConstants.SUR_REGISTERED_DESIGNATION);
 
         questionId = q_data.getQuestionId();
         questionVariableType = q_data.getQuestion_v_type();
         textview_q_title.setText(Html.fromHtml(q_data.getQuestionTitle()));
 
-        List<String> qq_data = new ArrayList<String>();
-        List<String> qq_data_tag = new ArrayList<String>();
-        for (int i = 0; i < q_data.getChoicesListModelList().size(); i++) {
-            qq_data.add(q_data.getChoicesListModelList().get(i).getName());
-            qq_data_tag.add(q_data.getChoicesListModelList().get(i).getValue());
-        }
+        final List<String> qq_data = new ArrayList<String>();
+        final List<Object> qq_data_tag = new ArrayList<Object>();
 
+        if (is_village_check) {
+
+            liProgress.setVisibility(View.VISIBLE);
+
+            SurveysApiInterface apiService =
+                    SurveysApiClient.getClient(base_url).create(SurveysApiInterface.class);
+
+            Call<VillageListModel> villageListModelCall = null;
+
+            if (designation.equals("1BA")) {
+                villageListModelCall = apiService.villageListRBA("Android", registeredBy);
+            } else {
+                villageListModelCall = apiService.villageListMBA("Android", registeredBy);
+            }
+
+            villageListModelCall.enqueue(new Callback<VillageListModel>() {
+                @Override
+                public void onResponse(Call<VillageListModel> call, Response<VillageListModel> response) {
+
+                    for (int i = 0; i < response.body().getVillageListDetailsModels().size(); i++) {
+                        qq_data.add(response.body().getVillageListDetailsModels().get(i).getName());
+                        qq_data_tag.add(response.body().getVillageListDetailsModels().get(i).getId());
+                    }
+
+                    liProgress.setVisibility(View.GONE);
+                }
+
+                @SuppressLint("ShowToast")
+                @Override
+                public void onFailure(Call<VillageListModel> call, Throwable t) {
+                    liProgress.setVisibility(View.GONE);
+                    Toast.makeText(getContext(), "Please check your internet and try again!", Toast.LENGTH_LONG);
+                }
+            });
+
+
+        } else {
+
+            for (int i = 0; i < q_data.getChoicesListModelList().size(); i++) {
+                qq_data.add(q_data.getChoicesListModelList().get(i).getName());
+                qq_data_tag.add(q_data.getChoicesListModelList().get(i).getValue());
+            }
+
+        }
         /*if (q_data.getRandomChoices()) {
             Collections.shuffle(qq_data);
         }*/

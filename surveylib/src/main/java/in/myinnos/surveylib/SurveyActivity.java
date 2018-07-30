@@ -51,6 +51,7 @@ public class SurveyActivity extends AppCompatActivity {
     private String style_string = null;
     private String registered_by;
     private String customer_id;
+    private String registered_designation;
     private String latitude, longitude;
     private String base_url;
     File photoFile;
@@ -71,6 +72,7 @@ public class SurveyActivity extends AppCompatActivity {
             mSurveyPojo = new Gson().fromJson(bundle.getString("json_survey"), SurveyPojo.class);
             /// registered_by user
             registered_by = bundle.getString(AppSurveyConstants.SUR_REGISTERED_BY);
+            registered_designation = bundle.getString(AppSurveyConstants.SUR_REGISTERED_DESIGNATION);
             customer_id = bundle.getString(AppSurveyConstants.SUR_CUSTOMER_ID);
             base_url = bundle.getString(AppSurveyConstants.BASE_URL);
 
@@ -94,6 +96,7 @@ public class SurveyActivity extends AppCompatActivity {
             sBundle.putSerializable("survery_properties", mSurveyPojo.getSurveyProperties());
             sBundle.putString("style", style_string);
             sBundle.putString(AppSurveyConstants.SUR_REGISTERED_BY, registered_by);
+            sBundle.putString(AppSurveyConstants.SUR_REGISTERED_DESIGNATION, registered_designation);
             sBundle.putString(AppSurveyConstants.SUR_CUSTOMER_ID, customer_id);
             sBundle.putString(AppSurveyConstants.SUR_LATITUDE, latitude);
             sBundle.putString(AppSurveyConstants.SUR_LONGITUDE, longitude);
@@ -110,6 +113,7 @@ public class SurveyActivity extends AppCompatActivity {
                 xBundle.putSerializable("data", mQuestion);
                 xBundle.putString("style", style_string);
                 xBundle.putString(AppSurveyConstants.SUR_REGISTERED_BY, registered_by);
+                xBundle.putString(AppSurveyConstants.SUR_REGISTERED_DESIGNATION, registered_designation);
                 xBundle.putString(AppSurveyConstants.SUR_CUSTOMER_ID, customer_id);
                 xBundle.putString(AppSurveyConstants.BASE_URL, base_url);
                 frag.setArguments(xBundle);
@@ -122,6 +126,7 @@ public class SurveyActivity extends AppCompatActivity {
                 xBundle.putSerializable("data", mQuestion);
                 xBundle.putString("style", style_string);
                 xBundle.putString(AppSurveyConstants.SUR_REGISTERED_BY, registered_by);
+                xBundle.putString(AppSurveyConstants.SUR_REGISTERED_DESIGNATION, registered_designation);
                 xBundle.putString(AppSurveyConstants.SUR_CUSTOMER_ID, customer_id);
                 xBundle.putString(AppSurveyConstants.BASE_URL, base_url);
                 frag.setArguments(xBundle);
@@ -134,6 +139,7 @@ public class SurveyActivity extends AppCompatActivity {
                 xBundle.putSerializable("data", mQuestion);
                 xBundle.putString("style", style_string);
                 xBundle.putString(AppSurveyConstants.SUR_REGISTERED_BY, registered_by);
+                xBundle.putString(AppSurveyConstants.SUR_REGISTERED_DESIGNATION, registered_designation);
                 xBundle.putString(AppSurveyConstants.SUR_CUSTOMER_ID, customer_id);
                 xBundle.putString(AppSurveyConstants.BASE_URL, base_url);
                 frag.setArguments(xBundle);
@@ -146,6 +152,7 @@ public class SurveyActivity extends AppCompatActivity {
                 xBundle.putSerializable("data", mQuestion);
                 xBundle.putString("style", style_string);
                 xBundle.putString(AppSurveyConstants.SUR_REGISTERED_BY, registered_by);
+                xBundle.putString(AppSurveyConstants.SUR_REGISTERED_DESIGNATION, registered_designation);
                 xBundle.putString(AppSurveyConstants.SUR_CUSTOMER_ID, customer_id);
                 xBundle.putString(AppSurveyConstants.BASE_URL, base_url);
                 frag.setArguments(xBundle);
@@ -158,6 +165,7 @@ public class SurveyActivity extends AppCompatActivity {
                 xBundle.putSerializable("data", mQuestion);
                 xBundle.putString("style", style_string);
                 xBundle.putString(AppSurveyConstants.SUR_REGISTERED_BY, registered_by);
+                xBundle.putString(AppSurveyConstants.SUR_REGISTERED_DESIGNATION, registered_designation);
                 xBundle.putString(AppSurveyConstants.SUR_CUSTOMER_ID, customer_id);
                 xBundle.putString(AppSurveyConstants.BASE_URL, base_url);
                 frag.setArguments(xBundle);
@@ -170,6 +178,7 @@ public class SurveyActivity extends AppCompatActivity {
                 xBundle.putSerializable("data", mQuestion);
                 xBundle.putString("style", style_string);
                 xBundle.putString(AppSurveyConstants.SUR_REGISTERED_BY, registered_by);
+                xBundle.putString(AppSurveyConstants.SUR_REGISTERED_DESIGNATION, registered_designation);
                 xBundle.putString(AppSurveyConstants.SUR_CUSTOMER_ID, customer_id);
                 xBundle.putString(AppSurveyConstants.BASE_URL, base_url);
                 frag.setArguments(xBundle);
@@ -182,6 +191,7 @@ public class SurveyActivity extends AppCompatActivity {
                 xBundle.putSerializable("data", mQuestion);
                 xBundle.putString("style", style_string);
                 xBundle.putString(AppSurveyConstants.SUR_REGISTERED_BY, registered_by);
+                xBundle.putString(AppSurveyConstants.SUR_REGISTERED_DESIGNATION, registered_designation);
                 xBundle.putString(AppSurveyConstants.SUR_CUSTOMER_ID, customer_id);
                 xBundle.putString(AppSurveyConstants.BASE_URL, base_url);
                 frag.setArguments(xBundle);
@@ -194,6 +204,7 @@ public class SurveyActivity extends AppCompatActivity {
                 xBundle.putSerializable("data", mQuestion);
                 xBundle.putString("style", style_string);
                 xBundle.putString(AppSurveyConstants.SUR_REGISTERED_BY, registered_by);
+                xBundle.putString(AppSurveyConstants.SUR_REGISTERED_DESIGNATION, registered_designation);
                 xBundle.putString(AppSurveyConstants.SUR_CUSTOMER_ID, customer_id);
                 xBundle.putString(AppSurveyConstants.BASE_URL, base_url);
                 frag.setArguments(xBundle);
@@ -208,6 +219,7 @@ public class SurveyActivity extends AppCompatActivity {
         eBundle.putSerializable("survery_properties", mSurveyPojo.getSurveyProperties());
         eBundle.putString("style", style_string);
         eBundle.putString(AppSurveyConstants.SUR_REGISTERED_BY, registered_by);
+        eBundle.putString(AppSurveyConstants.SUR_REGISTERED_DESIGNATION, registered_designation);
         eBundle.putString(AppSurveyConstants.SUR_CUSTOMER_ID, customer_id);
         eBundle.putString(AppSurveyConstants.BASE_URL, base_url);
         frag_end.setArguments(eBundle);

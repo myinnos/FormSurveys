@@ -6,9 +6,11 @@ package in.myinnos.surveylib.ApiInterface;
 
 import in.myinnos.surveylib.models.ImageUploadModel;
 import in.myinnos.surveylib.models.PhoneNumberModel;
+import in.myinnos.surveylib.models.village.VillageListModel;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
@@ -25,6 +27,15 @@ public interface SurveysApiInterface {
             @Query("mobile_number") String mobile_number);
 
     ////////////////////////////////////////////////////////////////////////////////////
+
+    // get list of reg customers
+    @GET("master/villages-list/")
+    Call<VillageListModel> villageListRBA(@Query("source") String source,
+                                          @Query("oneba__advisor_id") String user_id);
+
+    @GET("master/villages-list/")
+    Call<VillageListModel> villageListMBA(@Query("source") String source,
+                                          @Query("master1ba__advisor_id") String user_id);
 
 
     // post image upload
