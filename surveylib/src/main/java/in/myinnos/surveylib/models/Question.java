@@ -63,6 +63,10 @@ public class Question implements Serializable {
     @Expose
     private Boolean is_phone_number_check;
 
+    @SerializedName("is_village_check")
+    @Expose
+    private Boolean is_village_check;
+
     @SerializedName("is_photo_required")
     @Expose
     private Boolean is_photo_required;
@@ -114,6 +118,14 @@ public class Question implements Serializable {
 
     public Boolean getIs_phone_number_check() {
         return is_phone_number_check;
+    }
+
+    public void setIs_village_check(Boolean is_village_check) {
+        this.is_village_check = is_village_check;
+    }
+
+    public Boolean getIs_village_check() {
+        return is_village_check;
     }
 
     public void setIs_phone_number_check(Boolean is_phone_number_check) {

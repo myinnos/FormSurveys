@@ -114,6 +114,7 @@ public class FragmentRadioboxes extends Fragment {
         questionId = q_data.getQuestionId();
         questionVariableType = q_data.getQuestion_v_type();
         textview_q_title.setText(Html.fromHtml(q_data.getQuestionTitle()));
+        is_village_check = q_data.getIs_village_check();
 
         final List<String> qq_data = new ArrayList<String>();
         final List<Object> qq_data_tag = new ArrayList<Object>();
@@ -138,8 +139,26 @@ public class FragmentRadioboxes extends Fragment {
                 public void onResponse(Call<VillageListModel> call, Response<VillageListModel> response) {
 
                     for (int i = 0; i < response.body().getVillageListDetailsModels().size(); i++) {
+                        Log.d("SDcsd", response.body().getVillageListDetailsModels().get(i).getName());
                         qq_data.add(response.body().getVillageListDetailsModels().get(i).getName());
                         qq_data_tag.add(response.body().getVillageListDetailsModels().get(i).getId());
+                    }
+
+                    for (int i = 0; i < qq_data.size(); i++) {
+                        RadioButton rb = new RadioButton(mContext);
+                        rb.setText(Html.fromHtml(qq_data.get(i)));
+                        rb.setTag(qq_data_tag.get(i));
+                        rb.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
+                        rb.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+                        radioGroup.addView(rb);
+                        allRb.add(rb);
+
+                        rb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                            @Override
+                            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                                collect_data();
+                            }
+                        });
                     }
 
                     liProgress.setVisibility(View.GONE);
@@ -161,27 +180,27 @@ public class FragmentRadioboxes extends Fragment {
                 qq_data_tag.add(q_data.getChoicesListModelList().get(i).getValue());
             }
 
+            for (int i = 0; i < qq_data.size(); i++) {
+                RadioButton rb = new RadioButton(mContext);
+                rb.setText(Html.fromHtml(qq_data.get(i)));
+                rb.setTag(qq_data_tag.get(i));
+                rb.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
+                rb.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+                radioGroup.addView(rb);
+                allRb.add(rb);
+
+                rb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        collect_data();
+                    }
+                });
+            }
         }
         /*if (q_data.getRandomChoices()) {
             Collections.shuffle(qq_data);
         }*/
 
-        for (int i = 0; i < qq_data.size(); i++) {
-            RadioButton rb = new RadioButton(mContext);
-            rb.setText(Html.fromHtml(qq_data.get(i)));
-            rb.setTag(qq_data_tag.get(i));
-            rb.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
-            rb.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-            radioGroup.addView(rb);
-            allRb.add(rb);
-
-            rb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    collect_data();
-                }
-            });
-        }
 
         if (q_data.getRequired()) {
             if (at_leaset_one_checked) {

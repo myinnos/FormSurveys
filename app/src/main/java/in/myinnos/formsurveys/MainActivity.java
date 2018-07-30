@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
 
-                        openSurvey(response.body().toString(), "1", "http://staging-associate.1bridge.in:8888/api/v1/");
+                        openSurvey(response.body().toString(), "BAA0006", "http://staging-associate.1bridge.in:8888/api/v1/");
 
                     }
 
@@ -99,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
         //i_survey.putExtra("json_survey", loadSurveyJson("customer_survey.json"));
         i_survey.putExtra("json_survey", json);
         i_survey.putExtra(AppSurveyConstants.SUR_REGISTERED_BY, registered_by);
+        i_survey.putExtra(AppSurveyConstants.SUR_REGISTERED_DESIGNATION, "1BA");
         i_survey.putExtra(AppSurveyConstants.BASE_URL, base_url);
         i_survey.putExtra(AppSurveyConstants.SUR_CUSTOMER_ID, "1");
         startActivityForResult(i_survey, SURVEY_REQUEST);
