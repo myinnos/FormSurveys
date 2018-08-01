@@ -51,7 +51,12 @@ public class FragmentDate extends Fragment {
             public void onClick(View v) {
                 //Answers.getInstance().put_answer(questionId, editText_answer.getText().toString().trim());
 
-                SurveyHelper.putAnswer(questionVariableType, questionId, editText_answer.getText().toString().trim());
+                String date_string = editText_answer.getText().toString().trim();
+                if (date_string.equals("Choose Date")) {
+                    date_string = "";
+                }
+
+                SurveyHelper.putAnswer(questionVariableType, questionId, date_string);
 
                 ((SurveyActivity) mContext).go_to_next();
             }
@@ -148,7 +153,7 @@ public class FragmentDate extends Fragment {
 
                 datePickerDialog.getDatePicker().setMaxDate(minDateInMilliSeconds);
                 datePickerDialog.show();
-                }
+            }
         });
 
     }
