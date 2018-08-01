@@ -2,6 +2,7 @@ package in.myinnos.surveylib;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -33,10 +34,13 @@ import in.myinnos.surveylib.fragment.FragmentStart;
 import in.myinnos.surveylib.fragment.FragmentTextSimple;
 import in.myinnos.surveylib.models.ImageUploadModel;
 import in.myinnos.surveylib.models.Question;
+import in.myinnos.surveylib.models.RealmQuestionAnswersModel;
 import in.myinnos.surveylib.models.SurveyPojo;
 import in.myinnos.surveylib.widgets.AppSurveyConstants;
 import in.myinnos.surveylib.widgets.SurveySharedFlows;
 import in.myinnos.surveylib.widgets.bottomview.BottomDialog;
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -54,6 +58,7 @@ public class SurveyActivity extends AppCompatActivity {
     private String registered_designation;
     private String latitude, longitude;
     private String base_url;
+    private String form_name;
     File photoFile;
     private LinearLayout liProgress;
 
@@ -61,6 +66,10 @@ public class SurveyActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_survey);
+
+        // Initialize Realm
+        Realm.init(this);
+
 
         photoFile = new File(getExternalFilesDir("img"), "survey_scan.jpg");
         liProgress = (LinearLayout) findViewById(R.id.liProgress);
@@ -75,9 +84,15 @@ public class SurveyActivity extends AppCompatActivity {
             registered_designation = bundle.getString(AppSurveyConstants.SUR_REGISTERED_DESIGNATION);
             customer_id = bundle.getString(AppSurveyConstants.SUR_CUSTOMER_ID);
             base_url = bundle.getString(AppSurveyConstants.BASE_URL);
+            form_name = bundle.getString(AppSurveyConstants.FORM_NAME);
 
             latitude = bundle.getString(AppSurveyConstants.SUR_LATITUDE);
             longitude = bundle.getString(AppSurveyConstants.SUR_LONGITUDE);
+
+            SharedPreferences.Editor editor = getSharedPreferences(AppSurveyConstants.PREFERENCES_SURVEYS, MODE_PRIVATE).edit();
+            editor.putString(AppSurveyConstants.FORM_NAME, form_name);
+            editor.apply();
+
             //
             if (bundle.containsKey("style")) {
                 style_string = bundle.getString("style");
@@ -306,7 +321,17 @@ public class SurveyActivity extends AppCompatActivity {
                             file
                     );
 
-            Call<ImageUploadModel> call = apiService.uploadImage(requestFile);
+            Call<ImageUploadModel> call = null;
+
+            SharedPreferences prefs = getSharedPreferences(AppSurveyConstants.PREFERENCES_SURVEYS, MODE_PRIVATE);
+            String formText = prefs.getString(AppSurveyConstants.FORM_NAME, "");
+
+            if (formText.equals("surveys/abhis-create/")) {
+                call = apiService.uploadImageAbhi(requestFile);
+            } else {
+                call = apiService.uploadImage(requestFile);
+            }
+
             call.enqueue(new Callback<ImageUploadModel>() {
                 @Override
                 public void onResponse(Call<ImageUploadModel> call, Response<ImageUploadModel> response) {

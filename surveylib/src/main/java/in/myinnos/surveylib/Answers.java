@@ -4,6 +4,8 @@ import com.google.gson.Gson;
 
 import java.util.LinkedHashMap;
 
+import in.myinnos.surveylib.function.RealmObjectFlow;
+
 //Singleton Answers ........
 
 public class Answers {
@@ -15,6 +17,7 @@ public class Answers {
     }
 
     public void put_answer(String key, Object value) {
+        RealmObjectFlow.set(key, String.valueOf(value));
         answered_hashmap.put(key, value);
     }
 

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,8 +17,12 @@ import android.widget.TextView;
 import in.myinnos.surveylib.Answers;
 import in.myinnos.surveylib.R;
 import in.myinnos.surveylib.SurveyActivity;
+import in.myinnos.surveylib.function.RealmObjectFlow;
+import in.myinnos.surveylib.models.RealmQuestionAnswersModel;
 import in.myinnos.surveylib.models.SurveyProperties;
 import in.myinnos.surveylib.widgets.bottomview.BottomDialog;
+import io.realm.RealmChangeListener;
+import io.realm.RealmResults;
 
 
 public class FragmentEnd extends Fragment {
@@ -34,6 +39,15 @@ public class FragmentEnd extends Fragment {
 
         Button button_finish = (Button) rootView.findViewById(R.id.button_finish);
         textView_end = (TextView) rootView.findViewById(R.id.textView_end);
+
+
+        RealmResults<RealmQuestionAnswersModel> r = RealmObjectFlow.realm.where(RealmQuestionAnswersModel.class)
+                .findAll();
+
+        for (int i = 0; i < r.size(); i++) {
+
+            Log.d("dscds",r.get(i).getQuestion() + " : " + r.get(i).getAnswer());
+        }
 
 
         button_finish.setOnClickListener(new View.OnClickListener() {

@@ -44,4 +44,9 @@ public interface SurveysApiInterface {
     Call<ImageUploadModel> uploadImage
     (@Part("file\"; filename=\"image.jpg\"") RequestBody file);
 
+    @Multipart
+    @POST("surveys/abhi-images/")
+    Call<ImageUploadModel> uploadImageAbhi
+            (@Part("file\"; filename=\"image.jpg\"") RequestBody file);
+
 }
