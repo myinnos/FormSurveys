@@ -13,11 +13,6 @@ public class RealmQuestionAnswersModel extends RealmObject {
 
     }
 
-    public RealmQuestionAnswersModel(String question, String answer) {
-        this.question = question;
-        this.answer = answer;
-    }
-
     public String getQuestion() {
         return question;
     }

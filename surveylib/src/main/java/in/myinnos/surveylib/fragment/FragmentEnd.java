@@ -63,7 +63,9 @@ public class FragmentEnd extends Fragment {
                 .findAll();
 
         RealmQuestionAnswersModel realmQuestionAnswersModel = null;
+        realmQuestionAnswersModelArrayList.clear();
         for (int i = 0; i < r.size(); i++) {
+            realmQuestionAnswersModel = new RealmQuestionAnswersModel();
             //Log.d("dscds", r.get(i).getQuestion() + " : " + r.get(i).getAnswer());
             if (!r.get(i).getQuestion().equals("latitude") && !r.get(i).getQuestion().equals("longitude") &&
                     !r.get(i).getQuestion().equals("advisor_id") && !r.get(i).getQuestion().equals("customer")
@@ -71,8 +73,8 @@ public class FragmentEnd extends Fragment {
 
                 //Log.d("dscds", r.get(i).getQuestion() + " : " + r.get(i).getAnswer());
 
-                realmQuestionAnswersModel =
-                        new RealmQuestionAnswersModel(r.get(i).getQuestion(), r.get(i).getAnswer());
+                realmQuestionAnswersModel.setQuestion(r.get(i).getQuestion());
+                realmQuestionAnswersModel.setAnswer(r.get(i).getAnswer());
                 realmQuestionAnswersModelArrayList.add(realmQuestionAnswersModel);
             }
         }
