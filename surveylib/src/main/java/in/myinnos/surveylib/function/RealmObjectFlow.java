@@ -9,10 +9,12 @@ public class RealmObjectFlow {
     // The Realm file will be located in Context.getFilesDir() with name "myrealm.realm"
     public static RealmConfiguration config = new RealmConfiguration.Builder()
             .name("1bridge2.realm")
+            .deleteRealmIfMigrationNeeded()
             .schemaVersion(1)
             .build();
     // Use the config
     public static Realm realm = Realm.getInstance(config);
+
 
     public static void set(String question, String answer) {
 
