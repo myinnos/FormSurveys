@@ -1,7 +1,5 @@
 package in.myinnos.surveylib.fragment;
 
-import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -12,7 +10,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -27,7 +24,6 @@ import in.myinnos.surveylib.function.RealmObjectFlow;
 import in.myinnos.surveylib.models.RealmQuestionAnswersModel;
 import in.myinnos.surveylib.models.SurveyProperties;
 import in.myinnos.surveylib.widgets.bottomview.BottomDialog;
-import io.realm.RealmChangeListener;
 import io.realm.RealmResults;
 
 
@@ -58,29 +54,6 @@ public class FragmentEnd extends Fragment {
         listView.setHasFixedSize(true);
         listView.setAdapter(adapter);
 
-
-        RealmResults<RealmQuestionAnswersModel> r = RealmObjectFlow.realm.where(RealmQuestionAnswersModel.class)
-                .findAll();
-
-        RealmQuestionAnswersModel realmQuestionAnswersModel = null;
-        realmQuestionAnswersModelArrayList.clear();
-        for (int i = 0; i < r.size(); i++) {
-            realmQuestionAnswersModel = new RealmQuestionAnswersModel();
-            //Log.d("dscds", r.get(i).getQuestion() + " : " + r.get(i).getAnswer());
-            if (!r.get(i).getQuestion().equals("latitude") && !r.get(i).getQuestion().equals("longitude") &&
-                    !r.get(i).getQuestion().equals("advisor_id") && !r.get(i).getQuestion().equals("customer")
-                    && !r.get(i).getQuestion().equals("image")) {
-
-                //Log.d("dscds", r.get(i).getQuestion() + " : " + r.get(i).getAnswer());
-
-                realmQuestionAnswersModel.setQuestion(r.get(i).getQuestion());
-                realmQuestionAnswersModel.setAnswer(r.get(i).getAnswer());
-                realmQuestionAnswersModelArrayList.add(realmQuestionAnswersModel);
-            }
-        }
-        adapter.notifyDataSetChanged();
-
-
         button_finish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -106,6 +79,34 @@ public class FragmentEnd extends Fragment {
         });
 
         return rootView;
+    }
+
+    @Override
+    public void setMenuVisibility(final boolean visible) {
+        super.setMenuVisibility(visible);
+        if (visible) {
+
+            RealmResults<RealmQuestionAnswersModel> r = RealmObjectFlow.realm.where(RealmQuestionAnswersModel.class)
+                    .findAll();
+
+            RealmQuestionAnswersModel realmQuestionAnswersModel = null;
+            realmQuestionAnswersModelArrayList.clear();
+            for (int i = 0; i < r.size(); i++) {
+                realmQuestionAnswersModel = new RealmQuestionAnswersModel();
+                //Log.d("dscds", r.get(i).getQuestion() + " : " + r.get(i).getAnswer());
+                if (!r.get(i).getQuestion().equals("latitude") && !r.get(i).getQuestion().equals("longitude") &&
+                        !r.get(i).getQuestion().equals("advisor_id") && !r.get(i).getQuestion().equals("customer")
+                        && !r.get(i).getQuestion().equals("image")) {
+
+                    Log.d("dscds", r.get(i).getQuestion() + " : " + r.get(i).getAnswer());
+
+                    realmQuestionAnswersModel.setQuestion(r.get(i).getQuestion());
+                    realmQuestionAnswersModel.setAnswer(r.get(i).getAnswer());
+                    realmQuestionAnswersModelArrayList.add(realmQuestionAnswersModel);
+                }
+            }
+            adapter.notifyDataSetChanged();
+        }
     }
 
     @Override

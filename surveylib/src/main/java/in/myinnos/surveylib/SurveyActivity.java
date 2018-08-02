@@ -245,7 +245,6 @@ public class SurveyActivity extends AppCompatActivity {
         AdapterFragmentQ mPagerAdapter = new AdapterFragmentQ(getSupportFragmentManager(), arraylist_fragments);
         mPager.setAdapter(mPagerAdapter);
 
-
     }
 
     public void go_to_next() {

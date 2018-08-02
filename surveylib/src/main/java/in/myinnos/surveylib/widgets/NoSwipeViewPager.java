@@ -8,7 +8,7 @@ import android.view.MotionEvent;
 /**
  * Created by Lee Howett on 2016-10-13.
  * <p>
- * com.androidadvance.androidsurvey.widgets
+ * androidsurvey.widgets
  */
 
 public class NoSwipeViewPager extends ViewPager {
