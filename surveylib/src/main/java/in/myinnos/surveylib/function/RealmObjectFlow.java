@@ -3,6 +3,7 @@ package in.myinnos.surveylib.function;
 import in.myinnos.surveylib.models.RealmQuestionAnswersModel;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
+import io.realm.RealmResults;
 
 public class RealmObjectFlow {
 
@@ -15,6 +16,17 @@ public class RealmObjectFlow {
     // Use the config
     public static Realm realm = Realm.getInstance(config);
 
+
+    public static void clearObject() {
+
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                RealmResults<RealmQuestionAnswersModel> result = realm.where(RealmQuestionAnswersModel.class).findAll();
+                result.deleteAllFromRealm();
+            }
+        });
+    }
 
     public static void set(String question, String answer) {
 

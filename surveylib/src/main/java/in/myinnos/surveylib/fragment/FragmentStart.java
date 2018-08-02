@@ -13,6 +13,7 @@ import android.widget.TextView;
 import in.myinnos.surveylib.Answers;
 import in.myinnos.surveylib.R;
 import in.myinnos.surveylib.SurveyActivity;
+import in.myinnos.surveylib.function.RealmObjectFlow;
 import in.myinnos.surveylib.models.SurveyProperties;
 import in.myinnos.surveylib.widgets.AppSurveyConstants;
 import in.myinnos.surveylib.widgets.SurveyHelper;
@@ -30,6 +31,9 @@ public class FragmentStart extends Fragment {
                              Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup) inflater.inflate(
                 R.layout.fragment_start, container, false);
+
+        // delete realm object
+        RealmObjectFlow.clearObject();
 
         textView_start = (TextView) rootView.findViewById(R.id.textView_start);
         Button button_continue = (Button) rootView.findViewById(R.id.button_continue);
