@@ -326,7 +326,7 @@ public class SurveyActivity extends AppCompatActivity {
             SharedPreferences prefs = getSharedPreferences(AppSurveyConstants.PREFERENCES_SURVEYS, MODE_PRIVATE);
             String formText = prefs.getString(AppSurveyConstants.FORM_NAME, "");
 
-            if (formText.equals("surveys/abhis-create/")) {
+            if (formText.equals("surveys/abhis-create")) {
                 call = apiService.uploadImageAbhi(requestFile);
             } else {
                 call = apiService.uploadImage(requestFile);

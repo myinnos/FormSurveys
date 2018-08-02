@@ -6,8 +6,17 @@ import io.realm.annotations.PrimaryKey;
 public class RealmQuestionAnswersModel extends RealmObject {
 
     @PrimaryKey
-    private String question;
-    private String answer;
+    public String question;
+    public String answer;
+
+    public RealmQuestionAnswersModel(){
+
+    }
+
+    public RealmQuestionAnswersModel(String question, String answer) {
+        this.question = question;
+        this.answer = answer;
+    }
 
     public String getQuestion() {
         return question;

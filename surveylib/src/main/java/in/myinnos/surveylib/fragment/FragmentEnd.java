@@ -5,6 +5,8 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,9 +16,13 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import in.myinnos.surveylib.Answers;
 import in.myinnos.surveylib.R;
 import in.myinnos.surveylib.SurveyActivity;
+import in.myinnos.surveylib.adapters.RealmDataListAdapter;
 import in.myinnos.surveylib.function.RealmObjectFlow;
 import in.myinnos.surveylib.models.RealmQuestionAnswersModel;
 import in.myinnos.surveylib.models.SurveyProperties;
@@ -30,6 +36,10 @@ public class FragmentEnd extends Fragment {
     private FragmentActivity mContext;
     private TextView textView_end;
 
+    private List<RealmQuestionAnswersModel> realmQuestionAnswersModelArrayList = new ArrayList<>();
+    private RecyclerView listView;
+    public static RealmDataListAdapter adapter;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -40,14 +50,33 @@ public class FragmentEnd extends Fragment {
         Button button_finish = (Button) rootView.findViewById(R.id.button_finish);
         textView_end = (TextView) rootView.findViewById(R.id.textView_end);
 
+        listView = (RecyclerView) rootView.findViewById(R.id.listView);
+        adapter = new RealmDataListAdapter(getActivity(), realmQuestionAnswersModelArrayList);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        listView.setLayoutManager(layoutManager);
+        listView.setHasFixedSize(true);
+        listView.setAdapter(adapter);
+
 
         RealmResults<RealmQuestionAnswersModel> r = RealmObjectFlow.realm.where(RealmQuestionAnswersModel.class)
                 .findAll();
 
+        RealmQuestionAnswersModel realmQuestionAnswersModel = null;
         for (int i = 0; i < r.size(); i++) {
+            //Log.d("dscds", r.get(i).getQuestion() + " : " + r.get(i).getAnswer());
+            if (!r.get(i).getQuestion().equals("latitude") && !r.get(i).getQuestion().equals("longitude") &&
+                    !r.get(i).getQuestion().equals("advisor_id") && !r.get(i).getQuestion().equals("customer")
+                    && !r.get(i).getQuestion().equals("image")) {
 
-            Log.d("dscds",r.get(i).getQuestion() + " : " + r.get(i).getAnswer());
+                //Log.d("dscds", r.get(i).getQuestion() + " : " + r.get(i).getAnswer());
+
+                realmQuestionAnswersModel =
+                        new RealmQuestionAnswersModel(r.get(i).getQuestion(), r.get(i).getAnswer());
+                realmQuestionAnswersModelArrayList.add(realmQuestionAnswersModel);
+            }
         }
+        adapter.notifyDataSetChanged();
 
 
         button_finish.setOnClickListener(new View.OnClickListener() {

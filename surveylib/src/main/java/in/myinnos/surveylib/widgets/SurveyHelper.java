@@ -1,11 +1,15 @@
 package in.myinnos.surveylib.widgets;
 
 import in.myinnos.surveylib.Answers;
+import in.myinnos.surveylib.function.RealmObjectFlow;
 
 public class SurveyHelper {
 
 
-    public static void putAnswer(String type, String questionId, String value) {
+    public static void putAnswer(String question, String answer,
+                                 String type, String questionId, String value) {
+
+        RealmObjectFlow.set(question, answer);
 
         if (type.equals("boolean")) {
 

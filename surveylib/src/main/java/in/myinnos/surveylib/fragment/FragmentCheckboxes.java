@@ -57,11 +57,13 @@ public class FragmentCheckboxes extends Fragment {
 
         //----- collection & validation for is_required
         String the_choices = "";
+        String the_choice_answers = "";
         boolean at_leaset_one_checked = false;
         for (CheckBox cb : allCb) {
             if (cb.isChecked()) {
                 at_leaset_one_checked = true;
                 the_choices = the_choices + cb.getTag().toString() + ", ";
+                the_choice_answers = the_choice_answers + cb.getText().toString() + ", ";
             }
         }
 
@@ -69,7 +71,8 @@ public class FragmentCheckboxes extends Fragment {
             the_choices = the_choices.substring(0, the_choices.length() - 2);
             //Answers.getInstance().put_answer(questionId, the_choices);
 
-            SurveyHelper.putAnswer(questionVariableType, questionId, the_choices);
+            SurveyHelper.putAnswer(textview_q_title.getText().toString().trim(), the_choice_answers,
+                    questionVariableType, questionId, the_choices);
         }
 
 

@@ -76,17 +76,21 @@ public class FragmentRadioboxes extends Fragment {
 
         //----- collection & validation for is_required
         String the_choice = "";
+        String the_choice_answers = "";
         at_leaset_one_checked = false;
         for (RadioButton rb : allRb) {
             if (rb.isChecked()) {
                 at_leaset_one_checked = true;
                 the_choice = rb.getTag().toString();
+                the_choice_answers = rb.getText().toString();
             }
         }
 
         if (the_choice.length() > 0) {
             //Answers.getInstance().put_answer(questionId, the_choice);
-            SurveyHelper.putAnswer(questionVariableType, questionId, the_choice);
+
+            SurveyHelper.putAnswer(textview_q_title.getText().toString().trim(), the_choice_answers,
+                    questionVariableType, questionId, the_choice);
         }
 
 

@@ -68,7 +68,7 @@ public class FragmentImage extends Fragment {
         Log.d("in_fragment_done", questionId);
         Log.d("in_fragment_done", questionType);
 
-        SurveyHelper.putAnswer(questionType, questionId, imageId);
+        SurveyHelper.putAnswer("image", "", questionType, questionId, imageId);
         ((SurveyActivity) activity).go_to_next();
     }
 

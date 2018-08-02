@@ -56,7 +56,8 @@ public class FragmentDate extends Fragment {
                     date_string = "";
                 }
 
-                SurveyHelper.putAnswer(questionVariableType, questionId, date_string);
+                SurveyHelper.putAnswer(textview_q_title.getText().toString().trim(), editText_answer.getText().toString().trim(),
+                        questionVariableType, questionId, date_string);
 
                 ((SurveyActivity) mContext).go_to_next();
             }

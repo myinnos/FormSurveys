@@ -72,10 +72,12 @@ public class FragmentNumber extends Fragment {
                     }
 
                     if (editText_answer.getText().toString().trim().length() != 0) {
-                        SurveyHelper.putAnswer(questionVariableType, questionId, editText_answer.getText().toString().trim());
+                        SurveyHelper.putAnswer(textview_q_title.getText().toString().trim(), editText_answer.getText().toString().trim(),
+                                questionVariableType, questionId, editText_answer.getText().toString().trim());
                         ((SurveyActivity) mContext).go_to_next();
                     } else {
-                        SurveyHelper.putAnswer(questionVariableType, questionId, null);
+                        SurveyHelper.putAnswer(textview_q_title.getText().toString().trim(), editText_answer.getText().toString().trim(),
+                                questionVariableType, questionId, null);
                         ((SurveyActivity) mContext).go_to_next();
                     }
 
@@ -129,7 +131,8 @@ public class FragmentNumber extends Fragment {
 
                                         } else {
 
-                                            SurveyHelper.putAnswer(questionVariableType, questionId, editText_answer.getText().toString().trim());
+                                            SurveyHelper.putAnswer(textview_q_title.getText().toString().trim(), editText_answer.getText().toString().trim(),
+                                                    questionVariableType, questionId, editText_answer.getText().toString().trim());
                                             ((SurveyActivity) mContext).go_to_next();
 
                                         }
@@ -141,7 +144,8 @@ public class FragmentNumber extends Fragment {
                                     }
                                 });
                             } else {
-                                SurveyHelper.putAnswer(questionVariableType, questionId, editText_answer.getText().toString().trim());
+                                SurveyHelper.putAnswer(textview_q_title.getText().toString().trim(), editText_answer.getText().toString().trim(),
+                                        questionVariableType, questionId, editText_answer.getText().toString().trim());
                                 ((SurveyActivity) mContext).go_to_next();
                             }
 
@@ -151,7 +155,8 @@ public class FragmentNumber extends Fragment {
                             invalidNumber();
                         }
                     } else {
-                        SurveyHelper.putAnswer(questionVariableType, questionId, null);
+                        SurveyHelper.putAnswer(textview_q_title.getText().toString().trim(), editText_answer.getText().toString().trim(),
+                                questionVariableType, questionId, null);
                         ((SurveyActivity) mContext).go_to_next();
                     }
                 }

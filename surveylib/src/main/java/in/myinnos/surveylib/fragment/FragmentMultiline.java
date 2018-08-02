@@ -43,7 +43,8 @@ public class FragmentMultiline extends Fragment {
             public void onClick(View v) {
                  //Answers.getInstance().put_answer(questionId, editText_answer.getText().toString().trim());
 
-                SurveyHelper.putAnswer(questionVariableType, questionId, editText_answer.getText().toString().trim());
+                SurveyHelper.putAnswer(textview_q_title.getText().toString().trim(), editText_answer.getText().toString().trim(),
+                        questionVariableType, questionId, editText_answer.getText().toString().trim());
 
                 ((SurveyActivity) mContext).go_to_next();
             }
