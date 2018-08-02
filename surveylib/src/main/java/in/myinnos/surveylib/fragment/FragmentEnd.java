@@ -100,9 +100,12 @@ public class FragmentEnd extends Fragment {
 
                     Log.d("dscds", r.get(i).getQuestion() + " : " + r.get(i).getAnswer());
 
-                    realmQuestionAnswersModel.setQuestion(r.get(i).getQuestion());
-                    realmQuestionAnswersModel.setAnswer(r.get(i).getAnswer());
-                    realmQuestionAnswersModelArrayList.add(realmQuestionAnswersModel);
+                    if(!r.get(i).getAnswer().equals("") && r.get(i).getAnswer() != null
+                            && !r.get(i).getAnswer().equals("Choose Date")) {
+                        realmQuestionAnswersModel.setQuestion(r.get(i).getQuestion());
+                        realmQuestionAnswersModel.setAnswer(r.get(i).getAnswer());
+                        realmQuestionAnswersModelArrayList.add(realmQuestionAnswersModel);
+                    }
                 }
             }
             adapter.notifyDataSetChanged();

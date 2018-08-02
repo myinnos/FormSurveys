@@ -54,8 +54,7 @@
                         android:gravity="left"
                         android:text=", Andhra Pradesh"
                         android:textColor="#000"
-                        android:textSize="14sp"
-                        android:textStyle="italic" />
+                        android:textSize="14sp" />
 
                 </LinearLayout>
 
