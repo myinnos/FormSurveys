@@ -131,13 +131,13 @@ public class FragmentImage extends Fragment {
                 new AlertDialog.Builder(getActivity())
                         .setTitle("Choose Image")
                         //.setMessage("Are you sure want to confirm? ")
-                        .setPositiveButton("CAMERA", new DialogInterface.OnClickListener() {
+                        /*  .setPositiveButton("CAMERA", new DialogInterface.OnClickListener() {
 
                             public void onClick(DialogInterface dialog, int whichButton) {
                                 getActivity().startActivityForResult(CropActivity.getJumpIntent(getContext(),
                                         false, photoFile), 100);
                             }
-                        })
+                        })*/
                         .setNegativeButton("GALLERY", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
