@@ -8,7 +8,6 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 
-
 import in.myinnos.surveylib.libCamera.bundle.PickSetup;
 import in.myinnos.surveylib.libCamera.keep.Keep;
 import in.myinnos.surveylib.libCamera.listeners.IPickCancel;
@@ -82,13 +81,13 @@ public class PickImageDialog extends PickImageBaseDialog {
     }
 
     @Override
-  public PickImageDialog setOnPickCancel(IPickCancel onPickCancel)
-   {
-    return (PickImageDialog) super.setOnPickCancel(onPickCancel);
-   }
+    public PickImageDialog setOnPickCancel(IPickCancel onPickCancel)
+    {
+        return (PickImageDialog) super.setOnPickCancel(onPickCancel);
+    }
 
 
-  @Override
+    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == IntentResolver.REQUESTER) {
@@ -120,10 +119,10 @@ public class PickImageDialog extends PickImageBaseDialog {
                     int cameraIndex = -1;
                     for (int i = 0; i < permissions.length; i++) {
                         cameraIndex = i;
-                         if (permissions[cameraIndex].equals(Manifest.permission.CAMERA)) {
+                        if (permissions[cameraIndex].equals(Manifest.permission.CAMERA)) {
                             cameraIndex = i;
-                             break;
-                         }
+                            break;
+                        }
                     }
 
                     if (cameraIndex != -1) {
@@ -155,5 +154,7 @@ public class PickImageDialog extends PickImageBaseDialog {
 
 
 }
+
+
 
 
