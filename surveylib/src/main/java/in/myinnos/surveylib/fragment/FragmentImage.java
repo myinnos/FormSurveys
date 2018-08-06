@@ -12,14 +12,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.vansuita.pickimage.bundle.PickSetup;
-import com.vansuita.pickimage.dialog.PickImageDialog;
-import com.vansuita.pickimage.listeners.IPickClick;
-
 import java.io.File;
 
 import in.myinnos.surveylib.R;
 import in.myinnos.surveylib.SurveyActivity;
+import in.myinnos.surveylib.libCamera.bundle.PickSetup;
+import in.myinnos.surveylib.libCamera.dialog.PickImageDialog;
 import in.myinnos.surveylib.models.Question;
 import in.myinnos.surveylib.widgets.AppSurveyConstants;
 import in.myinnos.surveylib.widgets.SurveyHelper;

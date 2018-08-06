@@ -16,8 +16,6 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.vansuita.pickimage.bean.PickResult;
-import com.vansuita.pickimage.listeners.IPickResult;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -35,6 +33,8 @@ import in.myinnos.surveylib.fragment.FragmentPDF;
 import in.myinnos.surveylib.fragment.FragmentRadioboxes;
 import in.myinnos.surveylib.fragment.FragmentStart;
 import in.myinnos.surveylib.fragment.FragmentTextSimple;
+import in.myinnos.surveylib.libCamera.bean.PickResult;
+import in.myinnos.surveylib.libCamera.listeners.IPickResult;
 import in.myinnos.surveylib.models.ImageUploadModel;
 import in.myinnos.surveylib.models.Question;
 import in.myinnos.surveylib.models.RealmQuestionAnswersModel;
@@ -51,7 +51,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SurveyActivity extends AppCompatActivity implements IPickResult{
+public class SurveyActivity extends AppCompatActivity implements IPickResult {
 
     private SurveyPojo mSurveyPojo;
     private ViewPager mPager;
