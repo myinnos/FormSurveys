@@ -55,7 +55,7 @@ dependencies {
     implementation 'com.android.support:cardview-v7:26.1.0'
     implementation 'com.google.code.gson:gson:2.8.0'
     // image upload
-    implementation 'com.github.pqpo:SmartCropper:v1.1.3@aar'
+    implementation 'com.github.jrvansuita:PickImage:2.2.3'
     // retrofit along with gson
     implementation 'com.squareup.retrofit2:converter-gson:2.0.2'
     implementation 'com.google.code.gson:gson:2.8.0'

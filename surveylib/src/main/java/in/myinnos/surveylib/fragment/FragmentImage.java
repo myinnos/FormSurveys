@@ -1,11 +1,9 @@
 package in.myinnos.surveylib.fragment;
 
 import android.app.Activity;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.AlertDialog;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,11 +12,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.vansuita.pickimage.bundle.PickSetup;
+import com.vansuita.pickimage.dialog.PickImageDialog;
+import com.vansuita.pickimage.listeners.IPickClick;
+
 import java.io.File;
 
 import in.myinnos.surveylib.R;
 import in.myinnos.surveylib.SurveyActivity;
-import in.myinnos.surveylib.activity.CropActivity;
 import in.myinnos.surveylib.models.Question;
 import in.myinnos.surveylib.widgets.AppSurveyConstants;
 import in.myinnos.surveylib.widgets.SurveyHelper;
@@ -128,23 +129,30 @@ public class FragmentImage extends Fragment {
             public void onClick(View v) {
                 // TODO Auto-generated method stub
 
-                new AlertDialog.Builder(getActivity())
+                PickSetup setup = new PickSetup();
+                setup.setGalleryIcon(R.mipmap.gallery_colored);
+                setup.setCameraIcon(R.mipmap.camera_colored);
+
+                PickImageDialog.build(setup)
+                        .show(getActivity());
+
+               /* new AlertDialog.Builder(getActivity())
                         .setTitle("Choose Image")
                         //.setMessage("Are you sure want to confirm? ")
-                        /*  .setPositiveButton("CAMERA", new DialogInterface.OnClickListener() {
+                        *//*  .setPositiveButton("CAMERA", new DialogInterface.OnClickListener() {
 
                             public void onClick(DialogInterface dialog, int whichButton) {
                                 getActivity().startActivityForResult(CropActivity.getJumpIntent(getContext(),
                                         false, photoFile), 100);
                             }
-                        })*/
+                        })*//*
                         .setNegativeButton("GALLERY", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 getActivity().startActivityForResult(CropActivity.getJumpIntent(getActivity(),
                                         true, photoFile), 100);
                             }
-                        }).show();
+                        }).show();*/
             }
         });
 

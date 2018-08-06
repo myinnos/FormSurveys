@@ -13,8 +13,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.vansuita.pickimage.bean.PickResult;
+import com.vansuita.pickimage.listeners.IPickResult;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -48,7 +51,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SurveyActivity extends AppCompatActivity {
+public class SurveyActivity extends AppCompatActivity implements IPickResult{
 
     private SurveyPojo mSurveyPojo;
     private ViewPager mPager;
@@ -287,18 +290,22 @@ public class SurveyActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode != Activity.RESULT_OK) {
-            return;
-        }
-        if (requestCode == 100 && photoFile.exists()) {
-            Bitmap bitmap = BitmapFactory.decodeFile(photoFile.getPath());
-            //ivShow.setImageBitmap(bitmap);
-            Log.d("photoFile_Path", photoFile.getPath());
+    public void onPickResult(final PickResult r) {
+        if (r.getError() == null) {
+            //If you want the Uri.
+            //Mandatory to refresh image from Uri.
+            //getImageView().setImageURI(null);
 
-            Uri imageUri = Uri.fromFile(new File(String.valueOf(photoFile.getPath())));
-            Log.d("asda", String.valueOf(imageUri));
+            //Setting the real returned image.
+            //getImageView().setImageURI(r.getUri());
+
+            //If you want the Bitmap.
+            //getImageView().setImageBitmap(r.getBitmap());
+
+            //Log.d("photoFile_Path",r.getUri());
+
+            //Uri imageUri = Uri.fromFile(new File(String.valueOf(photoFile.getPath())));
+            Log.d("asda", String.valueOf(r.getUri()));
             //sendImageToServer(imageUri);
 
             liProgress.setVisibility(View.VISIBLE);
@@ -306,7 +313,7 @@ public class SurveyActivity extends AppCompatActivity {
             SurveysApiInterface apiService =
                     SurveysApiClient.getClient(base_url).create(SurveysApiInterface.class);
 
-            File file = new File(photoFile.getPath());
+            File file = new File(r.getPath());
             Log.d("asda", String.valueOf(file));
             // create RequestBody instance from file
 
@@ -355,6 +362,25 @@ public class SurveyActivity extends AppCompatActivity {
                     //Helper.restartApp(DeliveryActivity.this);
                 }
             });
+
+
+            //r.getPath();
+        } else {
+            //Handle possible errors
+            //TODO: do what you have to do with r.getError();
+            Toast.makeText(this, r.getError().getMessage(), Toast.LENGTH_LONG).show();
+        }
+        }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode != Activity.RESULT_OK) {
+            return;
+        }
+        if (requestCode == 100 && photoFile.exists()) {
+            Bitmap bitmap = BitmapFactory.decodeFile(photoFile.getPath());
+            //ivShow.setImageBitmap(bitmap);
 
         }
     }

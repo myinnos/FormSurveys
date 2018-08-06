@@ -15,16 +15,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.tapadoo.alerter.Alerter;
 
-import in.myinnos.surveylib.Answers;
 import in.myinnos.surveylib.ApiInterface.SurveysApiClient;
 import in.myinnos.surveylib.ApiInterface.SurveysApiInterface;
 import in.myinnos.surveylib.R;
 import in.myinnos.surveylib.SurveyActivity;
-import in.myinnos.surveylib.activity.CropActivity;
 import in.myinnos.surveylib.models.PhoneNumberModel;
 import in.myinnos.surveylib.models.Question;
 import in.myinnos.surveylib.widgets.AppSurveyConstants;
