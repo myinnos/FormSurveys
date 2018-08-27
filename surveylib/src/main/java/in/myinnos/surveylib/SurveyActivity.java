@@ -327,15 +327,19 @@ public class SurveyActivity extends AppCompatActivity implements IPickResult {
                             file
                     );
 
+            Log.d("asdafg", String.valueOf(requestFile));
             Call<ImageUploadModel> call = null;
 
             SharedPreferences prefs = getSharedPreferences(AppSurveyConstants.PREFERENCES_SURVEYS, MODE_PRIVATE);
             String formText = prefs.getString(AppSurveyConstants.FORM_NAME, "");
 
+
+            RequestBody fbody = RequestBody.create(MediaType.parse("image/*"), file);
+
             if (formText.equals("surveys/abhis-create")) {
-                call = apiService.uploadImageAbhi(requestFile);
+                call = apiService.uploadImageAbhi(fbody);
             } else {
-                call = apiService.uploadImage(requestFile);
+                call = apiService.uploadImageAbhi(fbody);
             }
 
             call.enqueue(new Callback<ImageUploadModel>() {
@@ -346,7 +350,7 @@ public class SurveyActivity extends AppCompatActivity implements IPickResult {
                     //Helper.restartApp(DeliveryActivity.this);
 
                     //Log.d("sdcsc", response.body().getFile());
-                    //Log.d("sdcsc", response.body().getId());
+                    Log.d("sdcsc", String.valueOf(response.body().getId()));
 
                     FragmentImage frag = new FragmentImage();
                     frag.moveNext(String.valueOf(response.body().getId()),
@@ -360,6 +364,7 @@ public class SurveyActivity extends AppCompatActivity implements IPickResult {
                     liProgress.setVisibility(View.GONE);
                     //CustomToast.ToastCenter(PickUpActivity.this, "Successfully Updated!");
                     //Helper.restartApp(DeliveryActivity.this);
+                    Log.d("sdcsc", String.valueOf(t.getMessage()));
                 }
             });
 
