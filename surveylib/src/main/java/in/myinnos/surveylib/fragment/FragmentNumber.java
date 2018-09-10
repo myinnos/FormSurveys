@@ -1,6 +1,8 @@
 package in.myinnos.surveylib.fragment;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -11,6 +13,7 @@ import android.text.Html;
 import android.text.InputFilter;
 import android.text.InputType;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -125,9 +128,13 @@ public class FragmentNumber extends Fragment {
                                 SurveysApiInterface apiService =
                                         SurveysApiClient.getClient(base_url).create(SurveysApiInterface.class);
 
+                                SharedPreferences prefs = mContext.getSharedPreferences("CUSTOMER_DETAILS", Context.MODE_PRIVATE);
+                                String restoredText = prefs.getString("gender", "male");
+                                //Log.d("gender_test", restoredText);
+
                                 Call<PhoneNumberModel> call =
                                         apiService.phoneNumberVerification(editText_answer.getText().toString().trim(),
-                                                "male");
+                                                restoredText.toLowerCase());
 
                                 call.enqueue(new Callback<PhoneNumberModel>() {
                                     @SuppressLint("SetTextI18n")

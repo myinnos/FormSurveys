@@ -1,6 +1,8 @@
 package in.myinnos.surveylib.fragment;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -89,8 +91,13 @@ public class FragmentRadioboxes extends Fragment {
         if (the_choice.length() > 0) {
             //Answers.getInstance().put_answer(questionId, the_choice);
 
+            SharedPreferences.Editor editor = mContext.getSharedPreferences("CUSTOMER_DETAILS", Context.MODE_PRIVATE).edit();
+            editor.putString("gender", the_choice_answers);
+            editor.apply();
+
             SurveyHelper.putAnswer(textview_q_title.getText().toString().trim(), the_choice_answers,
                     questionVariableType, questionId, the_choice);
+
         }
 
 
