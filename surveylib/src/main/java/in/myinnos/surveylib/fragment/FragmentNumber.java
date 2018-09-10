@@ -1,8 +1,11 @@
 package in.myinnos.surveylib.fragment;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.Html;
 import android.text.InputFilter;
@@ -14,16 +17,23 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.tapadoo.alerter.Alerter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import in.myinnos.surveylib.ApiInterface.SurveysApiClient;
 import in.myinnos.surveylib.ApiInterface.SurveysApiInterface;
 import in.myinnos.surveylib.R;
 import in.myinnos.surveylib.SurveyActivity;
+import in.myinnos.surveylib.adapters.CustomersListAdapter;
+import in.myinnos.surveylib.models.PhoneNumberFamilyDataModel;
 import in.myinnos.surveylib.models.PhoneNumberModel;
 import in.myinnos.surveylib.models.Question;
+import in.myinnos.surveylib.models.cusdetails.CustListDetailsModel;
 import in.myinnos.surveylib.widgets.AppSurveyConstants;
 import in.myinnos.surveylib.widgets.SurveyHelper;
 import retrofit2.Call;
@@ -43,18 +53,37 @@ public class FragmentNumber extends Fragment {
     private String base_url = "URL";
     private LinearLayout liProgress;
 
+    private RelativeLayout liCustomerLayout;
+    private Button button_continue_rv;
+    private TextView textview_q_title_rv;
+    private List<PhoneNumberFamilyDataModel> custListDetailsModels = new ArrayList<>();
+    private RecyclerView listView;
+    public static CustomersListAdapter adapter;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup) inflater.inflate(
                 R.layout.fragment_number, container, false);
 
+        liCustomerLayout = (RelativeLayout) rootView.findViewById(R.id.liCustomerLayout);
+        liCustomerLayout.setVisibility(View.GONE);
+        button_continue_rv = (Button) rootView.findViewById(R.id.button_continue_rv);
+        textview_q_title_rv = (TextView) rootView.findViewById(R.id.textview_q_title_rv);
         liProgress = (LinearLayout) rootView.findViewById(R.id.liProgress);
         liProgress.setVisibility(View.GONE);
         button_continue = (Button) rootView.findViewById(R.id.button_continue);
         textview_q_title = (TextView) rootView.findViewById(R.id.textview_q_title);
         editText_answer = (EditText) rootView.findViewById(R.id.editText_answer);
         editText_answer.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+
+        listView = (RecyclerView) rootView.findViewById(R.id.listView);
+        adapter = new CustomersListAdapter(getActivity(), custListDetailsModels);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        listView.setLayoutManager(layoutManager);
+        listView.setHasFixedSize(true);
+        listView.setAdapter(adapter);
 
         button_continue.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,18 +126,20 @@ public class FragmentNumber extends Fragment {
                                         SurveysApiClient.getClient(base_url).create(SurveysApiInterface.class);
 
                                 Call<PhoneNumberModel> call =
-                                        apiService.phoneNumberVerification(editText_answer.getText().toString().trim());
+                                        apiService.phoneNumberVerification(editText_answer.getText().toString().trim(),
+                                                "male");
 
                                 call.enqueue(new Callback<PhoneNumberModel>() {
+                                    @SuppressLint("SetTextI18n")
                                     @Override
                                     public void onResponse(Call<PhoneNumberModel> call, Response<PhoneNumberModel> response) {
                                         liProgress.setVisibility(View.GONE);
 
-                                        if (response.body().getPhoneNumberDataModel().getIs_registered()) {
-                                    /*Toast.makeText(getActivity().getApplicationContext(),
-                                            response.body().getPhoneNumberDataModel().getMsg(), Toast.LENGTH_LONG).show();*/
+                                        if (!response.body().getPhoneNumberDataModel().getIs_new()) {
+                                            /*Toast.makeText(getActivity().getApplicationContext(),
+                                                 response.body().getPhoneNumberDataModel().getMsg(), Toast.LENGTH_LONG).show();*/
 
-                                            Alerter.create(getActivity())
+                                            /*Alerter.create(getActivity())
                                                     .setTitle(response.body().getPhoneNumberDataModel().getMsg())
                                                     //.setText("Message Cannot be empty!")
                                                     .setDuration(4000)
@@ -124,7 +155,38 @@ public class FragmentNumber extends Fragment {
                                                             Alerter.hide();
                                                         }
                                                     })
-                                                    .show();
+                                                    .show();*/
+                                            liCustomerLayout.setVisibility(View.VISIBLE);
+                                            custListDetailsModels.clear();
+
+
+                                           /* CustListDetailsModel custListDetailsModel = new CustListDetailsModel(1, "Jhon BA", true,
+                                                    "+919550233669", "https://img00.deviantart.net/a676/i/2008/326/9/5/gary__superhero_accountant_by_superheronation.jpg",
+                                                    "Male", "", "HSR Layout", true, "BAA0280");*/
+
+                                            custListDetailsModels.addAll(response.body().getPhoneNumberDataModel().getPhoneNumberFamilyDataModelList());
+                                            adapter.notifyDataSetChanged();
+
+                                            textview_q_title_rv.setText("People who are all already registered with " + editText_answer.getText().toString().trim());
+
+                                            if (response.body().getPhoneNumberDataModel().getCan_add()) {
+                                                button_continue_rv.setClickable(true);
+                                                button_continue_rv.setText(response.body().getPhoneNumberDataModel().getCan_add_message());
+                                                button_continue_rv.setOnClickListener(new View.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(View view) {
+                                                        liCustomerLayout.setVisibility(View.GONE);
+                                                        SurveyHelper.putAnswer(textview_q_title.getText().toString().trim(), editText_answer.getText().toString().trim(),
+                                                                questionVariableType, questionId, editText_answer.getText().toString().trim());
+                                                        ((SurveyActivity) mContext).go_to_next();
+                                                    }
+                                                });
+                                            }else {
+                                                button_continue_rv.setClickable(false);
+                                                button_continue_rv.setBackgroundColor(getResources().getColor(R.color.white));
+                                                button_continue_rv.setText(response.body().getPhoneNumberDataModel().getCan_add_message());
+                                            }
+
 
                                         } else {
 

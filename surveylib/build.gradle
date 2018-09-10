@@ -66,6 +66,9 @@ dependencies {
     implementation 'com.tapadoo.android:alerter:2.0.5'
     // database
     implementation 'io.realm:android-adapters:2.0.0'
+
+    // picasso for image view
+    implementation 'com.squareup.picasso:picasso:2.5.2'
 }
 
 

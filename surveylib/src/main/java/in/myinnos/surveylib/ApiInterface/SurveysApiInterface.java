@@ -22,9 +22,10 @@ public interface SurveysApiInterface {
     ////////////////////////////////////////////////////////////////////////////////////
 
     // get base view details
-    @GET("customer/check-registration/")
+    @GET("customer/check-family/")
     Call<PhoneNumberModel> phoneNumberVerification(
-            @Query("mobile_number") String mobile_number);
+            @Query("mobile_number") String mobile_number,
+            @Query("gender") String gender);
 
     ////////////////////////////////////////////////////////////////////////////////////
 

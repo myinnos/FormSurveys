@@ -46,4 +46,46 @@
 
     <include layout="@layout/progress_view" />
 
+    <RelativeLayout
+        android:id="@+id/liCustomerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textview_q_title_rv"
+            style="?android:textAppearanceMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:lineSpacingMultiplier="1.2"
+            android:padding="14dp"
+            android:text="Title"
+            android:textColor="@color/survey_text"
+            android:textSize="16sp" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/button_continue_rv"
+            android:layout_below="@+id/textview_q_title_rv"
+            android:layout_margin="3dp"
+            android:scrollbars="none" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/button_continue_rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:padding="18dp"
+            android:text="@string/x_continue"
+            android:textColor="@color/survey_button_text"
+            android:textSize="16sp" />
+
+    </RelativeLayout>
+
 </RelativeLayout>
