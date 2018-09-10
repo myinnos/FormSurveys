@@ -19,7 +19,6 @@ import java.util.List;
 import in.myinnos.surveylib.R;
 import in.myinnos.surveylib.function.CircleTransform;
 import in.myinnos.surveylib.models.PhoneNumberFamilyDataModel;
-import in.myinnos.surveylib.models.cusdetails.CustListDetailsModel;
 
 /**
  * Created by MyInnos on 20-Jul-16.
@@ -60,7 +59,7 @@ public class CustomersListAdapter extends RecyclerView.Adapter<CustomersListAdap
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.list_customers, parent, false);
+                .inflate(R.layout.list_form_customers, parent, false);
 
         return new MyViewHolder(itemView);
     }
