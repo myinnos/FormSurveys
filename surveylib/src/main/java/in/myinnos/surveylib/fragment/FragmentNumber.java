@@ -13,7 +13,6 @@ import android.text.Html;
 import android.text.InputFilter;
 import android.text.InputType;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +21,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.tapadoo.alerter.Alerter;
 
@@ -36,7 +36,6 @@ import in.myinnos.surveylib.adapters.CustomersListAdapter;
 import in.myinnos.surveylib.models.PhoneNumberFamilyDataModel;
 import in.myinnos.surveylib.models.PhoneNumberModel;
 import in.myinnos.surveylib.models.Question;
-import in.myinnos.surveylib.models.cusdetails.CustListDetailsModel;
 import in.myinnos.surveylib.widgets.AppSurveyConstants;
 import in.myinnos.surveylib.widgets.SurveyHelper;
 import retrofit2.Call;
@@ -55,6 +54,7 @@ public class FragmentNumber extends Fragment {
     private Boolean is_phone_number_check = true;
     private String base_url = "URL";
     private LinearLayout liProgress;
+    private Boolean CUST_VIEW_VISI = false;
 
     private RelativeLayout liCustomerLayout;
     private Button button_continue_rv;
@@ -178,7 +178,9 @@ public class FragmentNumber extends Fragment {
 
                                             if (response.body().getPhoneNumberDataModel().getCan_add()) {
                                                 button_continue_rv.setClickable(true);
+                                                button_continue_rv.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
                                                 button_continue_rv.setText(response.body().getPhoneNumberDataModel().getCan_add_message());
+                                                button_continue_rv.setTextColor(getResources().getColor(R.color.white));
                                                 button_continue_rv.setOnClickListener(new View.OnClickListener() {
                                                     @Override
                                                     public void onClick(View view) {
@@ -188,10 +190,11 @@ public class FragmentNumber extends Fragment {
                                                         ((SurveyActivity) mContext).go_to_next();
                                                     }
                                                 });
-                                            }else {
+                                            } else {
                                                 button_continue_rv.setClickable(false);
                                                 button_continue_rv.setBackgroundColor(getResources().getColor(R.color.white));
                                                 button_continue_rv.setText(response.body().getPhoneNumberDataModel().getCan_add_message());
+                                                button_continue_rv.setTextColor(getResources().getColor(R.color.red));
                                             }
 
 
@@ -260,7 +263,11 @@ public class FragmentNumber extends Fragment {
         mContext = getActivity();
         Question q_data = (Question) getArguments().getSerializable("data");
         base_url = getArguments().getString(AppSurveyConstants.BASE_URL);
+        CUST_VIEW_VISI = getArguments().getBoolean(AppSurveyConstants.CUSTOMER_VIEW_VISIBILITY);
 
+        if (!CUST_VIEW_VISI) {
+            liCustomerLayout.setVisibility(View.GONE);
+        }
 
         if (q_data.getRequired()) {
             button_continue.setVisibility(View.GONE);
@@ -302,7 +309,13 @@ public class FragmentNumber extends Fragment {
         editText_answer.requestFocus();
         /*InputMethodManager imm = (InputMethodManager) mContext.getSystemService(Service.INPUT_METHOD_SERVICE);
         imm.showSoftInput(editText_answer, 0);*/
+    }
 
-
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser){
+        if(isVisibleToUser){ //if listener is called before fragment is attached will throw NPE
+            //Toast.makeText(getContext(), "sdsd", Toast.LENGTH_SHORT).show();
+            liCustomerLayout.setVisibility(View.GONE);
+        }
     }
 }

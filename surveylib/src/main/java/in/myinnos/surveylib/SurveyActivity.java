@@ -186,6 +186,7 @@ public class SurveyActivity extends AppCompatActivity implements IPickResult {
                 xBundle.putString(AppSurveyConstants.SUR_REGISTERED_DESIGNATION, registered_designation);
                 xBundle.putString(AppSurveyConstants.SUR_CUSTOMER_ID, customer_id);
                 xBundle.putString(AppSurveyConstants.BASE_URL, base_url);
+                xBundle.putBoolean(AppSurveyConstants.CUSTOMER_VIEW_VISIBILITY, false);
                 frag.setArguments(xBundle);
                 arraylist_fragments.add(frag);
             }
@@ -278,6 +279,7 @@ public class SurveyActivity extends AppCompatActivity implements IPickResult {
                     }).show();
 
         } else {
+
             mPager.setCurrentItem(mPager.getCurrentItem() - 1);
         }
     }
