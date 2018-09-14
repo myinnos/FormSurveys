@@ -92,7 +92,7 @@ public class CustomersListAdapter extends RecyclerView.Adapter<CustomersListAdap
             holder.txRegisterBy.setText("Register by you");
         } else {
             //holder.txRegisterBy.setText("Register by " + m.getAdvisor_id());
-            holder.txRegisterBy.setText("Register by Other");
+            holder.txRegisterBy.setText("Not registered by you");
         }
 
         Picasso.with(activity)
