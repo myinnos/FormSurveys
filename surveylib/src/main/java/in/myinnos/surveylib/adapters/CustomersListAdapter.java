@@ -95,7 +95,7 @@ public class CustomersListAdapter extends RecyclerView.Adapter<CustomersListAdap
             holder.txRegisterBy.setText("Not registered by you");
         }
 
-        Picasso.with(activity)
+        Picasso.get()
                 .load(m.getImage())
                 .transform(new CircleTransform())
                 .into(holder.imgBg);
