@@ -25,7 +25,8 @@ public interface SurveysApiInterface {
     @GET("customer/check-family/")
     Call<PhoneNumberModel> phoneNumberVerification(
             @Query("mobile_number") String mobile_number,
-            @Query("gender") String gender);
+            @Query("gender") String gender,
+            @Query("advisor_id") String advisor_id);
 
     ////////////////////////////////////////////////////////////////////////////////////
 

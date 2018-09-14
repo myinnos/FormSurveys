@@ -48,7 +48,7 @@ public class FragmentNumber extends Fragment {
     private Button button_continue;
     private TextView textview_q_title;
     private EditText editText_answer;
-    private String questionId, questionVariableType;
+    private String questionId, questionVariableType, registeredBy;
     private int max_length = 1000, min_length = 0;
     private Boolean is_phone_number = false;
     private Boolean is_phone_number_check = true;
@@ -134,7 +134,7 @@ public class FragmentNumber extends Fragment {
 
                                 Call<PhoneNumberModel> call =
                                         apiService.phoneNumberVerification(editText_answer.getText().toString().trim(),
-                                                restoredText.toLowerCase());
+                                                restoredText.toLowerCase(), registeredBy);
 
                                 call.enqueue(new Callback<PhoneNumberModel>() {
                                     @SuppressLint("SetTextI18n")
@@ -296,6 +296,7 @@ public class FragmentNumber extends Fragment {
         questionVariableType = q_data.getQuestion_v_type();
         is_phone_number = q_data.getIs_phone_number();
         is_phone_number_check = q_data.getIs_phone_number_check();
+        registeredBy = getArguments().getString(AppSurveyConstants.SUR_REGISTERED_BY);
 
         if (q_data.getMax_char_length() != null) {
             max_length = Integer.parseInt(q_data.getMax_char_length());
