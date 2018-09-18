@@ -33,11 +33,16 @@ public class CustomersListAdapter extends RecyclerView.Adapter<CustomersListAdap
     List<PhoneNumberFamilyDataModel> filterList;
     CustomFilter filter;
 
-    public CustomersListAdapter(Activity activity, List<PhoneNumberFamilyDataModel> custListDetailsModels) {
+    String BA_ID = "";
+
+    public CustomersListAdapter(Activity activity, List<PhoneNumberFamilyDataModel> custListDetailsModels,
+                                String BA_ID) {
         this.activity = activity;
 
         this.custListDetailsModels = custListDetailsModels;
         this.filterList = custListDetailsModels;
+
+        this.BA_ID = BA_ID;
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -88,7 +93,7 @@ public class CustomersListAdapter extends RecyclerView.Adapter<CustomersListAdap
             holder.txMessage.setTextColor(activity.getResources().getColor(R.color.red));
         }*/
 
-        if (m.getIs_your_customer()) {
+        if (BA_ID.equals(m.getAdvisor_id())) {
             holder.txRegisterBy.setText("Register by you");
         } else {
             //holder.txRegisterBy.setText("Register by " + m.getAdvisor_id());

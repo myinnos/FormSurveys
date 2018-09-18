@@ -81,7 +81,7 @@ public class FragmentNumber extends Fragment {
         editText_answer.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
 
         listView = (RecyclerView) rootView.findViewById(R.id.listView);
-        adapter = new CustomersListAdapter(getActivity(), custListDetailsModels);
+        adapter = new CustomersListAdapter(getActivity(), custListDetailsModels, registeredBy);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         listView.setLayoutManager(layoutManager);
