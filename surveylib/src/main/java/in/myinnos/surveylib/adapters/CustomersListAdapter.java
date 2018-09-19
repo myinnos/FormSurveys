@@ -94,7 +94,7 @@ public class CustomersListAdapter extends RecyclerView.Adapter<CustomersListAdap
         }*/
 
         if (BA_ID.equals(m.getAdvisor_id())) {
-            holder.txRegisterBy.setText("Register by you");
+            holder.txRegisterBy.setText("Registered by you");
         } else {
             //holder.txRegisterBy.setText("Register by " + m.getAdvisor_id());
             holder.txRegisterBy.setText("Not registered by you");
