@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
 
-                        openSurvey(response.body().toString(), "BAA0006", "http://staging-associate.1bridge.in:8888/api/v1/");
+                        openSurvey(response.body().toString(), "<ID>", "<URL>");
 
                     }
 
