@@ -81,12 +81,10 @@ public class FragmentNumber extends Fragment {
         editText_answer.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
 
         listView = (RecyclerView) rootView.findViewById(R.id.listView);
-        adapter = new CustomersListAdapter(getActivity(), custListDetailsModels, registeredBy);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         listView.setLayoutManager(layoutManager);
         listView.setHasFixedSize(true);
-        listView.setAdapter(adapter);
 
         button_continue.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -297,6 +295,8 @@ public class FragmentNumber extends Fragment {
         is_phone_number = q_data.getIs_phone_number();
         is_phone_number_check = q_data.getIs_phone_number_check();
         registeredBy = getArguments().getString(AppSurveyConstants.SUR_REGISTERED_BY);
+        adapter = new CustomersListAdapter(getActivity(), custListDetailsModels, registeredBy);
+        listView.setAdapter(adapter);
 
         if (q_data.getMax_char_length() != null) {
             max_length = Integer.parseInt(q_data.getMax_char_length());
