@@ -33,11 +33,11 @@ public interface SurveysApiInterface {
     // get list of reg customers
     @GET("master/villages-list/")
     Call<VillageListModel> villageListRBA(@Query("source") String source,
-                                          @Query("oneba__advisor_id") String user_id);
+                                          @Query("advisor_id") String user_id);
 
     @GET("master/villages-list/")
     Call<VillageListModel> villageListMBA(@Query("source") String source,
-                                          @Query("master1ba__advisor_id") String user_id);
+                                          @Query("advisor_id") String user_id);
 
 
     // post image upload
