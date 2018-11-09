@@ -341,7 +341,7 @@ public class SurveyActivity extends AppCompatActivity implements IPickResult {
             if (formText.equals("surveys/abhis-create")) {
                 call = apiService.uploadImageAbhi(fbody);
             } else {
-                call = apiService.uploadImageAbhi(fbody);
+                call = apiService.uploadImage(fbody);
             }
 
             call.enqueue(new Callback<ImageUploadModel>() {
