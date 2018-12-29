@@ -25,6 +25,7 @@ public class FragmentStart extends Fragment {
     private TextView textView_start;
     private String registeredBy, latitude, longitude;
     private String customerId;
+    private String source_extra, customer_phone_extra;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -54,6 +55,11 @@ public class FragmentStart extends Fragment {
                 SurveyHelper.putAnswer(AppSurveyConstants.SUR_CUSTOMER_ID, customerId,
                         "int", AppSurveyConstants.SUR_CUSTOMER_ID, customerId);
 
+                SurveyHelper.putAnswer(AppSurveyConstants.SOURCE_EXTRA, source_extra,
+                        "string", AppSurveyConstants.SOURCE_EXTRA, source_extra);
+                SurveyHelper.putAnswer(AppSurveyConstants.CUSTOMER_PHONE_EXTRA, customer_phone_extra,
+                        "string", AppSurveyConstants.CUSTOMER_PHONE_EXTRA, customer_phone_extra);
+
                 ((SurveyActivity) mContext).go_to_next();
             }
         });
@@ -72,6 +78,9 @@ public class FragmentStart extends Fragment {
 
         latitude = getArguments().getString(AppSurveyConstants.SUR_LATITUDE);
         longitude = getArguments().getString(AppSurveyConstants.SUR_LONGITUDE);
+
+        source_extra = getArguments().getString(AppSurveyConstants.SOURCE_EXTRA);
+        customer_phone_extra = getArguments().getString(AppSurveyConstants.CUSTOMER_PHONE_EXTRA);
 
         assert survery_properties != null;
         textView_start.setText(Html.fromHtml(survery_properties.getIntroMessage()));

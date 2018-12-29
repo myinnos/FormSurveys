@@ -15,4 +15,6 @@ public class AppSurveyConstants {
     public static String FORM_NAME = "formname";
     public static String PREFERENCES_SURVEYS = "PREFERENCES_SURVEYS";
     public static String CUSTOMER_VIEW_VISIBILITY = "CUSTOMER_VIEW_VISIBILITY";
+    public static String SOURCE_EXTRA = "source_extra";
+    public static String CUSTOMER_PHONE_EXTRA = "customer_phone_extra";
 }

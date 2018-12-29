@@ -60,6 +60,7 @@ public class SurveyActivity extends AppCompatActivity implements IPickResult {
     private String customer_id;
     private String registered_designation;
     private String latitude, longitude;
+    private String source_extra, customer_phone_extra;
     private String base_url;
     private String form_name;
     File photoFile;
@@ -92,6 +93,9 @@ public class SurveyActivity extends AppCompatActivity implements IPickResult {
             latitude = bundle.getString(AppSurveyConstants.SUR_LATITUDE);
             longitude = bundle.getString(AppSurveyConstants.SUR_LONGITUDE);
 
+            source_extra = bundle.getString(AppSurveyConstants.SOURCE_EXTRA);
+            customer_phone_extra = bundle.getString(AppSurveyConstants.CUSTOMER_PHONE_EXTRA);
+
             SharedPreferences.Editor editor = getSharedPreferences(AppSurveyConstants.PREFERENCES_SURVEYS, MODE_PRIVATE).edit();
             editor.putString(AppSurveyConstants.FORM_NAME, form_name);
             editor.apply();
@@ -118,6 +122,8 @@ public class SurveyActivity extends AppCompatActivity implements IPickResult {
             sBundle.putString(AppSurveyConstants.SUR_CUSTOMER_ID, customer_id);
             sBundle.putString(AppSurveyConstants.SUR_LATITUDE, latitude);
             sBundle.putString(AppSurveyConstants.SUR_LONGITUDE, longitude);
+            sBundle.putString(AppSurveyConstants.SOURCE_EXTRA, source_extra);
+            sBundle.putString(AppSurveyConstants.CUSTOMER_PHONE_EXTRA, customer_phone_extra);
             frag_start.setArguments(sBundle);
             arraylist_fragments.add(frag_start);
         }
@@ -377,7 +383,7 @@ public class SurveyActivity extends AppCompatActivity implements IPickResult {
             //TODO: do what you have to do with r.getError();
             Toast.makeText(this, r.getError().getMessage(), Toast.LENGTH_LONG).show();
         }
-        }
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

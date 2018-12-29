@@ -103,6 +103,8 @@ public class MainActivity extends AppCompatActivity {
         i_survey.putExtra(AppSurveyConstants.BASE_URL, base_url);
         i_survey.putExtra(AppSurveyConstants.SUR_CUSTOMER_ID, "1");
         i_survey.putExtra(AppSurveyConstants.FORM_NAME, "surveys/abhis-create/");
+        i_survey.putExtra(AppSurveyConstants.SOURCE_EXTRA, "0");
+        i_survey.putExtra(AppSurveyConstants.CUSTOMER_PHONE_EXTRA, "0");
         startActivityForResult(i_survey, SURVEY_REQUEST);
     }
 }
