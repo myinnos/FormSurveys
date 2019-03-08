@@ -17,4 +17,6 @@ public class AppSurveyConstants {
     public static String CUSTOMER_VIEW_VISIBILITY = "CUSTOMER_VIEW_VISIBILITY";
     public static String SOURCE_EXTRA = "source_extra";
     public static String CUSTOMER_PHONE_EXTRA = "customer_phone_extra";
+    public static String SURVEY_TASK_ID = "survey_task_id";
+
 }

@@ -57,6 +57,7 @@ public class SurveyActivity extends AppCompatActivity implements IPickResult {
     private ViewPager mPager;
     private String style_string = null;
     private String registered_by;
+    private String survey_task_id;
     private String customer_id;
     private String registered_designation;
     private String latitude, longitude;
@@ -85,6 +86,7 @@ public class SurveyActivity extends AppCompatActivity implements IPickResult {
             mSurveyPojo = new Gson().fromJson(bundle.getString("json_survey"), SurveyPojo.class);
             /// registered_by user
             registered_by = bundle.getString(AppSurveyConstants.SUR_REGISTERED_BY);
+            survey_task_id = bundle.getString(AppSurveyConstants.SURVEY_TASK_ID);
             registered_designation = bundle.getString(AppSurveyConstants.SUR_REGISTERED_DESIGNATION);
             customer_id = bundle.getString(AppSurveyConstants.SUR_CUSTOMER_ID);
             base_url = bundle.getString(AppSurveyConstants.BASE_URL);
@@ -118,6 +120,7 @@ public class SurveyActivity extends AppCompatActivity implements IPickResult {
             sBundle.putSerializable("survery_properties", mSurveyPojo.getSurveyProperties());
             sBundle.putString("style", style_string);
             sBundle.putString(AppSurveyConstants.SUR_REGISTERED_BY, registered_by);
+            sBundle.putString(AppSurveyConstants.SURVEY_TASK_ID, survey_task_id);
             sBundle.putString(AppSurveyConstants.SUR_REGISTERED_DESIGNATION, registered_designation);
             sBundle.putString(AppSurveyConstants.SUR_CUSTOMER_ID, customer_id);
             sBundle.putString(AppSurveyConstants.SUR_LATITUDE, latitude);

@@ -23,7 +23,7 @@ public class FragmentStart extends Fragment {
 
     private FragmentActivity mContext;
     private TextView textView_start;
-    private String registeredBy, latitude, longitude;
+    private String registeredBy, survey_task_id, latitude, longitude;
     private String customerId;
     private String source_extra, customer_phone_extra;
 
@@ -52,6 +52,10 @@ public class FragmentStart extends Fragment {
 
                 SurveyHelper.putAnswer(AppSurveyConstants.SUR_REGISTERED_BY, registeredBy,
                         "string", AppSurveyConstants.SUR_REGISTERED_BY, registeredBy);
+
+                SurveyHelper.putAnswer(AppSurveyConstants.SURVEY_TASK_ID, survey_task_id,
+                        "string", AppSurveyConstants.SURVEY_TASK_ID, survey_task_id);
+
                 SurveyHelper.putAnswer(AppSurveyConstants.SUR_CUSTOMER_ID, customerId,
                         "int", AppSurveyConstants.SUR_CUSTOMER_ID, customerId);
 
@@ -74,6 +78,7 @@ public class FragmentStart extends Fragment {
         mContext = getActivity();
         SurveyProperties survery_properties = (SurveyProperties) getArguments().getSerializable("survery_properties");
         registeredBy = getArguments().getString(AppSurveyConstants.SUR_REGISTERED_BY);
+        survey_task_id = getArguments().getString(AppSurveyConstants.SURVEY_TASK_ID);
         customerId = getArguments().getString(AppSurveyConstants.SUR_CUSTOMER_ID);
 
         latitude = getArguments().getString(AppSurveyConstants.SUR_LATITUDE);
