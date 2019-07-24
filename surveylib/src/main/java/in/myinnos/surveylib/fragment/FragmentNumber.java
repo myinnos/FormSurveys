@@ -236,7 +236,7 @@ public class FragmentNumber extends Fragment {
     private void invalidNumber() {
 
         Alerter.create(getActivity())
-                .setTitle("Invalid Phone Number!")
+                .setTitle("Invalid Number!")
                 //.setText("Message Cannot be empty!")
                 .setDuration(4000)
                 .setIcon(R.drawable.alerter_ic_face)
