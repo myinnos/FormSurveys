@@ -109,6 +109,9 @@ public class SurveyActivity extends AppCompatActivity implements IPickResult {
         }
 
 
+        // clear all answers hashmap
+        Answers.getInstance().clear_answer();
+
         Log.i("json Object = ", String.valueOf(mSurveyPojo.getQuestions()));
 
         final ArrayList<Fragment> arraylist_fragments = new ArrayList<>();
@@ -295,6 +298,7 @@ public class SurveyActivity extends AppCompatActivity implements IPickResult {
 
     public void event_survey_completed(Answers instance) {
         Intent returnIntent = new Intent();
+        Log.d("ANSWERS JSON_LOCAL", instance.get_json_object());
         returnIntent.putExtra("answers", instance.get_json_object());
         setResult(Activity.RESULT_OK, returnIntent);
         finish();

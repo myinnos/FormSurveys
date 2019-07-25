@@ -19,6 +19,11 @@ public class Answers {
         answered_hashmap.put(key, value);
     }
 
+    public void clear_answer() {
+        //RealmObjectFlow.set(key, String.valueOf(value));
+        answered_hashmap.clear();
+    }
+
     public String get_json_object() {
         Gson gson = new Gson();
         return gson.toJson(answered_hashmap,LinkedHashMap.class);
