@@ -18,5 +18,7 @@ public class AppSurveyConstants {
     public static String SOURCE_EXTRA = "source_extra";
     public static String CUSTOMER_PHONE_EXTRA = "customer_phone_extra";
     public static String SURVEY_TASK_ID = "survey_task_id";
+    public static String QUESTION_COUNT_ID = "QUESTION_COUNT_ID";
+    public static String QUESTION_TOTAL_COUNT = "QUESTION_TOTAL_COUNT";
 
 }

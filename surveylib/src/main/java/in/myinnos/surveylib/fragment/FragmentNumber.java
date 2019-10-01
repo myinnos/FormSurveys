@@ -42,11 +42,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class FragmentNumber extends Fragment {
 
     private FragmentActivity mContext;
     private Button button_continue;
-    private TextView textview_q_title;
+    private TextView textview_q_title, txCount;
     private EditText editText_answer;
     private String questionId, questionVariableType, registeredBy;
     private int max_length = 1000, min_length = 0;
@@ -75,6 +77,7 @@ public class FragmentNumber extends Fragment {
         textview_q_title_rv = (TextView) rootView.findViewById(R.id.textview_q_title_rv);
         liProgress = (LinearLayout) rootView.findViewById(R.id.liProgress);
         liProgress.setVisibility(View.GONE);
+        txCount = (TextView) rootView.findViewById(R.id.txCount);
         button_continue = (Button) rootView.findViewById(R.id.button_continue);
         textview_q_title = (TextView) rootView.findViewById(R.id.textview_q_title);
         editText_answer = (EditText) rootView.findViewById(R.id.editText_answer);
@@ -297,6 +300,10 @@ public class FragmentNumber extends Fragment {
         registeredBy = getArguments().getString(AppSurveyConstants.SUR_REGISTERED_BY);
         adapter = new CustomersListAdapter(getActivity(), custListDetailsModels, registeredBy);
         listView.setAdapter(adapter);
+
+        SharedPreferences prefs = mContext.getSharedPreferences(AppSurveyConstants.PREFERENCES_SURVEYS, MODE_PRIVATE);
+        String formText = prefs.getString(AppSurveyConstants.QUESTION_TOTAL_COUNT, "");
+        txCount.setText(getArguments().getString(AppSurveyConstants.QUESTION_COUNT_ID) + "/" + formText);
 
         if (q_data.getMax_char_length() != null) {
             max_length = Integer.parseInt(q_data.getMax_char_length());

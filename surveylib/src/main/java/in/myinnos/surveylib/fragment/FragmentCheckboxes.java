@@ -1,5 +1,6 @@
 package in.myinnos.surveylib.fragment;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -22,14 +23,17 @@ import in.myinnos.surveylib.Answers;
 import in.myinnos.surveylib.R;
 import in.myinnos.surveylib.SurveyActivity;
 import in.myinnos.surveylib.models.Question;
+import in.myinnos.surveylib.widgets.AppSurveyConstants;
 import in.myinnos.surveylib.widgets.SurveyHelper;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class FragmentCheckboxes extends Fragment {
 
     private Question q_data;
     private FragmentActivity mContext;
     private Button button_continue;
-    private TextView textview_q_title;
+    private TextView textview_q_title, txCount;
     private LinearLayout linearLayout_checkboxes;
     private final ArrayList<CheckBox> allCb = new ArrayList<>();
     private String questionId, questionVariableType;
@@ -42,6 +46,7 @@ public class FragmentCheckboxes extends Fragment {
 
         button_continue = (Button) rootView.findViewById(R.id.button_continue);
         textview_q_title = (TextView) rootView.findViewById(R.id.textview_q_title);
+        txCount = (TextView) rootView.findViewById(R.id.txCount);
         linearLayout_checkboxes = (LinearLayout) rootView.findViewById(R.id.linearLayout_checkboxes);
         button_continue.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,6 +102,10 @@ public class FragmentCheckboxes extends Fragment {
         questionId = q_data.getQuestionId();
         questionVariableType = q_data.getQuestion_v_type();
         textview_q_title.setText(Html.fromHtml(q_data != null ? q_data.getQuestionTitle() : ""));
+
+        SharedPreferences prefs = mContext.getSharedPreferences(AppSurveyConstants.PREFERENCES_SURVEYS, MODE_PRIVATE);
+        String formText = prefs.getString(AppSurveyConstants.QUESTION_TOTAL_COUNT, "");
+        txCount.setText(getArguments().getString(AppSurveyConstants.QUESTION_COUNT_ID) + "/" + formText);
 
         if (q_data.getRequired()) {
             button_continue.setVisibility(View.GONE);

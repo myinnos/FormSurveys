@@ -38,12 +38,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class FragmentRadioboxes extends Fragment {
 
     private Question q_data;
     private FragmentActivity mContext;
     private Button button_continue;
-    private TextView textview_q_title;
+    private TextView textview_q_title, txCount;
     private RadioGroup radioGroup;
     private final ArrayList<RadioButton> allRb = new ArrayList<>();
     private boolean at_leaset_one_checked = false;
@@ -63,6 +65,7 @@ public class FragmentRadioboxes extends Fragment {
         liProgress.setVisibility(View.GONE);
         button_continue = (Button) rootView.findViewById(R.id.button_continue);
         textview_q_title = (TextView) rootView.findViewById(R.id.textview_q_title);
+        txCount = (TextView) rootView.findViewById(R.id.txCount);
         radioGroup = (RadioGroup) rootView.findViewById(R.id.radioGroup);
         button_continue.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,6 +132,11 @@ public class FragmentRadioboxes extends Fragment {
 
         final List<String> qq_data = new ArrayList<String>();
         final List<Object> qq_data_tag = new ArrayList<Object>();
+
+
+        SharedPreferences prefs = mContext.getSharedPreferences(AppSurveyConstants.PREFERENCES_SURVEYS, MODE_PRIVATE);
+        String formText = prefs.getString(AppSurveyConstants.QUESTION_TOTAL_COUNT, "");
+        txCount.setText(getArguments().getString(AppSurveyConstants.QUESTION_COUNT_ID) + "/" + formText);
 
         if (is_village_check) {
 

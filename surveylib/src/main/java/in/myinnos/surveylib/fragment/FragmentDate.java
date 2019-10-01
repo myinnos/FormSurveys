@@ -1,6 +1,7 @@
 package in.myinnos.surveylib.fragment;
 
 import android.app.DatePickerDialog;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -25,13 +26,16 @@ import in.myinnos.surveylib.Answers;
 import in.myinnos.surveylib.R;
 import in.myinnos.surveylib.SurveyActivity;
 import in.myinnos.surveylib.models.Question;
+import in.myinnos.surveylib.widgets.AppSurveyConstants;
 import in.myinnos.surveylib.widgets.SurveyHelper;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class FragmentDate extends Fragment {
 
     private FragmentActivity mContext;
     private Button button_continue;
-    private TextView textview_q_title;
+    private TextView textview_q_title, txCount;
     private TextView editText_answer;
     private String questionId, questionVariableType;
     private int max_length = 1000, min_length = 3;
@@ -46,6 +50,7 @@ public class FragmentDate extends Fragment {
         button_continue = (Button) rootView.findViewById(R.id.button_continue);
         textview_q_title = (TextView) rootView.findViewById(R.id.textview_q_title);
         editText_answer = (TextView) rootView.findViewById(R.id.editText_answer);
+        txCount = (TextView) rootView.findViewById(R.id.txCount);
         button_continue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -100,6 +105,10 @@ public class FragmentDate extends Fragment {
         questionId = q_data.getQuestionId();
         questionVariableType = q_data.getQuestion_v_type();
         date_max = q_data.getDate_condition();
+
+        SharedPreferences prefs = mContext.getSharedPreferences(AppSurveyConstants.PREFERENCES_SURVEYS, MODE_PRIVATE);
+        String formText = prefs.getString(AppSurveyConstants.QUESTION_TOTAL_COUNT, "");
+        txCount.setText(getArguments().getString(AppSurveyConstants.QUESTION_COUNT_ID) + "/" + formText);
 
         if (q_data.getMax_char_length() != null) {
             max_length = Integer.parseInt(q_data.getMax_char_length());

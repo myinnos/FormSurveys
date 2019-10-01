@@ -59,6 +59,9 @@ public class FragmentStart extends Fragment {
                 SurveyHelper.putAnswer(AppSurveyConstants.SUR_CUSTOMER_ID, customerId,
                         "int", AppSurveyConstants.SUR_CUSTOMER_ID, customerId);
 
+                SurveyHelper.putAnswer("village_id", customerId,
+                        "string", "village_id", customerId);
+
                 SurveyHelper.putAnswer(AppSurveyConstants.SOURCE_EXTRA, source_extra,
                         "string", AppSurveyConstants.SOURCE_EXTRA, source_extra);
                 SurveyHelper.putAnswer(AppSurveyConstants.CUSTOMER_PHONE_EXTRA, customer_phone_extra,

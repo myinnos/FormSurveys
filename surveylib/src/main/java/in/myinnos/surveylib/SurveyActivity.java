@@ -135,7 +135,15 @@ public class SurveyActivity extends AppCompatActivity implements IPickResult {
         }
 
         //- FILL -
-        for (Question mQuestion : mSurveyPojo.getQuestions()) {
+        /*for (Question mQuestion : mSurveyPojo.getQuestions()) {*/
+
+        SharedPreferences.Editor editor = getSharedPreferences(AppSurveyConstants.PREFERENCES_SURVEYS, MODE_PRIVATE).edit();
+        editor.putString(AppSurveyConstants.QUESTION_TOTAL_COUNT, String.valueOf(mSurveyPojo.getQuestions().size()));
+        editor.apply();
+
+        for (int i = 0; i < mSurveyPojo.getQuestions().size(); i++) {
+
+            Question mQuestion = mSurveyPojo.getQuestions().get(i);
 
             if (mQuestion.getQuestionType().equals("Date")) {
                 FragmentDate frag = new FragmentDate();
@@ -146,6 +154,7 @@ public class SurveyActivity extends AppCompatActivity implements IPickResult {
                 xBundle.putString(AppSurveyConstants.SUR_REGISTERED_DESIGNATION, registered_designation);
                 xBundle.putString(AppSurveyConstants.SUR_CUSTOMER_ID, customer_id);
                 xBundle.putString(AppSurveyConstants.BASE_URL, base_url);
+                xBundle.putString(AppSurveyConstants.QUESTION_COUNT_ID, String.valueOf(i + 1));
                 frag.setArguments(xBundle);
                 arraylist_fragments.add(frag);
             }
@@ -159,6 +168,7 @@ public class SurveyActivity extends AppCompatActivity implements IPickResult {
                 xBundle.putString(AppSurveyConstants.SUR_REGISTERED_DESIGNATION, registered_designation);
                 xBundle.putString(AppSurveyConstants.SUR_CUSTOMER_ID, customer_id);
                 xBundle.putString(AppSurveyConstants.BASE_URL, base_url);
+                xBundle.putString(AppSurveyConstants.QUESTION_COUNT_ID, String.valueOf(i + 1));
                 frag.setArguments(xBundle);
                 arraylist_fragments.add(frag);
             }
@@ -172,6 +182,7 @@ public class SurveyActivity extends AppCompatActivity implements IPickResult {
                 xBundle.putString(AppSurveyConstants.SUR_REGISTERED_DESIGNATION, registered_designation);
                 xBundle.putString(AppSurveyConstants.SUR_CUSTOMER_ID, customer_id);
                 xBundle.putString(AppSurveyConstants.BASE_URL, base_url);
+                xBundle.putString(AppSurveyConstants.QUESTION_COUNT_ID, String.valueOf(i + 1));
                 frag.setArguments(xBundle);
                 arraylist_fragments.add(frag);
             }
@@ -185,6 +196,7 @@ public class SurveyActivity extends AppCompatActivity implements IPickResult {
                 xBundle.putString(AppSurveyConstants.SUR_REGISTERED_DESIGNATION, registered_designation);
                 xBundle.putString(AppSurveyConstants.SUR_CUSTOMER_ID, customer_id);
                 xBundle.putString(AppSurveyConstants.BASE_URL, base_url);
+                xBundle.putString(AppSurveyConstants.QUESTION_COUNT_ID, String.valueOf(i + 1));
                 frag.setArguments(xBundle);
                 arraylist_fragments.add(frag);
             }
@@ -198,6 +210,7 @@ public class SurveyActivity extends AppCompatActivity implements IPickResult {
                 xBundle.putString(AppSurveyConstants.SUR_REGISTERED_DESIGNATION, registered_designation);
                 xBundle.putString(AppSurveyConstants.SUR_CUSTOMER_ID, customer_id);
                 xBundle.putString(AppSurveyConstants.BASE_URL, base_url);
+                xBundle.putString(AppSurveyConstants.QUESTION_COUNT_ID, String.valueOf(i + 1));
                 xBundle.putBoolean(AppSurveyConstants.CUSTOMER_VIEW_VISIBILITY, false);
                 frag.setArguments(xBundle);
                 arraylist_fragments.add(frag);
@@ -212,6 +225,7 @@ public class SurveyActivity extends AppCompatActivity implements IPickResult {
                 xBundle.putString(AppSurveyConstants.SUR_REGISTERED_DESIGNATION, registered_designation);
                 xBundle.putString(AppSurveyConstants.SUR_CUSTOMER_ID, customer_id);
                 xBundle.putString(AppSurveyConstants.BASE_URL, base_url);
+                xBundle.putString(AppSurveyConstants.QUESTION_COUNT_ID, String.valueOf(i + 1));
                 frag.setArguments(xBundle);
                 arraylist_fragments.add(frag);
             }
@@ -225,6 +239,7 @@ public class SurveyActivity extends AppCompatActivity implements IPickResult {
                 xBundle.putString(AppSurveyConstants.SUR_REGISTERED_DESIGNATION, registered_designation);
                 xBundle.putString(AppSurveyConstants.SUR_CUSTOMER_ID, customer_id);
                 xBundle.putString(AppSurveyConstants.BASE_URL, base_url);
+                xBundle.putString(AppSurveyConstants.QUESTION_COUNT_ID, String.valueOf(i + 1));
                 frag.setArguments(xBundle);
                 arraylist_fragments.add(frag);
             }
@@ -238,6 +253,7 @@ public class SurveyActivity extends AppCompatActivity implements IPickResult {
                 xBundle.putString(AppSurveyConstants.SUR_REGISTERED_DESIGNATION, registered_designation);
                 xBundle.putString(AppSurveyConstants.SUR_CUSTOMER_ID, customer_id);
                 xBundle.putString(AppSurveyConstants.BASE_URL, base_url);
+                xBundle.putString(AppSurveyConstants.QUESTION_COUNT_ID, String.valueOf(i + 1));
                 frag.setArguments(xBundle);
                 arraylist_fragments.add(frag);
             }
