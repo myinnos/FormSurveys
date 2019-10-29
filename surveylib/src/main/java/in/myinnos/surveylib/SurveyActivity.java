@@ -3,6 +3,7 @@ package in.myinnos.surveylib;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -19,6 +20,7 @@ import com.google.gson.Gson;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import in.myinnos.surveylib.ApiInterface.SurveysApiClient;
 import in.myinnos.surveylib.ApiInterface.SurveysApiInterface;
@@ -70,6 +72,16 @@ public class SurveyActivity extends AppCompatActivity implements IPickResult {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // language specific -- start
+        Locale locale = new Locale("en");
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config,
+                getBaseContext().getResources().getDisplayMetrics());
+        // --------- end
+
         setContentView(R.layout.activity_main_survey);
 
         // Initialize Realm

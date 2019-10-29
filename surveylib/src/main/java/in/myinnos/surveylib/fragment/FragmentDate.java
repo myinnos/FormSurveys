@@ -170,7 +170,7 @@ public class FragmentDate extends Fragment {
 
     private void updateLabel(TextView edittext, Calendar myCalendar) {
         String myFormat = "yyyy-MM-dd"; //In which you need put here
-        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.ENGLISH);
 
         edittext.setText(sdf.format(myCalendar.getTime()));
     }
