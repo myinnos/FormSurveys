@@ -36,6 +36,7 @@ import in.myinnos.surveylib.adapters.CustomersListAdapter;
 import in.myinnos.surveylib.models.PhoneNumberFamilyDataModel;
 import in.myinnos.surveylib.models.PhoneNumberModel;
 import in.myinnos.surveylib.models.Question;
+import in.myinnos.surveylib.models.numbeDuplicationCheck.NumberDuplicationCheckModel;
 import in.myinnos.surveylib.widgets.AppSurveyConstants;
 import in.myinnos.surveylib.widgets.SurveyHelper;
 import retrofit2.Call;
@@ -54,6 +55,7 @@ public class FragmentNumber extends Fragment {
     private int max_length = 1000, min_length = 0;
     private Boolean is_phone_number = false;
     private Boolean is_phone_number_check = true;
+    private Boolean is_phone_number_duplication_check = true;
     private String base_url = "URL";
     private LinearLayout liProgress;
     private Boolean CUST_VIEW_VISI = false;
@@ -213,6 +215,56 @@ public class FragmentNumber extends Fragment {
                                         liProgress.setVisibility(View.GONE);
                                     }
                                 });
+                            } else if (is_phone_number_duplication_check) {
+
+                                SurveysApiInterface apiService =
+                                        SurveysApiClient.getClient(base_url).create(SurveysApiInterface.class);
+
+                                Call<NumberDuplicationCheckModel> call =
+                                        apiService.phoneNumberDuplicateCheck(editText_answer.getText().toString().trim());
+
+                                call.enqueue(new Callback<NumberDuplicationCheckModel>() {
+                                    @SuppressLint("SetTextI18n")
+                                    @Override
+                                    public void onResponse(Call<NumberDuplicationCheckModel> call, Response<NumberDuplicationCheckModel> response) {
+                                        liProgress.setVisibility(View.GONE);
+
+                                        if (response.body().getResults().size() != 0) {
+                                            /*Toast.makeText(getActivity().getApplicationContext(),
+                                                 response.body().getPhoneNumberDataModel().getMsg(), Toast.LENGTH_LONG).show();*/
+
+                                            Alerter.create(getActivity())
+                                                    .setTitle("Given Phone Number already exist!")
+                                                    //.setText("Message Cannot be empty!")
+                                                    .setDuration(4000)
+                                                    .setIcon(R.drawable.alerter_ic_face)
+                                                    .setIconColorFilter(getResources().getColor(R.color.white))
+                                                    .enableProgress(true)
+                                                    .enableSwipeToDismiss()
+                                                    .setProgressColorRes(R.color.colorPrimaryDark)
+                                                    .setBackgroundColorRes(R.color.red)
+                                                    .setOnClickListener(new View.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(View view) {
+                                                            Alerter.hide();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        } else {
+                                            SurveyHelper.putAnswer(textview_q_title.getText().toString().trim(), editText_answer.getText().toString().trim(),
+                                                    questionVariableType, questionId, editText_answer.getText().toString().trim());
+                                            ((SurveyActivity) mContext).go_to_next();
+
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<NumberDuplicationCheckModel> call, Throwable t) {
+                                        liProgress.setVisibility(View.GONE);
+                                    }
+                                });
+
                             } else {
                                 SurveyHelper.putAnswer(textview_q_title.getText().toString().trim(), editText_answer.getText().toString().trim(),
                                         questionVariableType, questionId, editText_answer.getText().toString().trim());
@@ -292,11 +344,11 @@ public class FragmentNumber extends Fragment {
             });
         }
 
-
         questionId = q_data.getQuestionId();
         questionVariableType = q_data.getQuestion_v_type();
         is_phone_number = q_data.getIs_phone_number();
         is_phone_number_check = q_data.getIs_phone_number_check();
+        is_phone_number_duplication_check = q_data.getIs_phone_number_duplicate_check();
         registeredBy = getArguments().getString(AppSurveyConstants.SUR_REGISTERED_BY);
         adapter = new CustomersListAdapter(getActivity(), custListDetailsModels, registeredBy);
         listView.setAdapter(adapter);
@@ -320,8 +372,8 @@ public class FragmentNumber extends Fragment {
     }
 
     @Override
-    public void setUserVisibleHint(boolean isVisibleToUser){
-        if(isVisibleToUser){ //if listener is called before fragment is attached will throw NPE
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        if (isVisibleToUser) { //if listener is called before fragment is attached will throw NPE
             //Toast.makeText(getContext(), "sdsd", Toast.LENGTH_SHORT).show();
             liCustomerLayout.setVisibility(View.GONE);
         }

@@ -63,6 +63,10 @@ public class Question implements Serializable {
     @Expose
     private Boolean is_phone_number_check;
 
+    @SerializedName("phone_unique")
+    @Expose
+    private Boolean is_phone_number_duplicate_check;
+
     @SerializedName("is_village_check")
     @Expose
     private Boolean is_village_check;
@@ -118,6 +122,14 @@ public class Question implements Serializable {
 
     public Boolean getIs_phone_number_check() {
         return is_phone_number_check;
+    }
+
+    public Boolean getIs_phone_number_duplicate_check() {
+        return is_phone_number_duplicate_check;
+    }
+
+    public void setIs_phone_number_duplicate_check(Boolean is_phone_number_duplicate_check) {
+        this.is_phone_number_duplicate_check = is_phone_number_duplicate_check;
     }
 
     public void setIs_village_check(Boolean is_village_check) {

@@ -6,6 +6,7 @@ package in.myinnos.surveylib.ApiInterface;
 
 import in.myinnos.surveylib.models.ImageUploadModel;
 import in.myinnos.surveylib.models.PhoneNumberModel;
+import in.myinnos.surveylib.models.numbeDuplicationCheck.NumberDuplicationCheckModel;
 import in.myinnos.surveylib.models.village.VillageListModel;
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -27,6 +28,11 @@ public interface SurveysApiInterface {
             @Query("mobile_number") String mobile_number,
             @Query("gender") String gender,
             @Query("advisor_id") String advisor_id);
+
+    // get base view details
+    @GET("account/users/")
+    Call<NumberDuplicationCheckModel> phoneNumberDuplicateCheck(
+            @Query("contact_number") String contact_number);
 
     ////////////////////////////////////////////////////////////////////////////////////
 
