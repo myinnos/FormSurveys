@@ -234,7 +234,7 @@ public class FragmentNumber extends Fragment {
                                                  response.body().getPhoneNumberDataModel().getMsg(), Toast.LENGTH_LONG).show();*/
 
                                             Alerter.create(getActivity())
-                                                    .setTitle("BA  with this phone number already onboarded")
+                                                    .setTitle("User with this phone number already exists")
                                                     //.setText("Message Cannot be empty!")
                                                     .setDuration(4000)
                                                     .setIcon(R.drawable.alerter_ic_face)
