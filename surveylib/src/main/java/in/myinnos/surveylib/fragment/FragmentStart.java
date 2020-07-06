@@ -23,7 +23,7 @@ public class FragmentStart extends Fragment {
 
     private FragmentActivity mContext;
     private TextView textView_start;
-    private String registeredBy, survey_task_id, latitude, longitude;
+    private String registeredBy, survey_task_id, station_id, latitude, longitude;
     private String customerId;
     private String source_extra, customer_phone_extra;
 
@@ -55,6 +55,9 @@ public class FragmentStart extends Fragment {
 
                 SurveyHelper.putAnswer(AppSurveyConstants.SURVEY_TASK_ID, survey_task_id,
                         "string", AppSurveyConstants.SURVEY_TASK_ID, survey_task_id);
+
+                SurveyHelper.putAnswer(AppSurveyConstants.STATION_ID, station_id,
+                        "int", AppSurveyConstants.STATION_ID, station_id);
 
                 SurveyHelper.putAnswer(AppSurveyConstants.SUR_CUSTOMER_ID, customerId,
                         "int", AppSurveyConstants.SUR_CUSTOMER_ID, customerId);
