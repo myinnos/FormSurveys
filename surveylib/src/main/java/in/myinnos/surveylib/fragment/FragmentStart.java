@@ -86,6 +86,7 @@ public class FragmentStart extends Fragment {
         registeredBy = getArguments().getString(AppSurveyConstants.SUR_REGISTERED_BY);
         survey_task_id = getArguments().getString(AppSurveyConstants.SURVEY_TASK_ID);
         customerId = getArguments().getString(AppSurveyConstants.SUR_CUSTOMER_ID);
+        station_id = getArguments().getString(AppSurveyConstants.STATION_ID);
 
         latitude = getArguments().getString(AppSurveyConstants.SUR_LATITUDE);
         longitude = getArguments().getString(AppSurveyConstants.SUR_LONGITUDE);
