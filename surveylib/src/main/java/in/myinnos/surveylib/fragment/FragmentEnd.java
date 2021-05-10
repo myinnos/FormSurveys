@@ -96,7 +96,9 @@ public class FragmentEnd extends Fragment {
                 //Log.d("dscds", r.get(i).getQuestion() + " : " + r.get(i).getAnswer());
                 if (!r.get(i).getQuestion().equals("latitude") && !r.get(i).getQuestion().equals("longitude") &&
                         !r.get(i).getQuestion().equals("advisor_id") && !r.get(i).getQuestion().equals("customer")
-                        && !r.get(i).getQuestion().equals("image")) {
+                        && !r.get(i).getQuestion().equals("image")  && !r.get(i).getQuestion().equals("survey_task_id")
+                        && !r.get(i).getQuestion().equals("station_id")
+                        && !r.get(i).getQuestion().equals("village_id")) {
 
                     Log.d("dscds", r.get(i).getQuestion() + " : " + r.get(i).getAnswer());
 
