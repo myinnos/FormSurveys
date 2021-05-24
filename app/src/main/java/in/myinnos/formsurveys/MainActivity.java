@@ -39,24 +39,26 @@ public class MainActivity extends AppCompatActivity {
 
 
                 Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl("https://api.myjson.com")
+                        .baseUrl("http://staging-associate.1bridge.in:8888/media/")
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
                 ApiInterfaceSurveys apiInterfaceSurveys = retrofit.create(ApiInterfaceSurveys.class);
 
                 Call<JsonObject> jsonCall = apiInterfaceSurveys.cusRegForm();
 
+                Log.d("wedweqdwe", String.valueOf(jsonCall.request().url()));
                 jsonCall.enqueue(new Callback<JsonObject>() {
                     @Override
                     public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
 
-                        openSurvey(response.body().toString(), "<ID>", "<URL>");
+                        Log.d("wedweqdwe", String.valueOf(response.body().toString()));
+                        openSurvey(response.body().toString(), "RB7788", "http://staging-associate.1bridge.in:8888/api/v1/");
 
                     }
 
                     @Override
                     public void onFailure(Call<JsonObject> call, Throwable t) {
-
+                        Log.d("wedweqdwe", String.valueOf(t.getMessage()));
                     }
                 });
             }
@@ -105,6 +107,9 @@ public class MainActivity extends AppCompatActivity {
         i_survey.putExtra(AppSurveyConstants.FORM_NAME, "surveys/abhis-create/");
         i_survey.putExtra(AppSurveyConstants.SOURCE_EXTRA, "0");
         i_survey.putExtra(AppSurveyConstants.CUSTOMER_PHONE_EXTRA, "0");
+        i_survey.putExtra(AppSurveyConstants.STATION_ID, "0");
+        i_survey.putExtra(AppSurveyConstants.SURVEY_TASK_ID, "0");
+        i_survey.putExtra(AppSurveyConstants.SUR_ONBOARD_REGISTRATION, "M1BA");
         startActivityForResult(i_survey, SURVEY_REQUEST);
     }
 }

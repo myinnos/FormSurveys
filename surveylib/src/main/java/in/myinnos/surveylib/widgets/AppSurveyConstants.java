@@ -21,5 +21,6 @@ public class AppSurveyConstants {
     public static String QUESTION_COUNT_ID = "QUESTION_COUNT_ID";
     public static String QUESTION_TOTAL_COUNT = "QUESTION_TOTAL_COUNT";
     public static String STATION_ID = "station_id";
+    public static String SUR_ONBOARD_REGISTRATION= "onboard_type";
 
 }

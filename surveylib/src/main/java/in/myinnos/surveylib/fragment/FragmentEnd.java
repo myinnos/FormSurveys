@@ -98,7 +98,8 @@ public class FragmentEnd extends Fragment {
                         !r.get(i).getQuestion().equals("advisor_id") && !r.get(i).getQuestion().equals("customer")
                         && !r.get(i).getQuestion().equals("image")  && !r.get(i).getQuestion().equals("survey_task_id")
                         && !r.get(i).getQuestion().equals("station_id")
-                        && !r.get(i).getQuestion().equals("village_id")) {
+                        && !r.get(i).getQuestion().equals("village_id")
+                        && !r.get(i).getQuestion().equals("onboard_type")) {
 
                     Log.d("dscds", r.get(i).getQuestion() + " : " + r.get(i).getAnswer());
 

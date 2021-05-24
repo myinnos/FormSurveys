@@ -64,6 +64,7 @@ public class SurveyActivity extends AppCompatActivity implements IPickResult {
     private String customer_id;
     private String registered_designation;
     private String latitude, longitude;
+    private String onboard_type;
     private String source_extra, customer_phone_extra;
     private String base_url;
     private String form_name;
@@ -109,6 +110,8 @@ public class SurveyActivity extends AppCompatActivity implements IPickResult {
             latitude = bundle.getString(AppSurveyConstants.SUR_LATITUDE);
             longitude = bundle.getString(AppSurveyConstants.SUR_LONGITUDE);
 
+            onboard_type = bundle.getString(AppSurveyConstants.SUR_ONBOARD_REGISTRATION);
+
             source_extra = bundle.getString(AppSurveyConstants.SOURCE_EXTRA);
             customer_phone_extra = bundle.getString(AppSurveyConstants.CUSTOMER_PHONE_EXTRA);
 
@@ -144,6 +147,7 @@ public class SurveyActivity extends AppCompatActivity implements IPickResult {
             sBundle.putString(AppSurveyConstants.SUR_LATITUDE, latitude);
             sBundle.putString(AppSurveyConstants.SUR_LONGITUDE, longitude);
             sBundle.putString(AppSurveyConstants.SOURCE_EXTRA, source_extra);
+            sBundle.putString(AppSurveyConstants.SUR_ONBOARD_REGISTRATION, onboard_type);
             sBundle.putString(AppSurveyConstants.CUSTOMER_PHONE_EXTRA, customer_phone_extra);
             frag_start.setArguments(sBundle);
             arraylist_fragments.add(frag_start);
